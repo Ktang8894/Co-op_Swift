@@ -1,0 +1,2 @@
+BuildDB:
+	This is a C# console application made in Visual Studio that is used to create the database.
