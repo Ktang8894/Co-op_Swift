@@ -14,15 +14,8 @@ namespace Co_Op_Swift
   public class SQL
   {
     //credentials and info to connect to Azure database
-    static string netID = "ddoyle4";
-    static string dbName = "Co-Op Swift";
-    static string password = "cAtsaref0n";
 
-    static public string connectionInfo = String.Format(@"
-      Server=tcp:{0}.database.windows.net,1433;Initial Catalog={1};Persist Security Info=False;User ID={2};Password={3};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
-      ", netID, dbName, netID, password);
-
-
+    static public string connectionInfo = String.Format(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Co-op_Swift_DB.mdf; Integrated Security=True");
 
     //ExecuteActionQuery
     static public void ExecuteActionQuery(SqlConnection db, string sql)

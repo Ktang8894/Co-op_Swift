@@ -1,12 +1,9 @@
 ﻿//
 //  C# Console Application to build the Co-Op Swift Database
 //
-//  Daniel Doyle [ddoyle]
-//  U. of Illinois, Chicago
-//  CS 440 | Fall 2016
 //  Co-Op Swift Development Project
 //
-//  LAST EDITED: 11/27/2016 @ 6:26PM
+//  LAST EDITED: 4/3/2017 at 12:10AM
 //
 
 using System;
@@ -32,13 +29,8 @@ namespace BuildDB
       Console.WriteLine();
 
       // Initalize login credentials
-      string netID    = "ddoyle4";
-      string dbName   = "Co-Op Swift";
-      string password = "cAtsaref0n";
 
-      string connectionInfo = String.Format(@"
-      Server=tcp:{0}.database.windows.net,1433;Initial Catalog={1};Persist Security Info=False;User ID={2};Password={3};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
-      ", netID, dbName, netID, password);
+      string connectionInfo = String.Format(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Co-op_Swift_DB.mdf; Integrated Security=True");
 
       SqlConnection  db = null;
       SqlTransaction tx = null;
