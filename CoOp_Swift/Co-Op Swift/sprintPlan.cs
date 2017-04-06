@@ -90,7 +90,14 @@ namespace Co_Op_Swift
 
     public int getPID()
     {
-      string connectionInfo = String.Format(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Co-op_Swift_DB.mdf; Integrated Security=True");
+      string netID = "co-op-swift";
+      string dbName = "Co-op_Swift";
+      string account = "ktang";
+      string password = "PublicPass1";
+
+      string connectionInfo = String.Format(@"
+      Server=tcp:{0}.database.windows.net,1433;Initial Catalog={1};Persist Security Info=False;User ID={2};Password={3};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
+      ", netID, dbName, account, password);
 
       SqlConnection db = null;
       string sql;
@@ -123,7 +130,14 @@ WHERE Title = '{0}';
     private void sprintPlan_Load(object sender, EventArgs e)
     {
       /**** DB INFO ****/
-      string connectionInfo = String.Format(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Co-op_Swift_DB.mdf; Integrated Security=True");
+      string netID = "co-op-swift";
+      string dbName = "Co-op_Swift";
+      string account = "ktang";
+      string password = "PublicPass1";
+
+      string connectionInfo = String.Format(@"
+      Server=tcp:{0}.database.windows.net,1433;Initial Catalog={1};Persist Security Info=False;User ID={2};Password={3};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
+      ", netID, dbName, account, password);
 
       SqlConnection db = null;
       string sql;
@@ -161,6 +175,23 @@ WHERE ProjectSprints.Proj_ID = {0};
         sprintBox.Items.Add(msg);
       }
 
+//      //Load Tasks
+//      sql = string.Format(@"
+//SELECT TaskName
+//FROM TaskTable;
+//");
+
+//      DataSet ds2 = new DataSet();
+//      cmd.CommandText = sql;
+//      adapter.Fill(ds2);
+//      ds2.Tables[0].TableName = "TaskTable";
+
+//      foreach (DataRow row in ds2.Tables["TaskTable"].Rows)
+//      {
+//        //string msg = Convert.ToString(row["IdeaName"]);
+//        taskBox.Items.Add(row["TaskName"]);
+//      }
+
       db.Close();
 
     }
@@ -169,7 +200,14 @@ WHERE ProjectSprints.Proj_ID = {0};
     private void refreshTaskBox(int SID)
     {
       /**** DB INFO ****/
-      string connectionInfo = String.Format(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Co-op_Swift_DB.mdf; Integrated Security=True");
+      string netID = "co-op-swift";
+      string dbName = "Co-op_Swift";
+      string account = "ktang";
+      string password = "PublicPass1";
+
+      string connectionInfo = String.Format(@"
+      Server=tcp:{0}.database.windows.net,1433;Initial Catalog={1};Persist Security Info=False;User ID={2};Password={3};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
+      ", netID, dbName, account, password);
 
       SqlConnection db = null;
       SqlCommand cmd = new SqlCommand();
@@ -237,8 +275,14 @@ WHERE SprintTasks.SprintID = {0};
     private void createTask_Click(object sender, EventArgs e)
     {
       /**** DB INFO ****/
-      int pidTemp = getPID();
-      string connectionInfo = String.Format(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Co-op_Swift_DB.mdf; Integrated Security=True");
+      string netID = "co-op-swift";
+      string dbName = "Co-op_Swift";
+      string account = "ktang";
+      string password = "PublicPass1";
+
+      string connectionInfo = String.Format(@"
+      Server=tcp:{0}.database.windows.net,1433;Initial Catalog={1};Persist Security Info=False;User ID={2};Password={3};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
+      ", netID, dbName, account, password);
 
       SqlConnection db = null;
       string sql;
@@ -295,8 +339,14 @@ VALUES ({0}, {1});
 
       infoBox.Items.Clear();
       /**** DB INFO ****/
-      int pidTemp = getPID();
-      string connectionInfo = String.Format(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Co-op_Swift_DB.mdf; Integrated Security=True");
+      string netID = "co-op-swift";
+      string dbName = "Co-op_Swift";
+      string account = "ktang";
+      string password = "PublicPass1";
+
+      string connectionInfo = String.Format(@"
+      Server=tcp:{0}.database.windows.net,1433;Initial Catalog={1};Persist Security Info=False;User ID={2};Password={3};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
+      ", netID, dbName, account, password);
 
       SqlConnection db = null;
       string sql;

@@ -44,7 +44,7 @@
       this.label2.BackColor = System.Drawing.Color.Transparent;
       this.label2.Font = new System.Drawing.Font("Trebuchet MS", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label2.ForeColor = System.Drawing.Color.White;
-      this.label2.Location = new System.Drawing.Point(33, 38);
+      this.label2.Location = new System.Drawing.Point(39, 35);
       this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
       this.label2.Name = "label2";
       this.label2.Size = new System.Drawing.Size(461, 42);
@@ -81,7 +81,7 @@
       // textBox1
       // 
       this.textBox1.Location = new System.Drawing.Point(201, 113);
-      this.textBox1.Margin = new System.Windows.Forms.Padding(4);
+      this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
       this.textBox1.Name = "textBox1";
       this.textBox1.Size = new System.Drawing.Size(264, 22);
       this.textBox1.TabIndex = 4;
@@ -89,7 +89,7 @@
       // textBox2
       // 
       this.textBox2.Location = new System.Drawing.Point(201, 161);
-      this.textBox2.Margin = new System.Windows.Forms.Padding(4);
+      this.textBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
       this.textBox2.Name = "textBox2";
       this.textBox2.Size = new System.Drawing.Size(264, 22);
       this.textBox2.TabIndex = 5;
@@ -99,10 +99,10 @@
       // 
       this.button1.BackColor = System.Drawing.Color.Transparent;
       this.button1.Font = new System.Drawing.Font("Trebuchet MS", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.button1.Location = new System.Drawing.Point(349, 218);
-      this.button1.Margin = new System.Windows.Forms.Padding(4);
+      this.button1.Location = new System.Drawing.Point(351, 212);
+      this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
       this.button1.Name = "button1";
-      this.button1.Size = new System.Drawing.Size(144, 71);
+      this.button1.Size = new System.Drawing.Size(106, 56);
       this.button1.TabIndex = 6;
       this.button1.Text = "Login";
       this.button1.UseVisualStyleBackColor = false;
@@ -112,10 +112,10 @@
       // 
       this.button2.BackColor = System.Drawing.Color.Transparent;
       this.button2.Font = new System.Drawing.Font("Trebuchet MS", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.button2.Location = new System.Drawing.Point(188, 218);
-      this.button2.Margin = new System.Windows.Forms.Padding(4);
+      this.button2.Location = new System.Drawing.Point(216, 212);
+      this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
       this.button2.Name = "button2";
-      this.button2.Size = new System.Drawing.Size(153, 71);
+      this.button2.Size = new System.Drawing.Size(115, 56);
       this.button2.TabIndex = 7;
       this.button2.Text = "Register";
       this.button2.UseVisualStyleBackColor = false;
@@ -125,10 +125,10 @@
       // 
       this.button3.BackColor = System.Drawing.Color.Transparent;
       this.button3.Font = new System.Drawing.Font("Trebuchet MS", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.button3.Location = new System.Drawing.Point(28, 218);
-      this.button3.Margin = new System.Windows.Forms.Padding(4);
+      this.button3.Location = new System.Drawing.Point(83, 212);
+      this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
       this.button3.Name = "button3";
-      this.button3.Size = new System.Drawing.Size(152, 71);
+      this.button3.Size = new System.Drawing.Size(114, 56);
       this.button3.TabIndex = 8;
       this.button3.Text = "Reset Password";
       this.button3.UseVisualStyleBackColor = false;
@@ -141,7 +141,7 @@
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.BackColor = System.Drawing.SystemColors.GrayText;
       this.BackgroundImage = global::Co_Op_Swift.Properties.Resources.Background_Dark_Small;
-      this.ClientSize = new System.Drawing.Size(536, 329);
+      this.ClientSize = new System.Drawing.Size(536, 293);
       this.Controls.Add(this.button3);
       this.Controls.Add(this.button2);
       this.Controls.Add(this.button1);
@@ -150,7 +150,7 @@
       this.Controls.Add(this.label4);
       this.Controls.Add(this.label3);
       this.Controls.Add(this.label2);
-      this.Margin = new System.Windows.Forms.Padding(4);
+      this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
       this.Name = "Login";
       this.Text = "Login";
       this.Load += new System.EventHandler(this.Form2_Load);

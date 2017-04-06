@@ -14,9 +14,16 @@ namespace Co_Op_Swift
   public class SQL
   {
     //credentials and info to connect to Azure database
+    static string netID = "co-op-swift";
+    static string dbName = "Co-op_Swift";
+    static string account = "ktang";
+    static string password = "PublicPass1";
 
-    static public string connectionInfo = String.Format(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Co-op_Swift_DB.mdf; Integrated Security=True");
+    static public string connectionInfo = String.Format(@"
+      Server=tcp:{0}.database.windows.net,1433;Initial Catalog={1};Persist Security Info=False;User ID={2};Password={3};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
+      ", netID, dbName, account, password);
 
+    
     //ExecuteActionQuery
     static public void ExecuteActionQuery(SqlConnection db, string sql)
     {
@@ -314,7 +321,7 @@ namespace Co_Op_Swift
       }
 
      // insertSprintInfo(sprintStartDate);
-      int projID = getProjectID(ownerID);
+      int projID = getProjectID(title);
       addUserToProject(ownerID,projID,1);
 
     }// end ExecuteProjectCreation\

@@ -130,19 +130,19 @@ namespace Co_Op_Swift
 
         private void finalize_button_Click(object sender, EventArgs e)
         {
+          //check if this is initial member additions (i.e. user is creating project)
+          if (isCreating)
+          {
+            //create the project with the given information
+            SQL.ExecuteProjectCreation((int)p_info[0], (string)p_info[1], (string)p_info[2], (int)p_info[3],
+              (string)p_info[4], (string)p_info[5], (int)p_info[6]);
+
+          }
+
           //check if user is a manager
-          if(SQL.isManager(userName,projectName))
+          if(SQL.isManager(userName,projectName) || isCreating)
           {
             int uid = 0;
-
-            //check if this is initial member additions (i.e. user is creating project)
-            if(isCreating)
-            {
-               //create the project with the given information
-               SQL.ExecuteProjectCreation((int)p_info[0],(string)p_info[1],(string)p_info[2],(int)p_info[3],
-                 (string)p_info[4],(string)p_info[5],(int)p_info[6]);
-           
-            }
 
             // add users to project (if any)
             if(addedUsernames.Count > 0)

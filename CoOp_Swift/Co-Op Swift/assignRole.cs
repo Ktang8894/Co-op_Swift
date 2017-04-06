@@ -27,13 +27,13 @@ namespace Co_Op_Swift
 
         private void assignRole_Load(object sender, EventArgs e)
         {
-            Console.Write("WOOWOWOW");
+            /*Console.Write("WOOWOWOW");
             if (!SQL.isOwner(userName, Proj))  // THIS SQL NEEDS TO BE DONE
             {
                 
                 MessageBox.Show("Not an owner. Cannot edit.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
                 Close();
-            }
+            }*/
             
         }
 

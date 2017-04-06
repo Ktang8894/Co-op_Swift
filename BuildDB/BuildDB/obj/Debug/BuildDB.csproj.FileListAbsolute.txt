@@ -13,17 +13,12 @@ C:\Users\Daniel\Documents\GitHub\Code\BuildDB\BuildDB\obj\Debug\BuildDB.csprojRe
 C:\Users\Daniel\Desktop\Code\BuildDB\BuildDB\bin\Debug\BuildDB.exe.config
 C:\Users\Daniel\Desktop\Code\BuildDB\BuildDB\obj\Debug\BuildDB.exe
 C:\Users\Daniel\Desktop\Code\BuildDB\BuildDB\obj\Debug\BuildDB.pdb
-C:\Users\Kevin\Desktop\Upload to Github\Co-Op Swift\BuildDB\BuildDB\bin\Debug\BuildDB.exe.config
-C:\Users\Kevin\Desktop\Upload to Github\Co-Op Swift\BuildDB\BuildDB\obj\Debug\BuildDB.exe
-C:\Users\Kevin\Desktop\Upload to Github\Co-Op Swift\BuildDB\BuildDB\obj\Debug\BuildDB.pdb
-C:\Users\Kevin\Desktop\Upload to Github\Co-Op Swift\BuildDB\BuildDB\bin\Debug\BuildDB.exe
-C:\Users\Kevin\Desktop\Upload to Github\Co-Op Swift\BuildDB\BuildDB\bin\Debug\BuildDB.pdb
-C:\Users\Kevin\Desktop\Upload to Github\Co-Op Swift\BuildDB\BuildDB\obj\Debug\BuildDB.csprojResolveAssemblyReference.cache
+C:\Users\Kevin\Desktop\School OLD\Super Senior Fall 2016\CS440 (Co-Op Swift)\BuildDB\BuildDB\bin\Debug\BuildDB.exe.config
+C:\Users\Kevin\Desktop\School OLD\Super Senior Fall 2016\CS440 (Co-Op Swift)\BuildDB\BuildDB\obj\Debug\BuildDB.exe
+C:\Users\Kevin\Desktop\School OLD\Super Senior Fall 2016\CS440 (Co-Op Swift)\BuildDB\BuildDB\obj\Debug\BuildDB.pdb
 C:\Users\Kevin\Desktop\Ktang8894 Github Repo\Co-op_Swift\BuildDB\BuildDB\bin\Debug\BuildDB.exe.config
 C:\Users\Kevin\Desktop\Ktang8894 Github Repo\Co-op_Swift\BuildDB\BuildDB\obj\Debug\BuildDB.exe
 C:\Users\Kevin\Desktop\Ktang8894 Github Repo\Co-op_Swift\BuildDB\BuildDB\obj\Debug\BuildDB.pdb
-C:\Users\Kevin\Desktop\Ktang8894 Github Repo\Co-op_Swift\BuildDB\BuildDB\bin\Debug\Co-Op_Swift_DB.mdf
-C:\Users\Kevin\Desktop\Ktang8894 Github Repo\Co-op_Swift\BuildDB\BuildDB\bin\Debug\Co-Op_Swift_DB_log.ldf
 C:\Users\Kevin\Desktop\Ktang8894 Github Repo\Co-op_Swift\BuildDB\BuildDB\bin\Debug\BuildDB.exe
 C:\Users\Kevin\Desktop\Ktang8894 Github Repo\Co-op_Swift\BuildDB\BuildDB\bin\Debug\BuildDB.pdb
 C:\Users\Kevin\Desktop\Ktang8894 Github Repo\Co-op_Swift\BuildDB\BuildDB\obj\Debug\BuildDB.csprojResolveAssemblyReference.cache

@@ -81,10 +81,10 @@ namespace Co_Op_Swift
       this.passwordLabel.BackColor = System.Drawing.Color.Transparent;
       this.passwordLabel.Font = new System.Drawing.Font("Trebuchet MS", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.passwordLabel.ForeColor = System.Drawing.Color.White;
-      this.passwordLabel.Location = new System.Drawing.Point(11, 175);
+      this.passwordLabel.Location = new System.Drawing.Point(13, 177);
       this.passwordLabel.MaximumSize = new System.Drawing.Size(0, 100);
       this.passwordLabel.Name = "passwordLabel";
-      this.passwordLabel.Size = new System.Drawing.Size(178, 17);
+      this.passwordLabel.Size = new System.Drawing.Size(176, 17);
       this.passwordLabel.TabIndex = 1;
       this.passwordLabel.Text = "Confirm Password:\r\n";
       this.passwordLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -145,7 +145,7 @@ namespace Co_Op_Swift
             | System.Windows.Forms.AnchorStyles.Right)));
       this.firstText.Location = new System.Drawing.Point(194, 50);
       this.firstText.Name = "firstText";
-      this.firstText.Size = new System.Drawing.Size(302, 23);
+      this.firstText.Size = new System.Drawing.Size(387, 23);
       this.firstText.TabIndex = 6;
       // 
       // lastText
@@ -155,7 +155,7 @@ namespace Co_Op_Swift
             | System.Windows.Forms.AnchorStyles.Right)));
       this.lastText.Location = new System.Drawing.Point(194, 84);
       this.lastText.Name = "lastText";
-      this.lastText.Size = new System.Drawing.Size(302, 23);
+      this.lastText.Size = new System.Drawing.Size(387, 23);
       this.lastText.TabIndex = 7;
       // 
       // userText
@@ -165,7 +165,7 @@ namespace Co_Op_Swift
             | System.Windows.Forms.AnchorStyles.Right)));
       this.userText.Location = new System.Drawing.Point(194, 114);
       this.userText.Name = "userText";
-      this.userText.Size = new System.Drawing.Size(302, 23);
+      this.userText.Size = new System.Drawing.Size(387, 23);
       this.userText.TabIndex = 8;
       // 
       // passText
@@ -175,7 +175,7 @@ namespace Co_Op_Swift
             | System.Windows.Forms.AnchorStyles.Right)));
       this.passText.Location = new System.Drawing.Point(194, 143);
       this.passText.Name = "passText";
-      this.passText.Size = new System.Drawing.Size(302, 23);
+      this.passText.Size = new System.Drawing.Size(387, 23);
       this.passText.TabIndex = 9;
       this.passText.UseSystemPasswordChar = true;
       // 
@@ -186,7 +186,7 @@ namespace Co_Op_Swift
             | System.Windows.Forms.AnchorStyles.Right)));
       this.confirmText.Location = new System.Drawing.Point(194, 171);
       this.confirmText.Name = "confirmText";
-      this.confirmText.Size = new System.Drawing.Size(302, 23);
+      this.confirmText.Size = new System.Drawing.Size(387, 23);
       this.confirmText.TabIndex = 10;
       this.confirmText.UseSystemPasswordChar = true;
       // 
@@ -198,10 +198,10 @@ namespace Co_Op_Swift
       this.sqLabel.BackColor = System.Drawing.Color.Transparent;
       this.sqLabel.Font = new System.Drawing.Font("Trebuchet MS", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.sqLabel.ForeColor = System.Drawing.Color.White;
-      this.sqLabel.Location = new System.Drawing.Point(16, 201);
+      this.sqLabel.Location = new System.Drawing.Point(20, 201);
       this.sqLabel.MaximumSize = new System.Drawing.Size(0, 110);
       this.sqLabel.Name = "sqLabel";
-      this.sqLabel.Size = new System.Drawing.Size(173, 29);
+      this.sqLabel.Size = new System.Drawing.Size(169, 29);
       this.sqLabel.TabIndex = 11;
       this.sqLabel.Text = "Security Question:";
       this.sqLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -221,7 +221,7 @@ namespace Co_Op_Swift
             "What is the name of your elementary/primary school?"});
       this.listBox1.Location = new System.Drawing.Point(194, 199);
       this.listBox1.Name = "listBox1";
-      this.listBox1.Size = new System.Drawing.Size(302, 24);
+      this.listBox1.Size = new System.Drawing.Size(387, 24);
       this.listBox1.TabIndex = 12;
       this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
       // 
@@ -249,7 +249,7 @@ namespace Co_Op_Swift
             | System.Windows.Forms.AnchorStyles.Right)));
       this.answerText.Location = new System.Drawing.Point(194, 229);
       this.answerText.Name = "answerText";
-      this.answerText.Size = new System.Drawing.Size(302, 23);
+      this.answerText.Size = new System.Drawing.Size(387, 23);
       this.answerText.TabIndex = 14;
       // 
       // doneButton
@@ -259,9 +259,9 @@ namespace Co_Op_Swift
             | System.Windows.Forms.AnchorStyles.Right)));
       this.doneButton.BackColor = System.Drawing.Color.Transparent;
       this.doneButton.Font = new System.Drawing.Font("Trebuchet MS", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.doneButton.Location = new System.Drawing.Point(273, 270);
+      this.doneButton.Location = new System.Drawing.Point(357, 267);
       this.doneButton.Name = "doneButton";
-      this.doneButton.Size = new System.Drawing.Size(138, 49);
+      this.doneButton.Size = new System.Drawing.Size(226, 49);
       this.doneButton.TabIndex = 15;
       this.doneButton.Text = "Register";
       this.doneButton.UseVisualStyleBackColor = false;
@@ -273,7 +273,7 @@ namespace Co_Op_Swift
       this.label1.BackColor = System.Drawing.Color.Transparent;
       this.label1.Font = new System.Drawing.Font("Trebuchet MS", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label1.ForeColor = System.Drawing.Color.White;
-      this.label1.Location = new System.Drawing.Point(149, 9);
+      this.label1.Location = new System.Drawing.Point(187, 9);
       this.label1.Name = "label1";
       this.label1.Size = new System.Drawing.Size(234, 38);
       this.label1.TabIndex = 16;
@@ -284,9 +284,9 @@ namespace Co_Op_Swift
       // 
       this.cancel_button.BackColor = System.Drawing.Color.Transparent;
       this.cancel_button.Font = new System.Drawing.Font("Trebuchet MS", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.cancel_button.Location = new System.Drawing.Point(106, 270);
+      this.cancel_button.Location = new System.Drawing.Point(194, 267);
       this.cancel_button.Name = "cancel_button";
-      this.cancel_button.Size = new System.Drawing.Size(139, 49);
+      this.cancel_button.Size = new System.Drawing.Size(157, 49);
       this.cancel_button.TabIndex = 17;
       this.cancel_button.Text = "Cancel";
       this.cancel_button.UseVisualStyleBackColor = false;
@@ -296,7 +296,7 @@ namespace Co_Op_Swift
       // 
       this.AcceptButton = this.doneButton;
       this.BackgroundImage = global::Co_Op_Swift.Properties.Resources.Background_Dark_Small;
-      this.ClientSize = new System.Drawing.Size(525, 338);
+      this.ClientSize = new System.Drawing.Size(610, 338);
       this.Controls.Add(this.cancel_button);
       this.Controls.Add(this.label1);
       this.Controls.Add(this.doneButton);

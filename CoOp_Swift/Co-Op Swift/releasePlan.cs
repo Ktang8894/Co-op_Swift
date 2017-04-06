@@ -85,9 +85,16 @@ namespace Co_Op_Swift
 
     public int getPID()
     {
-      string connectionInfo = String.Format(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Co-op_Swift_DB.mdf; Integrated Security=True");
+      string netID = "co-op-swift";
+      string dbName = "Co-op_Swift";
+      string account = "ktang";
+      string password = "PublicPass1";
 
-      SqlConnection db = null;
+      string connectionInfo = String.Format(@"
+      Server=tcp:{0}.database.windows.net,1433;Initial Catalog={1};Persist Security Info=False;User ID={2};Password={3};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
+      ", netID, dbName, account, password);
+
+    SqlConnection db = null;
       string sql;
 
       db = new SqlConnection(connectionInfo);
@@ -111,7 +118,14 @@ WHERE Title = '{0}';
     int columnCounter = 0; //Global variable for latest sprint
     private void releasePlan_Load(object sender, EventArgs e)
     {
-      string connectionInfo = String.Format(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Co-op_Swift_DB.mdf; Integrated Security=True");
+      string netID = "co-op-swift";
+      string dbName = "Co-op_Swift";
+      string account = "ktang";
+      string password = "PublicPass1";
+
+      string connectionInfo = String.Format(@"
+      Server=tcp:{0}.database.windows.net,1433;Initial Catalog={1};Persist Security Info=False;User ID={2};Password={3};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
+      ", netID, dbName, account, password);
 
       SqlConnection db = null;
       string sql;
@@ -200,8 +214,14 @@ FROM Sprints;
     private void addSprint_Click(object sender, EventArgs e)
     {
       /**** DB INFO ****/
+      string netID = "co-op-swift";
+      string dbName = "Co-op_Swift";
+      string account = "ktang";
+      string password = "PublicPass1";
 
-      string connectionInfo = String.Format(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Co-op_Swift_DB.mdf; Integrated Security=True");
+      string connectionInfo = String.Format(@"
+      Server=tcp:{0}.database.windows.net,1433;Initial Catalog={1};Persist Security Info=False;User ID={2};Password={3};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
+      ", netID, dbName, account, password);
 
       SqlConnection db = null;
       string sql;

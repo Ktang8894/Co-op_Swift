@@ -224,7 +224,7 @@
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.BackColor = System.Drawing.SystemColors.ActiveCaption;
       this.BackgroundImage = global::Co_Op_Swift.Properties.Resources.Background_Dark_Small;
-      this.ClientSize = new System.Drawing.Size(523, 326);
+      this.ClientSize = new System.Drawing.Size(555, 326);
       this.Controls.Add(this.descriptionBox);
       this.Controls.Add(this.label8);
       this.Controls.Add(this.privateNo);

@@ -119,6 +119,7 @@ namespace Co_Op_Swift
       {
         develop1.Visible = false;
         develop2.Visible = false;
+        userComments.Items.Clear();
 
         //get task
         StoryTask.getTaskInfo(currentTasks.SelectedItem.ToString(), develop1, develop2, develop1Name, develop1Email, develop1Position,

@@ -91,11 +91,12 @@ namespace Co_Op_Swift
 
     private void Form1_Load(object sender, EventArgs e)
     {
+        if(!projectNameToolStripMenuItem.Text.Equals("Project"))
             SQL.getStories(taskNameLB, memberNameToolStripMenuItem.Text, SQL.getProjectID(projectNameToolStripMenuItem.Text));
 
-        }
+    }
 
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+    private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
     {
 
     }
@@ -238,7 +239,7 @@ namespace Co_Op_Swift
         private void assignRolesToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            if (!SQL.isOwner(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text))  // THIS SQL NEEDS TO BE DONE
+            if (!SQL.isManager(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text))  // THIS SQL NEEDS TO BE DONE
             {
 
                 MessageBox.Show("Not an owner. Cannot edit.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
