@@ -104,7 +104,7 @@ namespace Co_Op_Swift
             if (e.Button == MouseButtons.Right)
             {
                 rightClickMenuStrip.Show(this, new Point(e.X, e.Y));
-                Console.Write("owrk");
+                //Console.Write("work");
             }
         }
 
@@ -164,7 +164,14 @@ namespace Co_Op_Swift
             frm.Show();
         }
 
-        private void selectProjectToolStripMenuItem_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+    private void button1_Click_1(object sender, EventArgs e)
+    {
+      Story frm = new Story(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
+      frm.Show();
+
+    }
+
+    private void selectProjectToolStripMenuItem_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
           //get the name of the drop down item that was clicked
           string proj_name = e.ClickedItem.ToString();

@@ -54,6 +54,7 @@
       this.refreshButton = new System.Windows.Forms.Button();
       this.label1 = new System.Windows.Forms.Label();
       this.label2 = new System.Windows.Forms.Label();
+      this.button1 = new System.Windows.Forms.Button();
       this.menuStrip1.SuspendLayout();
       this.rightClickMenuStrip.SuspendLayout();
       this.SuspendLayout();
@@ -73,7 +74,7 @@
       this.menuStrip1.Location = new System.Drawing.Point(0, 0);
       this.menuStrip1.Name = "menuStrip1";
       this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-      this.menuStrip1.Size = new System.Drawing.Size(701, 28);
+      this.menuStrip1.Size = new System.Drawing.Size(692, 28);
       this.menuStrip1.TabIndex = 1;
       this.menuStrip1.Text = "menuStrip1";
       // 
@@ -160,8 +161,8 @@
       // taskTreeToolStripMenuItem
       // 
       this.taskTreeToolStripMenuItem.Name = "taskTreeToolStripMenuItem";
-      this.taskTreeToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
-      this.taskTreeToolStripMenuItem.Text = "Task Tree";
+      this.taskTreeToolStripMenuItem.Size = new System.Drawing.Size(86, 24);
+      this.taskTreeToolStripMenuItem.Text = "Task View";
       this.taskTreeToolStripMenuItem.Click += new System.EventHandler(this.taskTreeToolStripMenuItem_Click);
       // 
       // releasePlanToolStripMenuItem
@@ -222,7 +223,7 @@
       this.storyLB.FormattingEnabled = true;
       this.storyLB.ItemHeight = 16;
       this.storyLB.Location = new System.Drawing.Point(158, 106);
-      this.storyLB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.storyLB.Margin = new System.Windows.Forms.Padding(4);
       this.storyLB.Name = "storyLB";
       this.storyLB.Size = new System.Drawing.Size(106, 308);
       this.storyLB.TabIndex = 2;
@@ -230,8 +231,9 @@
       // 
       // descTB
       // 
+      this.descTB.BackColor = System.Drawing.Color.White;
       this.descTB.Location = new System.Drawing.Point(271, 106);
-      this.descTB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.descTB.Margin = new System.Windows.Forms.Padding(4);
       this.descTB.Multiline = true;
       this.descTB.Name = "descTB";
       this.descTB.ReadOnly = true;
@@ -242,10 +244,10 @@
       // 
       this.refreshButton.BackColor = System.Drawing.Color.Transparent;
       this.refreshButton.Font = new System.Drawing.Font("Trebuchet MS", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.refreshButton.Location = new System.Drawing.Point(158, 422);
-      this.refreshButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.refreshButton.Location = new System.Drawing.Point(353, 422);
+      this.refreshButton.Margin = new System.Windows.Forms.Padding(4);
       this.refreshButton.Name = "refreshButton";
-      this.refreshButton.Size = new System.Drawing.Size(377, 71);
+      this.refreshButton.Size = new System.Drawing.Size(182, 44);
       this.refreshButton.TabIndex = 5;
       this.refreshButton.Text = "Refresh";
       this.refreshButton.UseVisualStyleBackColor = false;
@@ -257,7 +259,7 @@
       this.label1.BackColor = System.Drawing.Color.Transparent;
       this.label1.Font = new System.Drawing.Font("Trebuchet MS", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label1.ForeColor = System.Drawing.Color.White;
-      this.label1.Location = new System.Drawing.Point(280, 41);
+      this.label1.Location = new System.Drawing.Point(304, 43);
       this.label1.Name = "label1";
       this.label1.Size = new System.Drawing.Size(98, 29);
       this.label1.TabIndex = 6;
@@ -269,11 +271,24 @@
       this.label2.BackColor = System.Drawing.Color.Transparent;
       this.label2.Font = new System.Drawing.Font("Trebuchet MS", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label2.ForeColor = System.Drawing.Color.White;
-      this.label2.Location = new System.Drawing.Point(179, 73);
+      this.label2.Location = new System.Drawing.Point(123, 72);
       this.label2.Name = "label2";
-      this.label2.Size = new System.Drawing.Size(346, 23);
+      this.label2.Size = new System.Drawing.Size(461, 23);
       this.label2.TabIndex = 7;
-      this.label2.Text = "Right-click the window to create a new idea";
+      this.label2.Text = "Right-click on the window background to create a new idea";
+      // 
+      // button1
+      // 
+      this.button1.BackColor = System.Drawing.Color.Transparent;
+      this.button1.Font = new System.Drawing.Font("Trebuchet MS", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.button1.Location = new System.Drawing.Point(158, 422);
+      this.button1.Margin = new System.Windows.Forms.Padding(4);
+      this.button1.Name = "button1";
+      this.button1.Size = new System.Drawing.Size(187, 44);
+      this.button1.TabIndex = 8;
+      this.button1.Text = "New Idea";
+      this.button1.UseVisualStyleBackColor = false;
+      this.button1.Click += new System.EventHandler(this.button1_Click_1);
       // 
       // ideaBox
       // 
@@ -281,14 +296,15 @@
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.BackColor = System.Drawing.Color.SkyBlue;
       this.BackgroundImage = global::Co_Op_Swift.Properties.Resources.Background_Dark_Large;
-      this.ClientSize = new System.Drawing.Size(701, 506);
+      this.ClientSize = new System.Drawing.Size(692, 489);
+      this.Controls.Add(this.button1);
       this.Controls.Add(this.label2);
       this.Controls.Add(this.label1);
       this.Controls.Add(this.refreshButton);
       this.Controls.Add(this.descTB);
       this.Controls.Add(this.storyLB);
       this.Controls.Add(this.menuStrip1);
-      this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.Margin = new System.Windows.Forms.Padding(4);
       this.Name = "ideaBox";
       this.Text = "Co-Op Swift";
       this.Load += new System.EventHandler(this.ideaBox_Load);
@@ -328,5 +344,6 @@
         private System.Windows.Forms.ToolStripMenuItem assignTasksToolStripMenuItem;
     private System.Windows.Forms.Label label1;
     private System.Windows.Forms.Label label2;
+    private System.Windows.Forms.Button button1;
   }
 }

@@ -43,7 +43,7 @@
       this.ok_button.BackColor = System.Drawing.Color.Transparent;
       this.ok_button.Font = new System.Drawing.Font("Trebuchet MS", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.ok_button.Location = new System.Drawing.Point(235, 315);
-      this.ok_button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.ok_button.Margin = new System.Windows.Forms.Padding(4);
       this.ok_button.Name = "ok_button";
       this.ok_button.Size = new System.Drawing.Size(174, 46);
       this.ok_button.TabIndex = 0;
@@ -56,7 +56,7 @@
       this.cancel_button.BackColor = System.Drawing.Color.Transparent;
       this.cancel_button.Font = new System.Drawing.Font("Trebuchet MS", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.cancel_button.Location = new System.Drawing.Point(33, 315);
-      this.cancel_button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.cancel_button.Margin = new System.Windows.Forms.Padding(4);
       this.cancel_button.Name = "cancel_button";
       this.cancel_button.Size = new System.Drawing.Size(174, 46);
       this.cancel_button.TabIndex = 1;
@@ -92,9 +92,10 @@
       // 
       // nameBox
       // 
+      this.nameBox.BackColor = System.Drawing.Color.White;
       this.nameBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.nameBox.Location = new System.Drawing.Point(33, 39);
-      this.nameBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.nameBox.Margin = new System.Windows.Forms.Padding(4);
       this.nameBox.Name = "nameBox";
       this.nameBox.ReadOnly = true;
       this.nameBox.Size = new System.Drawing.Size(376, 26);
@@ -104,7 +105,7 @@
       // 
       this.commentBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.commentBox.Location = new System.Drawing.Point(33, 194);
-      this.commentBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.commentBox.Margin = new System.Windows.Forms.Padding(4);
       this.commentBox.Multiline = true;
       this.commentBox.Name = "commentBox";
       this.commentBox.Size = new System.Drawing.Size(376, 91);
@@ -112,9 +113,10 @@
       // 
       // taskNameBox
       // 
+      this.taskNameBox.BackColor = System.Drawing.Color.White;
       this.taskNameBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.taskNameBox.Location = new System.Drawing.Point(33, 123);
-      this.taskNameBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.taskNameBox.Margin = new System.Windows.Forms.Padding(4);
       this.taskNameBox.Name = "taskNameBox";
       this.taskNameBox.ReadOnly = true;
       this.taskNameBox.Size = new System.Drawing.Size(376, 26);
@@ -148,7 +150,7 @@
       this.Controls.Add(this.label1);
       this.Controls.Add(this.cancel_button);
       this.Controls.Add(this.ok_button);
-      this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.Margin = new System.Windows.Forms.Padding(4);
       this.Name = "AddComment";
       this.Text = "AddComment";
       this.ResumeLayout(false);

@@ -42,7 +42,8 @@ namespace Co_Op_Swift
         doneTextBox.Visible = true;
         activitiesTextBox.Visible = true;
         activityLabel.Visible = true;
-        
+        noProject.Visible = false;
+
 
         //get the project description for the user's project
         SQL.getProjectDescription(projectName, projectDescriptionTB);
@@ -85,6 +86,7 @@ namespace Co_Op_Swift
         doneTextBox.Visible = false;
         activitiesTextBox.Visible = false;
         activityLabel.Visible = false;
+        noProject.Visible = true;
       }
    
     }
@@ -304,5 +306,25 @@ namespace Co_Op_Swift
         {
 
         }
+
+    private void projectDescriptionLabel_TextChanged(object sender, EventArgs e)
+    {
+
     }
+
+    private void doneLabel_TextChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    private void activityLabel_TextChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    private void label1_Click(object sender, EventArgs e)
+    {
+
+    }
+  }
 }

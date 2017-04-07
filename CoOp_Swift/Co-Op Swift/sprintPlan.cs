@@ -13,8 +13,18 @@ namespace Co_Op_Swift
 {
   public partial class sprintPlan : Form
   {
+    static string netID = "co-op-swift";
+    static string dbName = "Co-op_Swift";
+    static string account = "ktang";
+    static string password = "PublicPass1";
+
+    static public string connectionInfo = String.Format(@"
+      Server=tcp:{0}.database.windows.net,1433;Initial Catalog={1};Persist Security Info=False;User ID={2};Password={3};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
+      ", netID, dbName, account, password);
+
     public sprintPlan(String username, String projectName)
     {
+      
       InitializeComponent();
 
       projectNameToolStripMenuItem.Text = projectName;
@@ -90,15 +100,6 @@ namespace Co_Op_Swift
 
     public int getPID()
     {
-      string netID = "co-op-swift";
-      string dbName = "Co-op_Swift";
-      string account = "ktang";
-      string password = "PublicPass1";
-
-      string connectionInfo = String.Format(@"
-      Server=tcp:{0}.database.windows.net,1433;Initial Catalog={1};Persist Security Info=False;User ID={2};Password={3};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
-      ", netID, dbName, account, password);
-
       SqlConnection db = null;
       string sql;
 
@@ -130,15 +131,6 @@ WHERE Title = '{0}';
     private void sprintPlan_Load(object sender, EventArgs e)
     {
       /**** DB INFO ****/
-      string netID = "co-op-swift";
-      string dbName = "Co-op_Swift";
-      string account = "ktang";
-      string password = "PublicPass1";
-
-      string connectionInfo = String.Format(@"
-      Server=tcp:{0}.database.windows.net,1433;Initial Catalog={1};Persist Security Info=False;User ID={2};Password={3};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
-      ", netID, dbName, account, password);
-
       SqlConnection db = null;
       string sql;
 
@@ -200,14 +192,7 @@ WHERE ProjectSprints.Proj_ID = {0};
     private void refreshTaskBox(int SID)
     {
       /**** DB INFO ****/
-      string netID = "co-op-swift";
-      string dbName = "Co-op_Swift";
-      string account = "ktang";
-      string password = "PublicPass1";
-
-      string connectionInfo = String.Format(@"
-      Server=tcp:{0}.database.windows.net,1433;Initial Catalog={1};Persist Security Info=False;User ID={2};Password={3};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
-      ", netID, dbName, account, password);
+     
 
       SqlConnection db = null;
       SqlCommand cmd = new SqlCommand();
@@ -275,15 +260,6 @@ WHERE SprintTasks.SprintID = {0};
     private void createTask_Click(object sender, EventArgs e)
     {
       /**** DB INFO ****/
-      string netID = "co-op-swift";
-      string dbName = "Co-op_Swift";
-      string account = "ktang";
-      string password = "PublicPass1";
-
-      string connectionInfo = String.Format(@"
-      Server=tcp:{0}.database.windows.net,1433;Initial Catalog={1};Persist Security Info=False;User ID={2};Password={3};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
-      ", netID, dbName, account, password);
-
       SqlConnection db = null;
       string sql;
 
@@ -339,14 +315,6 @@ VALUES ({0}, {1});
 
       infoBox.Items.Clear();
       /**** DB INFO ****/
-      string netID = "co-op-swift";
-      string dbName = "Co-op_Swift";
-      string account = "ktang";
-      string password = "PublicPass1";
-
-      string connectionInfo = String.Format(@"
-      Server=tcp:{0}.database.windows.net,1433;Initial Catalog={1};Persist Security Info=False;User ID={2};Password={3};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
-      ", netID, dbName, account, password);
 
       SqlConnection db = null;
       string sql;

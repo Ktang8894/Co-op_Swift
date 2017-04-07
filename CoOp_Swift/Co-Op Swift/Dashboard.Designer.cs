@@ -46,20 +46,21 @@
       this.menuStrip1 = new System.Windows.Forms.MenuStrip();
       this.dashboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.projectDescriptionTB = new System.Windows.Forms.TextBox();
-      this.projectDescriptionLabel = new System.Windows.Forms.TextBox();
       this.projectDescriptionEditButton = new System.Windows.Forms.Button();
       this.releaseTextBox = new System.Windows.Forms.TextBox();
       this.releaseButton = new System.Windows.Forms.Button();
-      this.releaseLabel = new System.Windows.Forms.TextBox();
       this.doneTextBox = new System.Windows.Forms.TextBox();
       this.doneButton = new System.Windows.Forms.Button();
-      this.doneLabel = new System.Windows.Forms.TextBox();
       this.activitiesTextBox = new System.Windows.Forms.TextBox();
-      this.activityLabel = new System.Windows.Forms.TextBox();
       this.taskNameLB = new System.Windows.Forms.ListBox();
-      this.ideaNameLabel = new System.Windows.Forms.Label();
-      this.label1 = new System.Windows.Forms.Label();
       this.descTB = new System.Windows.Forms.TextBox();
+      this.projectDescriptionLabel = new System.Windows.Forms.Label();
+      this.releaseLabel = new System.Windows.Forms.Label();
+      this.doneLabel = new System.Windows.Forms.Label();
+      this.activityLabel = new System.Windows.Forms.Label();
+      this.ideaLabel = new System.Windows.Forms.Label();
+      this.label1 = new System.Windows.Forms.Label();
+      this.noProject = new System.Windows.Forms.Label();
       this.menuStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -136,8 +137,8 @@
       // taskTreeToolStripMenuItem
       // 
       this.taskTreeToolStripMenuItem.Name = "taskTreeToolStripMenuItem";
-      this.taskTreeToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
-      this.taskTreeToolStripMenuItem.Text = "Task Tree";
+      this.taskTreeToolStripMenuItem.Size = new System.Drawing.Size(86, 24);
+      this.taskTreeToolStripMenuItem.Text = "Task View";
       this.taskTreeToolStripMenuItem.Click += new System.EventHandler(this.taskTreeToolStripMenuItem_Click);
       // 
       // releasePlanToolStripMenuItem
@@ -210,7 +211,7 @@
       this.projectDescriptionTB.BackColor = System.Drawing.Color.White;
       this.projectDescriptionTB.Enabled = false;
       this.projectDescriptionTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.projectDescriptionTB.Location = new System.Drawing.Point(25, 85);
+      this.projectDescriptionTB.Location = new System.Drawing.Point(25, 88);
       this.projectDescriptionTB.MinimumSize = new System.Drawing.Size(292, 77);
       this.projectDescriptionTB.Multiline = true;
       this.projectDescriptionTB.Name = "projectDescriptionTB";
@@ -219,20 +220,10 @@
       this.projectDescriptionTB.Text = "No description currently defined";
       this.projectDescriptionTB.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
       // 
-      // projectDescriptionLabel
-      // 
-      this.projectDescriptionLabel.Enabled = false;
-      this.projectDescriptionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.projectDescriptionLabel.Location = new System.Drawing.Point(25, 57);
-      this.projectDescriptionLabel.Name = "projectDescriptionLabel";
-      this.projectDescriptionLabel.Size = new System.Drawing.Size(233, 26);
-      this.projectDescriptionLabel.TabIndex = 2;
-      this.projectDescriptionLabel.Text = "Project Description";
-      // 
       // projectDescriptionEditButton
       // 
       this.projectDescriptionEditButton.Font = new System.Drawing.Font("Trebuchet MS", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.projectDescriptionEditButton.Location = new System.Drawing.Point(264, 57);
+      this.projectDescriptionEditButton.Location = new System.Drawing.Point(264, 136);
       this.projectDescriptionEditButton.Name = "projectDescriptionEditButton";
       this.projectDescriptionEditButton.Size = new System.Drawing.Size(53, 26);
       this.projectDescriptionEditButton.TabIndex = 3;
@@ -257,24 +248,13 @@
       // releaseButton
       // 
       this.releaseButton.Font = new System.Drawing.Font("Trebuchet MS", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.releaseButton.Location = new System.Drawing.Point(264, 184);
+      this.releaseButton.Location = new System.Drawing.Point(264, 262);
       this.releaseButton.Name = "releaseButton";
       this.releaseButton.Size = new System.Drawing.Size(53, 26);
       this.releaseButton.TabIndex = 6;
       this.releaseButton.Text = "Edit";
       this.releaseButton.UseVisualStyleBackColor = true;
       this.releaseButton.Click += new System.EventHandler(this.button1_Click);
-      // 
-      // releaseLabel
-      // 
-      this.releaseLabel.Enabled = false;
-      this.releaseLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.releaseLabel.Location = new System.Drawing.Point(25, 184);
-      this.releaseLabel.Name = "releaseLabel";
-      this.releaseLabel.Size = new System.Drawing.Size(233, 26);
-      this.releaseLabel.TabIndex = 5;
-      this.releaseLabel.Text = "Release Version";
-      this.releaseLabel.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
       // 
       // doneTextBox
       // 
@@ -293,23 +273,13 @@
       // doneButton
       // 
       this.doneButton.Font = new System.Drawing.Font("Trebuchet MS", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.doneButton.Location = new System.Drawing.Point(264, 312);
+      this.doneButton.Location = new System.Drawing.Point(264, 400);
       this.doneButton.Name = "doneButton";
       this.doneButton.Size = new System.Drawing.Size(53, 26);
       this.doneButton.TabIndex = 9;
       this.doneButton.Text = "Edit";
       this.doneButton.UseVisualStyleBackColor = true;
       this.doneButton.Click += new System.EventHandler(this.button2_Click);
-      // 
-      // doneLabel
-      // 
-      this.doneLabel.Enabled = false;
-      this.doneLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.doneLabel.Location = new System.Drawing.Point(25, 312);
-      this.doneLabel.Name = "doneLabel";
-      this.doneLabel.Size = new System.Drawing.Size(233, 26);
-      this.doneLabel.TabIndex = 8;
-      this.doneLabel.Text = "Current definition of done";
       // 
       // activitiesTextBox
       // 
@@ -319,57 +289,112 @@
       this.activitiesTextBox.Location = new System.Drawing.Point(349, 89);
       this.activitiesTextBox.Multiline = true;
       this.activitiesTextBox.Name = "activitiesTextBox";
-      this.activitiesTextBox.Size = new System.Drawing.Size(292, 341);
+      this.activitiesTextBox.Size = new System.Drawing.Size(292, 337);
       this.activitiesTextBox.TabIndex = 10;
       this.activitiesTextBox.Text = "No description currently defined";
-      // 
-      // activityLabel
-      // 
-      this.activityLabel.Enabled = false;
-      this.activityLabel.Font = new System.Drawing.Font("Trebuchet MS", 7.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.activityLabel.Location = new System.Drawing.Point(349, 62);
-      this.activityLabel.Name = "activityLabel";
-      this.activityLabel.Size = new System.Drawing.Size(292, 21);
-      this.activityLabel.TabIndex = 11;
-      this.activityLabel.Text = "Activities";
       // 
       // taskNameLB
       // 
       this.taskNameLB.FormattingEnabled = true;
       this.taskNameLB.ItemHeight = 20;
-      this.taskNameLB.Location = new System.Drawing.Point(673, 84);
+      this.taskNameLB.Location = new System.Drawing.Point(673, 87);
       this.taskNameLB.Name = "taskNameLB";
-      this.taskNameLB.Size = new System.Drawing.Size(305, 44);
+      this.taskNameLB.Size = new System.Drawing.Size(305, 164);
       this.taskNameLB.TabIndex = 12;
       this.taskNameLB.SelectedIndexChanged += new System.EventHandler(this.taskNameLB_SelectedIndexChanged);
       // 
-      // ideaNameLabel
+      // descTB
       // 
-      this.ideaNameLabel.AutoSize = true;
-      this.ideaNameLabel.BackColor = System.Drawing.Color.Gray;
-      this.ideaNameLabel.Location = new System.Drawing.Point(673, 65);
-      this.ideaNameLabel.Name = "ideaNameLabel";
-      this.ideaNameLabel.Size = new System.Drawing.Size(54, 20);
-      this.ideaNameLabel.TabIndex = 14;
-      this.ideaNameLabel.Text = "Ideas";
+      this.descTB.Location = new System.Drawing.Point(673, 289);
+      this.descTB.Multiline = true;
+      this.descTB.Name = "descTB";
+      this.descTB.Size = new System.Drawing.Size(305, 137);
+      this.descTB.TabIndex = 16;
+      // 
+      // projectDescriptionLabel
+      // 
+      this.projectDescriptionLabel.AutoSize = true;
+      this.projectDescriptionLabel.BackColor = System.Drawing.Color.Transparent;
+      this.projectDescriptionLabel.Font = new System.Drawing.Font("Trebuchet MS", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.projectDescriptionLabel.ForeColor = System.Drawing.Color.White;
+      this.projectDescriptionLabel.Location = new System.Drawing.Point(21, 65);
+      this.projectDescriptionLabel.Name = "projectDescriptionLabel";
+      this.projectDescriptionLabel.Size = new System.Drawing.Size(165, 23);
+      this.projectDescriptionLabel.TabIndex = 17;
+      this.projectDescriptionLabel.Text = "Project Description";
+      // 
+      // releaseLabel
+      // 
+      this.releaseLabel.AutoSize = true;
+      this.releaseLabel.BackColor = System.Drawing.Color.Transparent;
+      this.releaseLabel.Font = new System.Drawing.Font("Trebuchet MS", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.releaseLabel.ForeColor = System.Drawing.Color.White;
+      this.releaseLabel.Location = new System.Drawing.Point(21, 188);
+      this.releaseLabel.Name = "releaseLabel";
+      this.releaseLabel.Size = new System.Drawing.Size(137, 23);
+      this.releaseLabel.TabIndex = 18;
+      this.releaseLabel.Text = "Release Version";
+      // 
+      // doneLabel
+      // 
+      this.doneLabel.AutoSize = true;
+      this.doneLabel.BackColor = System.Drawing.Color.Transparent;
+      this.doneLabel.Font = new System.Drawing.Font("Trebuchet MS", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.doneLabel.ForeColor = System.Drawing.Color.White;
+      this.doneLabel.Location = new System.Drawing.Point(21, 317);
+      this.doneLabel.Name = "doneLabel";
+      this.doneLabel.Size = new System.Drawing.Size(123, 23);
+      this.doneLabel.TabIndex = 19;
+      this.doneLabel.Text = "End Objective";
+      // 
+      // activityLabel
+      // 
+      this.activityLabel.AutoSize = true;
+      this.activityLabel.BackColor = System.Drawing.Color.Transparent;
+      this.activityLabel.Font = new System.Drawing.Font("Trebuchet MS", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.activityLabel.ForeColor = System.Drawing.Color.White;
+      this.activityLabel.Location = new System.Drawing.Point(345, 67);
+      this.activityLabel.Name = "activityLabel";
+      this.activityLabel.Size = new System.Drawing.Size(85, 23);
+      this.activityLabel.TabIndex = 20;
+      this.activityLabel.Text = "Activities";
+      // 
+      // ideaLabel
+      // 
+      this.ideaLabel.AutoSize = true;
+      this.ideaLabel.BackColor = System.Drawing.Color.Transparent;
+      this.ideaLabel.Font = new System.Drawing.Font("Trebuchet MS", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.ideaLabel.ForeColor = System.Drawing.Color.White;
+      this.ideaLabel.Location = new System.Drawing.Point(669, 64);
+      this.ideaLabel.Name = "ideaLabel";
+      this.ideaLabel.Size = new System.Drawing.Size(51, 23);
+      this.ideaLabel.TabIndex = 21;
+      this.ideaLabel.Text = "Ideas";
       // 
       // label1
       // 
       this.label1.AutoSize = true;
-      this.label1.BackColor = System.Drawing.Color.Gray;
-      this.label1.Location = new System.Drawing.Point(673, 155);
+      this.label1.BackColor = System.Drawing.Color.Transparent;
+      this.label1.Font = new System.Drawing.Font("Trebuchet MS", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label1.ForeColor = System.Drawing.Color.White;
+      this.label1.Location = new System.Drawing.Point(669, 268);
       this.label1.Name = "label1";
-      this.label1.Size = new System.Drawing.Size(147, 20);
-      this.label1.TabIndex = 15;
+      this.label1.Size = new System.Drawing.Size(140, 23);
+      this.label1.TabIndex = 22;
       this.label1.Text = "Idea Description";
+      this.label1.Click += new System.EventHandler(this.label1_Click);
       // 
-      // descTB
+      // noProject
       // 
-      this.descTB.Location = new System.Drawing.Point(673, 175);
-      this.descTB.Multiline = true;
-      this.descTB.Name = "descTB";
-      this.descTB.Size = new System.Drawing.Size(305, 251);
-      this.descTB.TabIndex = 16;
+      this.noProject.AutoSize = true;
+      this.noProject.BackColor = System.Drawing.Color.Transparent;
+      this.noProject.Font = new System.Drawing.Font("Trebuchet MS", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.noProject.ForeColor = System.Drawing.Color.White;
+      this.noProject.Location = new System.Drawing.Point(163, 225);
+      this.noProject.Name = "noProject";
+      this.noProject.Size = new System.Drawing.Size(313, 43);
+      this.noProject.TabIndex = 23;
+      this.noProject.Text = "No Project Loaded";
       // 
       // Dashboard
       // 
@@ -378,26 +403,27 @@
       this.BackColor = System.Drawing.Color.Peru;
       this.BackgroundImage = global::Co_Op_Swift.Properties.Resources.Background_Dark_Large;
       this.ClientSize = new System.Drawing.Size(1012, 469);
-      this.Controls.Add(this.descTB);
+      this.Controls.Add(this.noProject);
       this.Controls.Add(this.label1);
-      this.Controls.Add(this.ideaNameLabel);
-      this.Controls.Add(this.taskNameLB);
-      this.Controls.Add(this.activitiesTextBox);
+      this.Controls.Add(this.ideaLabel);
       this.Controls.Add(this.activityLabel);
-      this.Controls.Add(this.doneTextBox);
-      this.Controls.Add(this.doneButton);
       this.Controls.Add(this.doneLabel);
-      this.Controls.Add(this.releaseTextBox);
-      this.Controls.Add(this.releaseButton);
       this.Controls.Add(this.releaseLabel);
-      this.Controls.Add(this.projectDescriptionTB);
+      this.Controls.Add(this.doneButton);
       this.Controls.Add(this.projectDescriptionEditButton);
       this.Controls.Add(this.projectDescriptionLabel);
+      this.Controls.Add(this.descTB);
+      this.Controls.Add(this.taskNameLB);
+      this.Controls.Add(this.activitiesTextBox);
+      this.Controls.Add(this.doneTextBox);
+      this.Controls.Add(this.releaseButton);
+      this.Controls.Add(this.projectDescriptionTB);
       this.Controls.Add(this.menuStrip1);
+      this.Controls.Add(this.releaseTextBox);
       this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.ForeColor = System.Drawing.Color.Black;
       this.MainMenuStrip = this.menuStrip1;
-      this.Margin = new System.Windows.Forms.Padding(4);
+      this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
       this.Name = "Dashboard";
       this.Text = "Co-Op Swift";
       this.Load += new System.EventHandler(this.Form1_Load);
@@ -424,24 +450,25 @@
     private System.Windows.Forms.ToolStripMenuItem accountToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem logoutToolStripMenuItem;
         private System.Windows.Forms.TextBox projectDescriptionTB;
-        private System.Windows.Forms.TextBox projectDescriptionLabel;
         private System.Windows.Forms.Button projectDescriptionEditButton;
         private System.Windows.Forms.TextBox releaseTextBox;
         private System.Windows.Forms.Button releaseButton;
-        private System.Windows.Forms.TextBox releaseLabel;
         private System.Windows.Forms.TextBox doneTextBox;
         private System.Windows.Forms.Button doneButton;
-        private System.Windows.Forms.TextBox doneLabel;
         private System.Windows.Forms.TextBox activitiesTextBox;
-        private System.Windows.Forms.TextBox activityLabel;
         private System.Windows.Forms.ToolStripMenuItem dashboardToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem assignRolesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem assignTasksToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem selectProjectToolStripMenuItem;
         private System.Windows.Forms.ListBox taskNameLB;
-        private System.Windows.Forms.Label ideaNameLabel;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox descTB;
-    }
+    private System.Windows.Forms.Label projectDescriptionLabel;
+    private System.Windows.Forms.Label releaseLabel;
+    private System.Windows.Forms.Label doneLabel;
+    private System.Windows.Forms.Label activityLabel;
+    private System.Windows.Forms.Label ideaLabel;
+    private System.Windows.Forms.Label label1;
+    private System.Windows.Forms.Label noProject;
+  }
 }
 

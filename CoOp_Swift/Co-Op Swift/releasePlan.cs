@@ -339,5 +339,12 @@ VALUES ({0}, {1});
             assignTask frm = new assignTask(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
             frm.Show();
         }
+
+    private void timeLineToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      taskTree frm = new taskTree(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
+      frm.Show();
+      this.Close();
     }
+  }
 }
