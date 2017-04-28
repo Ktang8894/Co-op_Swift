@@ -85,6 +85,7 @@
     <Compile Include="CreateProj.Designer.cs">
       <DependentUpon>CreateProj.cs</DependentUpon>
     </Compile>
+    <Compile Include="ExecuteSQL.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
