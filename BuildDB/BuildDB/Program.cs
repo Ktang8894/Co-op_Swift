@@ -3,51 +3,121 @@
 //
 //  Co-Op Swift Development Project
 //
-//  LAST EDITED: 4/6/2017 12:22AM
+//  LAST EDITED: 4/28/2017
 //
+//  TO-DO:
+//    - Update Azure account connection information.
+//
+
 
 using System;
 using System.Data;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.SqlClient;
 
 namespace BuildDB
 {
   class Program
   {
-    //
-    // Main:
-    //    This function creates a database connection to our cloud database hosted by Azure and runs an SQL script to build our software's database
-    //
-    static void Main(string[] args)
-    {
-      Console.WriteLine();
-      Console.WriteLine("** Building Co-Op Swift Database **");
-      Console.WriteLine();
+    // Initalize login credentials
+    static string netID = "ddoyle4";
+    static string dbName = "Co-Op Swift";
+    static string password = "cAtsaref0n";
 
-      // Initalize login credentials
-      string netID    = "ddoyle4";
-      string dbName   = "Co-Op Swift";
-      string password = "cAtsaref0n";
-
-      string connectionInfo = String.Format(@"
+    static string connectionInfo = String.Format(@"
       Server=tcp:{0}.database.windows.net,1433;Initial Catalog={1};Persist Security Info=False;User ID={2};Password={3};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
       ", netID, dbName, netID, password);
 
-      SqlConnection  db = null;
-      SqlTransaction tx = null;
+
+    //
+    //  Main: runs the basic UI for managing the Co-Op Swift database building and deletion functionalities.
+    //
+    static void Main(string[] args)
+    {
+      bool menu = true;
+      string input;
+
+      Console.WriteLine();
+      Console.WriteLine("** Welcome to the Co-Op Swift Database Manager **");
+      Console.WriteLine();
+
+      while (menu)
+      {
+        Console.WriteLine("1: Delete database");
+        Console.WriteLine("2: Initialize database");
+        Console.WriteLine("3: Rebuild database");
+        Console.WriteLine("4: Help Menu");
+        Console.WriteLine("5: Quit");
+        Console.WriteLine();
+
+        Console.Write("> ");
+        input = Console.ReadLine();
+
+        if (input == "1")
+        {
+          Console.WriteLine();
+          Console.WriteLine("... Deleting database ...");
+          DropTables();
+          Console.WriteLine("... Database successfully deleted ...");
+          Console.WriteLine();
+        }
+        else if (input == "2")
+        {
+          Console.WriteLine();
+          Console.WriteLine("... Initializing database ...");
+          CreateTables();
+          Console.WriteLine("... Database successfully created ...");
+          Console.WriteLine();
+        }
+        else if (input == "3")
+        {
+          Console.WriteLine();
+          Console.WriteLine("... Refreshing database ...");
+          DropTables();
+          Console.WriteLine("... Tables deleted ...");
+          CreateTables();
+          Console.WriteLine("... Tables re-created ...");
+          Console.WriteLine("... Database successfully rebuilt ...");
+          Console.WriteLine();
+        }
+        else if (input == "4")
+        {
+          Console.WriteLine("Option 1: deletes all tables in the database");
+          Console.WriteLine("Option 2: creates all tables in the database and inserts starting data");
+          Console.WriteLine("Option 3: refreshes database by dropping all tables, then re-initializes them");
+          Console.WriteLine();
+        }
+        else if (input == "5")
+        {
+          menu = false;
+        }
+        else
+        {
+          Console.WriteLine("Not valid input");
+          Console.WriteLine();
+        }
+      }
+
+      Console.WriteLine();
+      Console.WriteLine("** Exiting Co-Op Swift Database Manager");
+      Console.WriteLine();
+      return;
+    } 
+
+    //
+    //  DropTables: helper function that deletes all the tables (and data) in the database.
+    //
+    private static void DropTables ()
+    {
+      SqlConnection   db = null;
+      SqlTransaction  tx = null;
 
       try
       {
-        // Connect to Azure and open a database connection
         db = new SqlConnection(connectionInfo);
         db.Open();
+
         tx = db.BeginTransaction();
 
-        // Create our query
         string SQL = string.Format(@"
           DROP TABLE ProjectMembers
           DROP TABLE ProjectIdeas
@@ -66,8 +136,40 @@ namespace BuildDB
           DROP TABLE Positions
           DROP TABLE TimeZones
           DROP TABLE Colors 
+        ");
 
+        SqlCommand cmd = new SqlCommand(SQL, db, tx);
+        cmd.ExecuteNonQuery();
+        tx.Commit();
+      }
+      catch (Exception ex)
+      {
+        Console.WriteLine("** Exception: '{0}'", ex.Message);
+        tx.Rollback();
+      }
+      finally
+      {
+        if (db != null && db.State == ConnectionState.Open)
+          db.Close();
+      }
+    }
 
+    //
+    //  CreateTables: helper function that builds the database and initializes the basic data needed for Co-Op Swift to function properly.
+    //
+    private static void CreateTables ()
+    {
+      SqlConnection db = null;
+      SqlTransaction tx = null;
+
+      try
+      {
+        db = new SqlConnection(connectionInfo);
+        db.Open();
+
+        tx = db.BeginTransaction();
+
+        string SQL = string.Format(@"
           CREATE TABLE Questions (
             QID       INT IDENTITY(1, 1) PRIMARY KEY,
             Question  NVARCHAR(512) NOT NULL
@@ -236,30 +338,24 @@ namespace BuildDB
           VALUES ('UTC-4: Atlantic Standard Time');
 
           INSERT INTO TimeZones (Timezone)
-          VALUES ('UTC+10: Chamorro Standard Time');
+          VALUES ('UTC+10: Chamorro Standard Time'); 
         ");
 
-        // Execute the SQL that creates the database
         SqlCommand cmd = new SqlCommand(SQL, db, tx);
         cmd.ExecuteNonQuery();
-
-        // If we get to this point, we connected to Azure and our SQL executed properly, so we commit our changes
         tx.Commit();
       }
       catch (Exception ex)
       {
-        // If an exception is thrown, rollback any changes
         Console.WriteLine("** Exception: '{0}'", ex.Message);
         tx.Rollback();
       }
       finally
       {
-        // If a successful database connection was made, close it
         if (db != null && db.State == ConnectionState.Open)
-          Console.WriteLine("** Closing database connection **");
           db.Close();
       }
+    } // CreateTables
 
-    } // Main function
   } // Program class
 } // namespace BuildDB

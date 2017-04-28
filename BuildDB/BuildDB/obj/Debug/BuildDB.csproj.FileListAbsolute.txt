@@ -22,3 +22,9 @@ C:\Users\Kevin\Desktop\Ktang8894 Github Repo\Co-op_Swift\BuildDB\BuildDB\obj\Deb
 C:\Users\Kevin\Desktop\Ktang8894 Github Repo\Co-op_Swift\BuildDB\BuildDB\bin\Debug\BuildDB.exe
 C:\Users\Kevin\Desktop\Ktang8894 Github Repo\Co-op_Swift\BuildDB\BuildDB\bin\Debug\BuildDB.pdb
 C:\Users\Kevin\Desktop\Ktang8894 Github Repo\Co-op_Swift\BuildDB\BuildDB\obj\Debug\BuildDB.csprojResolveAssemblyReference.cache
+C:\Users\Daniel\Co-op_Swift\BuildDB\BuildDB\bin\Debug\BuildDB.exe.config
+C:\Users\Daniel\Co-op_Swift\BuildDB\BuildDB\obj\Debug\BuildDB.exe
+C:\Users\Daniel\Co-op_Swift\BuildDB\BuildDB\obj\Debug\BuildDB.pdb
+C:\Users\Daniel\Co-op_Swift\BuildDB\BuildDB\bin\Debug\BuildDB.exe
+C:\Users\Daniel\Co-op_Swift\BuildDB\BuildDB\bin\Debug\BuildDB.pdb
+C:\Users\Daniel\Co-op_Swift\BuildDB\BuildDB\obj\Debug\BuildDB.csprojResolveAssemblyReference.cache
