@@ -1,2 +1,2 @@
-BuildDB:
-	This is a C# console application made in Visual Studio that is used to create the database.
+## BuildDB
+Windows Console application that controls the creation, deletion, and refreshing of the Azure hosted database for Co-Op Swift.
