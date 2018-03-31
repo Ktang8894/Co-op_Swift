@@ -49,6 +49,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -66,17 +67,17 @@
     <Compile Include="AddComment.Designer.cs">
       <DependentUpon>AddComment.cs</DependentUpon>
     </Compile>
-    <Compile Include="assignRole.cs">
+    <Compile Include="AssignRole.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="assignRole.Designer.cs">
-      <DependentUpon>assignRole.cs</DependentUpon>
+    <Compile Include="AssignRole.Designer.cs">
+      <DependentUpon>AssignRole.cs</DependentUpon>
     </Compile>
-    <Compile Include="assignTask.cs">
+    <Compile Include="AssignTask.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="assignTask.Designer.cs">
-      <DependentUpon>assignTask.cs</DependentUpon>
+    <Compile Include="AssignTask.Designer.cs">
+      <DependentUpon>AssignTask.cs</DependentUpon>
     </Compile>
     <Compile Include="Conditions.cs" />
     <Compile Include="CreateProj.cs">
@@ -86,29 +87,17 @@
       <DependentUpon>CreateProj.cs</DependentUpon>
     </Compile>
     <Compile Include="ExecuteSQL.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="AddMembers.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="AddMembers.Designer.cs">
+      <DependentUpon>AddMembers.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form2.cs">
+    <Compile Include="IdeaBox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form2.Designer.cs">
-      <DependentUpon>Form2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="addMembers.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="addMembers.Designer.cs">
-      <DependentUpon>addMembers.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ideaBox.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ideaBox.Designer.cs">
-      <DependentUpon>ideaBox.cs</DependentUpon>
+    <Compile Include="IdeaBox.Designer.cs">
+      <DependentUpon>IdeaBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
@@ -127,11 +116,11 @@
     <Compile Include="RegForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="releasePlan.cs">
+    <Compile Include="ReleasePlan.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="releasePlan.Designer.cs">
-      <DependentUpon>releasePlan.cs</DependentUpon>
+    <Compile Include="ReleasePlan.Designer.cs">
+      <DependentUpon>ReleasePlan.cs</DependentUpon>
     </Compile>
     <Compile Include="ResetForm1.cs">
       <SubType>Form</SubType>
@@ -142,13 +131,18 @@
     <Compile Include="ResetForm2.Designer.cs">
       <DependentUpon>ResetForm2.cs</DependentUpon>
     </Compile>
-    <Compile Include="sprintPlan.cs">
+    <Compile Include="SqlStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SqlStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SprintPlan.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="sprintPlan.Designer.cs">
-      <DependentUpon>sprintPlan.cs</DependentUpon>
+    <Compile Include="SprintPlan.Designer.cs">
+      <DependentUpon>SprintPlan.cs</DependentUpon>
     </Compile>
-    <Compile Include="SQL.cs" />
+    <Compile Include="Sql.cs" />
     <Compile Include="Story.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -156,35 +150,29 @@
       <DependentUpon>Story.cs</DependentUpon>
     </Compile>
     <Compile Include="StoryTask.cs" />
-    <Compile Include="taskTree.cs">
+    <Compile Include="TaskTree.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="taskTree.Designer.cs">
-      <DependentUpon>taskTree.cs</DependentUpon>
+    <Compile Include="TaskTree.Designer.cs">
+      <DependentUpon>TaskTree.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AddComment.resx">
       <DependentUpon>AddComment.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="assignRole.resx">
-      <DependentUpon>assignRole.cs</DependentUpon>
+    <EmbeddedResource Include="AssignRole.resx">
+      <DependentUpon>AssignRole.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="assignTask.resx">
-      <DependentUpon>assignTask.cs</DependentUpon>
+    <EmbeddedResource Include="AssignTask.resx">
+      <DependentUpon>AssignTask.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CreateProj.resx">
       <DependentUpon>CreateProj.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="AddMembers.resx">
+      <DependentUpon>AddMembers.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form2.resx">
-      <DependentUpon>Form2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="addMembers.resx">
-      <DependentUpon>addMembers.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ideaBox.resx">
-      <DependentUpon>ideaBox.cs</DependentUpon>
+    <EmbeddedResource Include="IdeaBox.resx">
+      <DependentUpon>IdeaBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
@@ -205,8 +193,8 @@
     <EmbeddedResource Include="RegForm.resx">
       <DependentUpon>RegForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="releasePlan.resx">
-      <DependentUpon>releasePlan.cs</DependentUpon>
+    <EmbeddedResource Include="ReleasePlan.resx">
+      <DependentUpon>ReleasePlan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ResetForm1.resx">
       <DependentUpon>ResetForm1.cs</DependentUpon>
@@ -214,14 +202,18 @@
     <EmbeddedResource Include="ResetForm2.resx">
       <DependentUpon>ResetForm2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="sprintPlan.resx">
-      <DependentUpon>sprintPlan.cs</DependentUpon>
+    <EmbeddedResource Include="SqlStrings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SqlStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SprintPlan.resx">
+      <DependentUpon>SprintPlan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Story.resx">
       <DependentUpon>Story.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="taskTree.resx">
-      <DependentUpon>taskTree.cs</DependentUpon>
+    <EmbeddedResource Include="TaskTree.resx">
+      <DependentUpon>TaskTree.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -13,10 +13,10 @@ namespace Co_Op_Swift
 {
     public partial class ResetForm2 : Form
     {
-      String username;
+      string username;
       Form reset1;
 
-        public ResetForm2(String name, Form frm)
+        public ResetForm2(string name, Form frm)
         {
             InitializeComponent();
             username = name;
@@ -29,7 +29,7 @@ namespace Co_Op_Swift
 
           if(Conditions.resetform2Passes(passwordTextBox.Text,confirmTextBox.Text))
           {
-            SQL.ExecutePasswordReset(username,passwordTextBox.Text);
+            Sql.ExecutePasswordReset(username,passwordTextBox.Text);
 
             reset1.Close();
             this.Close();

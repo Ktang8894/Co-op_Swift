@@ -10,16 +10,16 @@ using System.Windows.Forms;
 
 namespace Co_Op_Swift
 {
-    public partial class assignRole : Form
+    public partial class AssignRole : Form
     {
         string userName;
         string Proj;
-        public assignRole(string username, string projName)
+        public AssignRole(string username, string projName)
         {
             //sql to take in people who are in the same project.
             InitializeComponent();
             // SQL.getProjectMembers(memberLBox, username, projName); // I THINK THIS SQL WORKS
-            SQL.getProjectMembers(memberLBox, username, projName); // I THINK THIS SQL WORKS
+            Sql.getProjectMembers(memberLBox, username, projName); // I THINK THIS SQL WORKS
 
             userName = username;
             Proj = projName;
@@ -50,7 +50,7 @@ namespace Co_Op_Swift
 
                 firstname = substrings[0];
                 lastname = substrings[1];
-                string enter = SQL.getPosition(SQL.getUserID(firstname, lastname), Proj);
+                string enter = Sql.getPosition(Sql.getUserID(firstname, lastname), Proj);
             Console.Write("test:" + enter);
             roleTB.Text = enter;
                  }
@@ -78,7 +78,7 @@ namespace Co_Op_Swift
                 firstname = substrings[0];
                 lastname = substrings[1];
 
-                SQL.ExecuteChangePosition(SQL.getUserID(firstname, lastname), roleCB.Text, Proj); // I THINK THIS SQL WORKS
+                Sql.ExecuteChangePosition(Sql.getUserID(firstname, lastname), roleCB.Text, Proj); // I THINK THIS SQL WORKS
                 roleTB.Text = roleCB.Text;
                 Console.Write("works" + roleCB.Text);
             }

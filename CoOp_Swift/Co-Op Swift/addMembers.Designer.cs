@@ -1,6 +1,6 @@
 ﻿namespace Co_Op_Swift
 {
-  partial class addMembers
+  partial class AddMembers
   {
     /// <summary>
     /// Required designer variable.
@@ -208,7 +208,7 @@
       this.Controls.Add(this.label2);
       this.Controls.Add(this.label1);
       this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-      this.Name = "addMembers";
+      this.Name = "AddMembers";
       this.Text = "Add Team Members";
       this.ResumeLayout(false);
       this.PerformLayout();

@@ -349,7 +349,7 @@ namespace Co_Op_Swift
           if(Conditions.regFormPasses(firstText.Text,lastText.Text,passText.Text,confirmText.Text,answerText.Text))
           {
             //execute registration query
-            SQL.ExecuteRegistration(userText.Text,passText.Text,lastText.Text,firstText.Text,answerText.Text);
+            Sql.ExecuteRegistration(userText.Text,passText.Text,lastText.Text,firstText.Text,answerText.Text);
 
             this.Close();
 

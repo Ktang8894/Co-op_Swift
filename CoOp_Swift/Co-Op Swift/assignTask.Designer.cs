@@ -1,6 +1,6 @@
 ﻿namespace Co_Op_Swift
 {
-    partial class assignTask
+    partial class AssignTask
     {
         /// <summary>
         /// Required designer variable.

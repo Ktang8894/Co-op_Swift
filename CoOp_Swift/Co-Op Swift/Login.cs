@@ -34,9 +34,8 @@ namespace Co_Op_Swift
     //Login
     private void button1_Click(object sender, EventArgs e)
     {
-      String username = textBox1.Text;
-      String password = textBox2.Text;          
-      Boolean pass;
+      string username = textBox1.Text;
+      string password = textBox2.Text;
 
       if(username.Equals(""))
       {
@@ -46,14 +45,14 @@ namespace Co_Op_Swift
       }
 
       //execute query to find user and if found the users password to compare with the input password
-      pass = SQL.ExecuteLogin(username,password);
+      var pass = Sql.ExecuteLogin(username,password);
       
       if(pass)
       {
-        int projID = SQL.isInProject(SQL.getOwnerUserID(username));
+        int projID = Sql.isInProject(Sql.getOwnerUserID(username));
         if(projID != 0)
         {
-          string projectName = SQL.getProjectName(projID);
+          string projectName = Sql.getProjectName(projID);
 
           FormCollection fc = Application.OpenForms;
           bool isFound = false;
@@ -137,7 +136,7 @@ namespace Co_Op_Swift
       {
 
         string UserName = textBox1.Text;
-        int count = SQL.CheckUserExsistence(UserName);
+        int count = Sql.CheckUserExsistence(UserName);
 
         //If username does not exist
         if (count == 0)
@@ -167,7 +166,7 @@ namespace Co_Op_Swift
 
             if (FormFound == false)
             {
-              String username = textBox1.Text;
+              string username = textBox1.Text;
 
               ResetForm1 form = new ResetForm1(username);
               form.ShowDialog();

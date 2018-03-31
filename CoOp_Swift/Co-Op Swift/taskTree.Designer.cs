@@ -1,6 +1,6 @@
 ﻿namespace Co_Op_Swift
 {
-  partial class taskTree
+  partial class TaskTree
   {
     /// <summary>
     /// Required designer variable.

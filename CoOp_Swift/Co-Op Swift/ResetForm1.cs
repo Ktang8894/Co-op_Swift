@@ -19,9 +19,9 @@ namespace Co_Op_Swift
         private Button confirmButton;
         private Button cancelButton;
         private TextBox questionTextBox;
-        private String userName;
+        private string userName;
 
-        public ResetForm1(String user)
+        public ResetForm1(string user)
         {
             InitializeComponent();
             userName = user;
@@ -132,7 +132,7 @@ namespace Co_Op_Swift
         {
 
           //use SQL to find if the answer given matches sql
-          Boolean isTrue = SQL.checkAnswerWithDatabase(userName,answerText.Text);
+          bool isTrue = Sql.checkAnswerWithDatabase(userName,answerText.Text);
 
             if(isTrue)
             {
@@ -172,7 +172,7 @@ namespace Co_Op_Swift
         private void ResetForm1_Load(object sender, EventArgs e)
         {
           //load user's security question into 'question' textbox on the form
-          SQL.loadUserSecurityQuestion(userName, questionTextBox);
+          Sql.loadUserSecurityQuestion(userName, questionTextBox);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Co_Op_Swift
 {
-  partial class ideaBox
+  partial class IdeaBox
   {
     /// <summary>
     /// Required designer variable.

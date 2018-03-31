@@ -1,19 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
 
 namespace Co_Op_Swift
 {
-  public partial class taskTree : Form
+  public partial class TaskTree : Form
   {
-    public taskTree(String username, String projectName)
+    public TaskTree(string username, string projectName)
     {
       InitializeComponent();
 
@@ -49,7 +43,7 @@ namespace Co_Op_Swift
       /***************************** this is for select a project drop down menu **********************************/
 
       //get all project ids associated with the user ids
-      DataTable proj_ids = SQL.getUserProjectIDs(SQL.getOwnerUserID(memberNameToolStripMenuItem.Text));
+      DataTable proj_ids = Sql.getUserProjectIDs(Sql.getOwnerUserID(memberNameToolStripMenuItem.Text));
 
       string proj_name;
 
@@ -57,7 +51,7 @@ namespace Co_Op_Swift
       foreach (DataRow row in proj_ids.Rows)
       {
         //put project names in select project drop down menu
-        proj_name = SQL.getProjectName(int.Parse(row["Proj_ID"].ToString()));
+        proj_name = Sql.getProjectName(int.Parse(row["Proj_ID"].ToString()));
         selectProjectToolStripMenuItem.DropDownItems.Add(proj_name);
       }
       /*************************************************************************************************************/
@@ -73,21 +67,21 @@ namespace Co_Op_Swift
 
     private void ideaBoxToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      ideaBox frm = new ideaBox(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
+      IdeaBox frm = new IdeaBox(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
       frm.Show();
       this.Close();
     }
 
     private void releasePlanToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      releasePlan frm = new releasePlan(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
+      ReleasePlan frm = new ReleasePlan(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
       frm.Show();
       this.Close();
     }
 
     private void sprintPlanToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      sprintPlan frm = new sprintPlan(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
+      SprintPlan frm = new SprintPlan(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
       frm.Show();
       this.Close();
     }
@@ -101,7 +95,7 @@ namespace Co_Op_Swift
 
     private void teamToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      addMembers frm = new addMembers(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
+      AddMembers frm = new AddMembers(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
       frm.Show();
     }
 
@@ -135,7 +129,7 @@ namespace Co_Op_Swift
         {
           id = int.Parse(row["CommentID"].ToString());
           uid = StoryTask.getCommenter(id);
-          name = SQL.getFullName(uid);
+          name = Sql.getFullName(uid);
           userComments.Items.Add(name);
         }
 
@@ -169,7 +163,7 @@ namespace Co_Op_Swift
 
     private void comment_Click(object sender, EventArgs e)
     {
-      string fullName = SQL.getFullName(SQL.getOwnerUserID(memberNameToolStripMenuItem.Text));
+      string fullName = Sql.getFullName(Sql.getOwnerUserID(memberNameToolStripMenuItem.Text));
       
       if (currentTasks.SelectedItem != null)
       {
@@ -197,7 +191,7 @@ namespace Co_Op_Swift
         task_id = StoryTask.getTaskID(completedTasks.SelectedItem.ToString());
 
       //get the id of the person whose name was selected from comments list
-      int userID = SQL.getOwnerUserID(SQL.getUsername(userComments.Text));
+      int userID = Sql.getOwnerUserID(Sql.getUsername(userComments.Text));
 
       //get the comment ids for the selected task
       comment_IDs = StoryTask.getCommentID(task_id);
@@ -230,7 +224,7 @@ namespace Co_Op_Swift
         {
           id = int.Parse(row["CommentID"].ToString());
           uid = StoryTask.getCommenter(id);
-          name = SQL.getFullName(uid);
+          name = Sql.getFullName(uid);
           userComments.Items.Add(name);
         }
 
@@ -250,7 +244,7 @@ namespace Co_Op_Swift
       //mark the task as completed in the TaskTable table
       StoryTask.mark_task_as_complete(task);
 
-      Boolean isFound = false;
+      bool isFound = false;
 
       //remove from current tasks list and add to completed tasks list
       foreach (string s in completedTasks.Items)
@@ -298,7 +292,7 @@ namespace Co_Op_Swift
 
         private void assignRolesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!SQL.isOwner(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text))  // THIS SQL NEEDS TO BE DONE
+            if (!Sql.isOwner(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text))  // THIS SQL NEEDS TO BE DONE
             {
 
                 MessageBox.Show("Not an owner. Cannot edit.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
@@ -306,14 +300,14 @@ namespace Co_Op_Swift
             }
             else
             {
-                assignRole frm = new assignRole(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
+                AssignRole frm = new AssignRole(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
                 frm.Show();
             }
         }
 
         private void assignTasksToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            assignTask frm = new assignTask(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
+            AssignTask frm = new AssignTask(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
             frm.Show();
         }
     }

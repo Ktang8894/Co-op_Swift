@@ -22,9 +22,9 @@ namespace Co_Op_Swift
 
         private void button1_Click(object sender, EventArgs e)
         {
-            SQL.ExecuteStory(UN, nameTB.Text, descTB.Text);
+            Sql.ExecuteStory(UN, nameTB.Text, descTB.Text);
             string name = nameTB.Text;
-            SQL.acceptStory(pn, name);
+            Sql.acceptStory(pn, name);
             this.Close();
         }
     }

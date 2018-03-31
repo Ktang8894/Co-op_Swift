@@ -1,6 +1,6 @@
 ﻿namespace Co_Op_Swift
 {
-  partial class releasePlan
+  partial class ReleasePlan
   {
     /// <summary>
     /// Required designer variable.

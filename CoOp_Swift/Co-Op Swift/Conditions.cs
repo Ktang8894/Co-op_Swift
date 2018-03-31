@@ -15,11 +15,11 @@ namespace Co_Op_Swift
   {
 
     //method that checks if the 'create project form' is answered completely and correctly
-    static public Boolean projectFormPasses(String title, String projectStartDate, String releaseEndDate, String timezone, 
-                            String description, RadioButton no, RadioButton yes)
+    public static bool projectFormPasses(string title, string projectStartDate, string releaseEndDate, string timezone, 
+                            string description, RadioButton no, RadioButton yes)
     {
-      Boolean pass = false;
-      Boolean notUnique = SQL.isNameUnique(title);
+      bool pass = false;
+      bool notUnique = Sql.isNameUnique(title);
 
       // check if all text fields are filled in
       if (title.Equals("") || projectStartDate.Equals("") || releaseEndDate.Equals("") || 
@@ -43,10 +43,10 @@ namespace Co_Op_Swift
 
 
     //method that checks if the 'registration form' is answered completely and correctly
-    static public Boolean regFormPasses(String firstName, String lastName, String password, String confirmPassword, 
-                                                                                                     String answer)
+    public static bool regFormPasses(string firstName, string lastName, string password, string confirmPassword, 
+                                                                                                     string answer)
     {
-      Boolean accept = false;
+      bool accept = false;
 
       if (password.Equals(confirmPassword) != true)
       {
@@ -76,9 +76,9 @@ MessageBoxDefaultButton.Button1);
 
 
     //method that checks 'ResetForm2' for correctness and completeness
-    static public Boolean resetform2Passes(String password, String confirmPassword)
+    public static bool resetform2Passes(string password, string confirmPassword)
     {
-      Boolean accept = false;
+      bool accept = false;
 
       if (!password.Equals(confirmPassword))
       {

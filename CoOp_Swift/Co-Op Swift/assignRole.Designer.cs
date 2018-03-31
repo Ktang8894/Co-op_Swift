@@ -1,6 +1,6 @@
 ﻿namespace Co_Op_Swift
 {
-    partial class assignRole
+    partial class AssignRole
     {
         /// <summary>
         /// Required designer variable.

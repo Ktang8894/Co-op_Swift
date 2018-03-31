@@ -1,6 +1,6 @@
 ﻿namespace Co_Op_Swift
 {
-  partial class sprintPlan
+  partial class SprintPlan
   {
     /// <summary>
     /// Required designer variable.
@@ -256,7 +256,6 @@
       this.label2.Size = new System.Drawing.Size(114, 26);
       this.label2.TabIndex = 8;
       this.label2.Text = "Task Name";
-      this.label2.Click += new System.EventHandler(this.label2_Click);
       // 
       // label3
       // 
@@ -269,7 +268,6 @@
       this.label3.Size = new System.Drawing.Size(64, 26);
       this.label3.TabIndex = 11;
       this.label3.Text = "Tasks";
-      this.label3.Click += new System.EventHandler(this.label3_Click);
       // 
       // label4
       // 
@@ -282,7 +280,6 @@
       this.label4.Size = new System.Drawing.Size(48, 26);
       this.label4.TabIndex = 12;
       this.label4.Text = "Info";
-      this.label4.Click += new System.EventHandler(this.label4_Click);
       // 
       // taskBox
       // 
@@ -316,7 +313,6 @@
       this.label5.Size = new System.Drawing.Size(78, 26);
       this.label5.TabIndex = 15;
       this.label5.Text = "Sprints";
-      this.label5.Click += new System.EventHandler(this.label5_Click);
       // 
       // sprintBox
       // 
@@ -349,7 +345,7 @@
       this.Controls.Add(this.createTask);
       this.Controls.Add(this.menuStrip1);
       this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-      this.Name = "sprintPlan";
+      this.Name = "SprintPlan";
       this.Text = "Co-Op Swift";
       this.Load += new System.EventHandler(this.sprintPlan_Load);
       this.menuStrip1.ResumeLayout(false);

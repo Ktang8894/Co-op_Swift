@@ -1,17 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
 
 namespace Co_Op_Swift
 {
-  public partial class addMembers : Form
+  public partial class AddMembers : Form
   {
     //Lists to keep track of added/removed users during each use of the form
     List<string> addedUsernames = new List<string>();
@@ -19,15 +12,15 @@ namespace Co_Op_Swift
     CreateProj cp;
     Form d;
     string projectName, userName;
-    Boolean isCreating = false;
+    bool isCreating = false;
     List<object> p_info = new List<object>();
 
     //constructor if coming from project creation
-    public addMembers(String username, String projName, Form dash, CreateProj frm, Boolean isTrue, 
+    public AddMembers(string username, string projName, Form dash, CreateProj frm, bool isTrue, 
                                                                            List<object> proj_info)
     {
       InitializeComponent();
-      SQL.getMembers(currentUsers,teamMembers,username,isTrue,1);
+      Sql.getMembers(currentUsers,teamMembers,username,isTrue,1);
       projectName = projName;
       userName = username;
       isCreating = isTrue;
@@ -37,13 +30,13 @@ namespace Co_Op_Swift
     }
 
     //constructor if coming from any of the menu strips
-    public addMembers(string username, string project_name)
+    public AddMembers(string username, string project_name)
     {
       InitializeComponent();
       projectName = project_name;
       userName = username;
-      int id = SQL.getProjectID(project_name);
-      SQL.getMembers(currentUsers, teamMembers, username,false,id);
+      int id = Sql.getProjectID(project_name);
+      Sql.getMembers(currentUsers, teamMembers, username,false,id);
     }
 
     private void teamMembers_SelectedIndexChanged(object sender, EventArgs e)
@@ -51,7 +44,7 @@ namespace Co_Op_Swift
       if (teamMembers.SelectedItem != null)
       {
         //get username
-        String username = SQL.getUsername(teamMembers.SelectedItem.ToString());
+        string username = Sql.getUsername(teamMembers.SelectedItem.ToString());
 
         //display username in textbox
         teamateUsername.Text = username;
@@ -83,7 +76,7 @@ namespace Co_Op_Swift
       teamMembers.Items.Add(currentUsers.SelectedItem);
 
       //add to addMembers list
-      String str = usersUsername.Text;
+      string str = usersUsername.Text;
       addedUsernames.Add(str);
 
       // remove name from current users listbox
@@ -119,7 +112,7 @@ namespace Co_Op_Swift
         currentUsers.Items.Add(teamMembers.SelectedItem);
 
         //add to removedMembers list
-        String str = teamateUsername.Text;
+        string str = teamateUsername.Text;
         removedUsernames.Add(str);
 
         // remove name from team member listbox
@@ -134,13 +127,13 @@ namespace Co_Op_Swift
           if (isCreating)
           {
             //create the project with the given information
-            SQL.ExecuteProjectCreation((int)p_info[0], (string)p_info[1], (string)p_info[2], (int)p_info[3],
+            Sql.ExecuteProjectCreation((int)p_info[0], (string)p_info[1], (string)p_info[2], (int)p_info[3],
               (string)p_info[4], (string)p_info[5], (int)p_info[6]);
 
           }
 
           //check if user is a manager
-          if(SQL.isManager(userName,projectName) || isCreating)
+          if(Sql.isManager(userName,projectName) || isCreating)
           {
             int uid = 0;
 
@@ -148,13 +141,13 @@ namespace Co_Op_Swift
             if(addedUsernames.Count > 0)
             {
               //get the ID of the project
-              int id = SQL.getProjectID(projectName);
+              int id = Sql.getProjectID(projectName);
 
               // add members to projectMembers table                                    
               foreach (string s in addedUsernames)
               {
-                uid = SQL.getOwnerUserID(s);
-                SQL.addUserToProject(uid,id,2);
+                uid = Sql.getOwnerUserID(s);
+                Sql.addUserToProject(uid,id,2);
               }
 
             }
@@ -163,13 +156,13 @@ namespace Co_Op_Swift
             if(removedUsernames.Count > 0)
             {
               //get the ID of the project
-              int id = SQL.getProjectID(projectName);
+              int id = Sql.getProjectID(projectName);
 
               // remove members from projectMembers table                                    
               foreach (string s in removedUsernames)
               {
-                uid = SQL.getOwnerUserID(s);
-                SQL.removeUserFromProject(uid, id);
+                uid = Sql.getOwnerUserID(s);
+                Sql.removeUserFromProject(uid, id);
               }
 
             }
@@ -200,7 +193,7 @@ namespace Co_Op_Swift
           if (currentUsers.SelectedItem != null)
           {
             //get username
-            String username = SQL.getUsername(currentUsers.SelectedItem.ToString());
+            string username = Sql.getUsername(currentUsers.SelectedItem.ToString());
 
             //display username in textbox
             usersUsername.Text = username;

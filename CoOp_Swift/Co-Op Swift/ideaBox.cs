@@ -10,13 +10,13 @@ using System.Windows.Forms;
 
 namespace Co_Op_Swift
 {
-  public partial class ideaBox : Form
+  public partial class IdeaBox : Form
   {
     string userName, pn;
-    public ideaBox(String username, String projectName)
+    public IdeaBox(string username, string projectName)
     {
         InitializeComponent();
-        SQL.getStories(storyLB, username, SQL.getProjectID(projectName));
+        Sql.getStories(storyLB, username, Sql.getProjectID(projectName));
         projectNameToolStripMenuItem.Text = projectName;
         pn = projectName;
         userName = username;
@@ -26,7 +26,7 @@ namespace Co_Op_Swift
         /***************************** this is for select a project drop down menu **********************************/
 
         //get all project ids associated with the user ids
-        DataTable proj_ids = SQL.getUserProjectIDs(SQL.getOwnerUserID(memberNameToolStripMenuItem.Text));
+        DataTable proj_ids = Sql.getUserProjectIDs(Sql.getOwnerUserID(memberNameToolStripMenuItem.Text));
 
         string proj_name;
 
@@ -34,7 +34,7 @@ namespace Co_Op_Swift
         foreach (DataRow row in proj_ids.Rows)
         {
           //put project names in select project drop down menu
-          proj_name = SQL.getProjectName(int.Parse(row["Proj_ID"].ToString()));
+          proj_name = Sql.getProjectName(int.Parse(row["Proj_ID"].ToString()));
           selectProjectToolStripMenuItem.DropDownItems.Add(proj_name);
         }
       /*************************************************************************************************************/
@@ -51,21 +51,21 @@ namespace Co_Op_Swift
 
     private void taskTreeToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      taskTree frm = new taskTree(memberNameToolStripMenuItem.Text,projectNameToolStripMenuItem.Text);
+      TaskTree frm = new TaskTree(memberNameToolStripMenuItem.Text,projectNameToolStripMenuItem.Text);
       frm.Show();
       this.Close();
     }
 
     private void releasePlanToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      releasePlan frm = new releasePlan(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
+      ReleasePlan frm = new ReleasePlan(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
       frm.Show();
       this.Close();
     }
 
     private void sprintPlanToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      sprintPlan frm = new sprintPlan(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
+      SprintPlan frm = new SprintPlan(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
       frm.Show();
       this.Close();
     }
@@ -79,7 +79,7 @@ namespace Co_Op_Swift
 
     private void teamToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      addMembers frm = new addMembers(memberNameToolStripMenuItem.Text,projectNameToolStripMenuItem.Text);
+      AddMembers frm = new AddMembers(memberNameToolStripMenuItem.Text,projectNameToolStripMenuItem.Text);
       frm.Show();
     }
 
@@ -126,26 +126,26 @@ namespace Co_Op_Swift
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             string name = storyLB.GetItemText(storyLB.SelectedItem);
-            descTB.Text = SQL.getStoryDesc(name, pn);
+            descTB.Text = Sql.getStoryDesc(name, pn);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             //does stuff to send it to the sprint plan.
             string name = storyLB.GetItemText(storyLB.SelectedItem);
-            SQL.acceptStory(projectNameToolStripMenuItem.Text, name);
+            Sql.acceptStory(projectNameToolStripMenuItem.Text, name);
         }
 
         private void refreshButton_Click(object sender, EventArgs e)
         {
             storyLB.Items.Clear();
-            SQL.getStories(storyLB, userName, SQL.getProjectID(pn));
+            Sql.getStories(storyLB, userName, Sql.getProjectID(pn));
 
         }
 
         private void assignRolesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!SQL.isOwner(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text))  // THIS SQL NEEDS TO BE DONE
+            if (!Sql.isOwner(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text))  // THIS SQL NEEDS TO BE DONE
             {
 
                 MessageBox.Show("Not an owner. Cannot edit.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
@@ -153,14 +153,14 @@ namespace Co_Op_Swift
             }
             else
             {
-                assignRole frm = new assignRole(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
+                AssignRole frm = new AssignRole(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
                 frm.Show();
             }
         }
 
         private void assignTasksToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            assignTask frm = new assignTask(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
+            AssignTask frm = new AssignTask(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
             frm.Show();
         }
 

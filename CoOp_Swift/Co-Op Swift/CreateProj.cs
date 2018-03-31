@@ -12,9 +12,9 @@ namespace Co_Op_Swift
 {
   public partial class CreateProj : Form
   {
-    static String name;
+    static string name;
 
-    public CreateProj(String username)
+    public CreateProj(string username)
     {
       InitializeComponent();
 
@@ -27,7 +27,7 @@ namespace Co_Op_Swift
       name = username;
 
       // put timezones from TimeZones table in timezone combobox
-      SQL.getTimeZones(timezoneBox);
+      Sql.getTimeZones(timezoneBox);
 
     }
 
@@ -52,7 +52,7 @@ namespace Co_Op_Swift
           isPrivate = 0;
 
         //get ID of the owner(creator) of the poject
-        int id = SQL.getOwnerUserID(name);
+        int id = Sql.getOwnerUserID(name);
 
         //get ID of the timezone
         //int tid = SQL.getTimeZoneID(timezoneBox.Text);
@@ -79,7 +79,7 @@ namespace Co_Op_Swift
         }
       }
 
-      addMembers frm = new addMembers(name, projectName.Text,dash,this,true,project_info);
+      AddMembers frm = new AddMembers(name, projectName.Text,dash,this,true,project_info);
       frm.ShowDialog();      
 
       }

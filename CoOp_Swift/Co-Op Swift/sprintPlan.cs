@@ -1,224 +1,142 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+using System.Configuration;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
+using Co_Op_Swift.Properties;
 
 namespace Co_Op_Swift
 {
-  public partial class sprintPlan : Form
+  public partial class SprintPlan : Form
   {
-    static string netID = "co-op-swift";
-    static string dbName = "Co-op_Swift";
-    static string account = "ktang";
-    static string password = "PublicPass1";
-
-    static public string connectionInfo = String.Format(@"
-      Server=tcp:{0}.database.windows.net,1433;Initial Catalog={1};Persist Security Info=False;User ID={2};Password={3};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
-      ", netID, dbName, account, password);
-
-    public sprintPlan(String username, String projectName)
+    public SprintPlan(string username, string projectName)
     {
-      
       InitializeComponent();
 
       projectNameToolStripMenuItem.Text = projectName;
       memberNameToolStripMenuItem.Text = username;
       sprintPlanToolStripMenuItem.Font = new Font(sprintPlanToolStripMenuItem.Font, FontStyle.Bold);
 
-      /***************************** this is for select a project drop down menu **********************************/
-
       //get all project ids associated with the user ids
-      DataTable proj_ids = SQL.getUserProjectIDs(SQL.getOwnerUserID(memberNameToolStripMenuItem.Text));
-
-      string proj_name;
+      var projIds = Sql.getUserProjectIDs(Sql.getOwnerUserID(memberNameToolStripMenuItem.Text));
 
       // get all project names associated with the project ids
-      foreach (DataRow row in proj_ids.Rows)
+      foreach (DataRow row in projIds.Rows)
       {
         //put project names in select project drop down menu
-        proj_name = SQL.getProjectName(int.Parse(row["Proj_ID"].ToString()));
-        selectProjectToolStripMenuItem.DropDownItems.Add(proj_name);
+        var projName = Sql.getProjectName(int.Parse(row["Proj_ID"].ToString()));
+        selectProjectToolStripMenuItem.DropDownItems.Add(projName);
       }
-      /*************************************************************************************************************/
-    
     }
 
-    static void ExecuteActionQuery(SqlConnection db, string sql)
+    private static void ExecuteActionQuery(string sql)
     {
-      SqlCommand cmd = new SqlCommand();
-      cmd.Connection = db;
-      cmd.CommandText = sql;
+      var cmd = new SqlCommand
+      {
+        Connection = Sql.Db,
+        CommandText = sql
+      };
 
       cmd.ExecuteNonQuery();
     }
+
     private void dashboardToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      Dashboard frm = new Dashboard(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
+      var frm = new Dashboard(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
       frm.Show();
-      this.Close();
+      Close();
     }
 
     private void ideaBoxToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      ideaBox frm = new ideaBox(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
+      var frm = new IdeaBox(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
       frm.Show();
-      this.Close();
+      Close();
     }
 
     private void taskTreeToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      taskTree frm = new taskTree(memberNameToolStripMenuItem.Text,projectNameToolStripMenuItem.Text);
+      var frm = new TaskTree(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
       frm.Show();
-      this.Close();
+      Close();
     }
 
     private void releasePlanToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      releasePlan frm = new releasePlan(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
+      var frm = new ReleasePlan(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
       frm.Show();
-      this.Close();
+      Close();
     }
 
     private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      Login frm2 = new Login();
+      var frm2 = new Login();
       frm2.Show();
-      this.Close();
+      Close();
     }
 
     private void teamToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      addMembers frm = new addMembers(memberNameToolStripMenuItem.Text,projectNameToolStripMenuItem.Text);
+      var frm = new AddMembers(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
       frm.Show();
     }
 
-    public int getPID()
+    public int GetPid()
     {
-      SqlConnection db = null;
-      string sql;
-
-      db = new SqlConnection(connectionInfo);
-      sql = string.Format(@"
-Select Proj_ID
-FROM Projects
-WHERE Title = '{0}';
-", projectNameToolStripMenuItem.Text);
-      db.Open();
-      SqlCommand cmd = new SqlCommand();
-      cmd.Connection = db;
-      cmd.CommandText = sql;
-
-      int id = (int)cmd.ExecuteScalar();
-
-      db.Close();
-
+      var getPid = string.Format(SqlStrings.GetPid, projectNameToolStripMenuItem.Text);
+      Sql.Db.Open();
+      var cmd = new SqlCommand
+      {
+        Connection = Sql.Db,
+        CommandText = getPid
+      };
+      var id = (int) cmd.ExecuteScalar();
+      Sql.Db.Close();
       return id;
-    }
-
-
-
-    private void textBox1_TextChanged(object sender, EventArgs e)
-    {
-     
     }
 
     private void sprintPlan_Load(object sender, EventArgs e)
     {
-      /**** DB INFO ****/
-      SqlConnection db = null;
-      string sql;
-
-      db = new SqlConnection(connectionInfo);
-      db.Open();
-      /**** DB INFO END ****/
-
-      int PID = getPID();
-
-      //Load Sprints
-      sql = string.Format(@"
-SELECT *
-FROM Sprints
-INNER JOIN ProjectSprints
-ON Sprints.SprintID = ProjectSprints.SprintID
-WHERE ProjectSprints.Proj_ID = {0};
-", PID);
-
-      SqlCommand cmd = new SqlCommand();
-      cmd.Connection = db;
-      SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-      DataSet ds = new DataSet();
+      Sql.Db.Open();
+      var pid = GetPid();
+      var sql = string.Format(SqlStrings.GetSprintPlans, pid);
+      var cmd = new SqlCommand
+      {
+        Connection = Sql.Db
+      };
+      var adapter = new SqlDataAdapter(cmd);
+      var ds = new DataSet();
       cmd.CommandText = sql;
       adapter.Fill(ds);
       ds.Tables[0].TableName = "Sprints";
 
       foreach (DataRow row in ds.Tables["Sprints"].Rows)
       {
-        DateTime start = DateTime.Parse(Convert.ToString(row["StartDate"]));
-        DateTime end = DateTime.Parse(Convert.ToString(row["EndDate"]));
-        string startDate = start.ToShortDateString();
-        string endDate = end.ToShortDateString();
-        string msg = Convert.ToString(row["SprintID"] + ": " + startDate + " - " + endDate);
+        var start = DateTime.Parse(Convert.ToString(row["StartDate"]));
+        var end = DateTime.Parse(Convert.ToString(row["EndDate"]));
+        var startDate = start.ToShortDateString();
+        var endDate = end.ToShortDateString();
+        var msg = Convert.ToString(row["SprintID"] + ": " + startDate + " - " + endDate);
         sprintBox.Items.Add(msg);
       }
 
-//      //Load Tasks
-//      sql = string.Format(@"
-//SELECT TaskName
-//FROM TaskTable;
-//");
-
-//      DataSet ds2 = new DataSet();
-//      cmd.CommandText = sql;
-//      adapter.Fill(ds2);
-//      ds2.Tables[0].TableName = "TaskTable";
-
-//      foreach (DataRow row in ds2.Tables["TaskTable"].Rows)
-//      {
-//        //string msg = Convert.ToString(row["IdeaName"]);
-//        taskBox.Items.Add(row["TaskName"]);
-//      }
-
-      db.Close();
-
+      Sql.Db.Close();
     }
 
     //Reload text box
-    private void refreshTaskBox(int SID)
-    {
-      /**** DB INFO ****/
-     
-
-      SqlConnection db = null;
-      SqlCommand cmd = new SqlCommand();
-      DataSet ds2 = new DataSet();
-      string sql;
-
+    private void RefreshTaskBox(int sid)
+    {      
+      var cmd = new SqlCommand();
+      var ds2 = new DataSet();
       try
-      {
-        db = new SqlConnection(connectionInfo);
-        db.Open();
-        /**** DB INFO END ****/
-
+      {    
+        Sql.Db.Open();
         taskBox.Items.Clear();
         //Load Tasks
-        sql = string.Format(@"
-SELECT TaskTable.TaskName
-FROM TaskTable
-INNER JOIN SprintTasks
-ON TaskTable.Task_ID = SprintTasks.Task_ID
-WHERE SprintTasks.SprintID = {0};
-", SID);
-
-        cmd.Connection = db;
-        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-
-
+        var sql = string.Format(SqlStrings.GetTasks, sid);
+        cmd.Connection = Sql.Db;
+        var adapter = new SqlDataAdapter(cmd);
         cmd.CommandText = sql;
         adapter.Fill(ds2);
       }
@@ -228,191 +146,126 @@ WHERE SprintTasks.SprintID = {0};
       }
       finally
       {
-        if (db != null && db.State == ConnectionState.Open)
-          db.Close();
+        if (Sql.Db != null && Sql.Db.State == ConnectionState.Open)
+          Sql.Db.Close();
       }
 
-      if (ds2 != null)
-      {
-        ds2.Tables[0].TableName = "TaskTable";
-        Boolean isFound = false;
+      ds2.Tables[0].TableName = "TaskTable";
 
-        foreach (DataRow row in ds2.Tables["TaskTable"].Rows)
-        {
-          isFound = false;
-          foreach (string s in taskBox.Items)
+      foreach (DataRow row in ds2.Tables["TaskTable"].Rows)
+      {
+        var isFound = false;
+        foreach (string s in taskBox.Items)
+          if (s.Equals(row["TaskName"].ToString()))
           {
-            if (s.Equals(row["TaskName"].ToString()))
-            {
-              isFound = true;
-              break;
-            }
+            isFound = true;
+            break;
           }
 
-          if (!isFound)
-            taskBox.Items.Add(row["TaskName"]);
-
-        }
+        if (!isFound)
+          taskBox.Items.Add(row["TaskName"]);
       }
-
     }
 
     private void createTask_Click(object sender, EventArgs e)
     {
-      /**** DB INFO ****/
-      SqlConnection db = null;
-      string sql;
+      var taskName = taskNameBox.Text;
+      var description = descriptionBox.Text;
+      var sprint = Convert.ToString(sprintBox.SelectedItem);
+      var stop = sprint.IndexOf(':');
+      var sid = Convert.ToInt32(sprint.Substring(0, stop));
 
-      db = new SqlConnection(connectionInfo);
-      /**** DB INFO END ****/
-
-      string taskName = taskNameBox.Text;
-      string description = descriptionBox.Text;
-      string sprint = Convert.ToString(sprintBox.SelectedItem);
-      int stop = sprint.IndexOf(':');
-      int SID = Convert.ToInt32(sprint.Substring(0, stop));
-
-      db.Open(); // open connection to database
+      Sql.Db.Open(); 
       //Insert TaskTable
-      sql = string.Format(@"
-INSERT INTO TaskTable(UID, PID, TaskName, TaskDetail, Completed)
-VALUES ({3}, {2}, '{0}', '{1}', 0);
-", taskName, description, 1, SQL.getOwnerUserID(memberNameToolStripMenuItem.Text));
-      ExecuteActionQuery(db, sql);
-      //taskBox.Items.Add(taskName);
+      var insertTaskTable = string.Format(SqlStrings.InsertTaskTable, taskName, description, 1, Sql.getOwnerUserID(memberNameToolStripMenuItem.Text));
+      ExecuteActionQuery(insertTaskTable);
 
       //Get Task ID
-      sql = string.Format(@"
-SELECT Task_ID
-FROM TaskTable
-WHERE TaskName = '{0}'
-AND TaskDetail = '{1}';
-", taskName, description);
+      var getTaskId = string.Format(SqlStrings.GetTaskId, taskName, description);
 
-      SqlCommand cmd = new SqlCommand();
-      cmd.Connection = db;
-      cmd.CommandText = sql;
-      int TID = (int)cmd.ExecuteScalar();
+      var cmd = new SqlCommand();
+      cmd.Connection = Sql.Db;
+      cmd.CommandText = getTaskId;
+      var tid = (int) cmd.ExecuteScalar();
 
       //Add to linking table (SprintTasks)
-      sql = string.Format(@"
-INSERT INTO SprintTasks(SprintID, Task_ID)
-VALUES ({0}, {1});
-", SID, TID);
-
-      ExecuteActionQuery(db, sql);
-
-      db.Close();
-      refreshTaskBox(SID);
+      var addToLinkingTable = string.Format(SqlStrings.AddToLinkingTable, sid, tid);
+      ExecuteActionQuery(addToLinkingTable);
+      Sql.Db.Close();
+      RefreshTaskBox(sid);
     }
 
     private void taskBox_SelectedIndexChanged(object sender, EventArgs e)
     {
-      if (taskBox.SelectedItem == null)
-      {
-        return;
-      }
-
+      if (taskBox.SelectedItem == null) return;
       infoBox.Items.Clear();
-      /**** DB INFO ****/
+      Sql.Db.Open();
+      var sql = string.Format(SqlStrings.GetTaskDetail, taskBox.GetItemText(taskBox.SelectedItem));
 
-      SqlConnection db = null;
-      string sql;
+      var cmd = new SqlCommand
+      {
+        Connection = Sql.Db,
+        CommandText = sql
+      };
 
-      db = new SqlConnection(connectionInfo);
-      db.Open();
-      /**** DB INFO END ****/
-      sql = string.Format(@"
-SELECT TaskDetail
-FROM TaskTable
-WHERE TaskName = '{0}';
-", taskBox.GetItemText(taskBox.SelectedItem));
-
-      SqlCommand cmd = new SqlCommand();
-      cmd.Connection = db;
-      cmd.CommandText = sql;
-
-      string info = (string)cmd.ExecuteScalar();
+      var info = (string) cmd.ExecuteScalar();
       infoBox.Items.Add(info);
-            
-      db.Close();
+
+      Sql.Db.Close();
       infoBox.Refresh();
     }
 
     private void sprintBox_SelectedIndexChanged(object sender, EventArgs e)
     {
-      string sprint = Convert.ToString(sprintBox.SelectedItem);
-      int stop = sprint.IndexOf(':');
-      int SID = Convert.ToInt32(sprint.Substring(0, stop));
+      var sprint = Convert.ToString(sprintBox.SelectedItem);
+      var stop = sprint.IndexOf(':');
+      var sid = Convert.ToInt32(sprint.Substring(0, stop));
 
-      refreshTaskBox(SID);
-    }
-
-    private void label5_Click(object sender, EventArgs e)
-    {
-
-    }
-
-    private void label2_Click(object sender, EventArgs e)
-    {
-
-    }
-
-    private void label3_Click(object sender, EventArgs e)
-    {
-
-    }
-
-    private void label4_Click(object sender, EventArgs e)
-    {
-
+      RefreshTaskBox(sid);
     }
 
     private void selectProjectToolStripMenuItem_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
     {
       //get the name of the drop down item that was clicked
-      string proj_name = e.ClickedItem.ToString();
+      var projName = e.ClickedItem.ToString();
 
-      FormCollection fc = Application.OpenForms;
-      bool isFound = false;
+      var fc = Application.OpenForms;
+      var isFound = false;
       foreach (Form frm in fc)
-      {
         if (frm.Name == "Main")
         {
           frm.Focus();
           isFound = true;
-          this.Hide();
+          Hide();
         }
-      }
 
       if (isFound == false)
       {
-        Dashboard frm = new Dashboard(memberNameToolStripMenuItem.Text, proj_name);
+        var frm = new Dashboard(memberNameToolStripMenuItem.Text, projName);
         frm.Show();
-        this.Hide();
+        Hide();
       }
-
     }
 
-        private void assignRolesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!SQL.isOwner(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text))  // THIS SQL NEEDS TO BE DONE
-            {
-
-                MessageBox.Show("Not an owner. Cannot edit.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
-
-            }
-            else
-            {
-                assignRole frm = new assignRole(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
-                frm.Show();
-            }
-        }
-
-        private void assignTasksToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            assignTask frm = new assignTask(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
-            frm.Show();
-        }
+    private void assignRolesToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      if (!Sql.isOwner(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text)
+      ) // THIS SQL NEEDS TO BE DONE
+      {
+        MessageBox.Show("Not an owner. Cannot edit.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Exclamation,
+          MessageBoxDefaultButton.Button1);
+      }
+      else
+      {
+        var frm = new AssignRole(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
+        frm.Show();
+      }
     }
+
+    private void assignTasksToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      var frm = new AssignTask(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
+      frm.Show();
+    }
+  }
 }

@@ -13,7 +13,7 @@ namespace Co_Op_Swift
 {
   // StoryTask extends the SQL class
   // this class holds all sql methods for database access having to do with stories and tasks
-  public class StoryTask : SQL
+  public class StoryTask : Sql
   {
     string creator, name, details;
 
@@ -26,12 +26,12 @@ namespace Co_Op_Swift
     }
 
 
-    static public void createStory(string creator, string name, string description)
+    public static void createStory(string creator, string name, string description)
     {
 
       SqlConnection db = null;
 
-      db = new SqlConnection(connectionInfo);
+      db = new SqlConnection(ConnectionInfo);
       db.Open(); // open connection to database
 
       //ADD PROJECT INFO
@@ -51,7 +51,7 @@ namespace Co_Op_Swift
 
     //Method to take dataRow and create 'story' object to put in List<story> for easy access
     //(this is for the 'ideabox' and 'sprintPlan' forms)
-    static public List<StoryTask> getProjectStories(DataTable t)
+    public static List<StoryTask> getProjectStories(DataTable t)
     {
       List<StoryTask> stories = new List<StoryTask>();
       StoryTask story;
@@ -68,13 +68,13 @@ namespace Co_Op_Swift
 
 
 
-    static public void getTaskName(ListBox currBox, ListBox completedBox, int id)
+    public static void getTaskName(ListBox currBox, ListBox completedBox, int id)
     { 
       SqlConnection db = null;
-      db = new SqlConnection(connectionInfo);
+      db = new SqlConnection(ConnectionInfo);
       db.Open(); // open connection to database
 
-      String sql;
+      string sql;
       SqlCommand cmd;
 
       sql = string.Format("select * FROM TaskTable WHERE Task_ID = {0}",id);
@@ -88,12 +88,12 @@ namespace Co_Op_Swift
       adapter.Fill(ds);
 
       DataTable dt = ds.Tables["Table"];
-      Boolean isFound;
+      bool isFound;
 
       foreach (DataRow row in dt.Rows)
       {
         isFound = false;
-        if (Boolean.Parse(row["Completed"].ToString()))
+        if (bool.Parse(row["Completed"].ToString()))
         {
           foreach (string s in completedBox.Items)
           {
@@ -127,13 +127,13 @@ namespace Co_Op_Swift
 
     }//end getTasks
 
-        static public void getTaskNameForAssign(ComboBox currBox, ListBox completedBox, int id)
+        public static void getTaskNameForAssign(ComboBox currBox, ListBox completedBox, int id)
         {
             SqlConnection db = null;
-            db = new SqlConnection(connectionInfo);
+            db = new SqlConnection(ConnectionInfo);
             db.Open(); // open connection to database
 
-            String sql;
+            string sql;
             SqlCommand cmd;
 
             sql = string.Format("select * FROM TaskTable WHERE Task_ID = {0}", id);
@@ -147,12 +147,12 @@ namespace Co_Op_Swift
             adapter.Fill(ds);
 
             DataTable dt = ds.Tables["Table"];
-            Boolean isFound;
+            bool isFound;
 
             foreach (DataRow row in dt.Rows)
             {
                 isFound = false;
-                if (Boolean.Parse(row["Completed"].ToString()))
+                if (bool.Parse(row["Completed"].ToString()))
                 {
                     foreach (string s in completedBox.Items)
                     {
@@ -185,13 +185,13 @@ namespace Co_Op_Swift
             db.Close();
 
         }//end getTasks
-        static public void getTaskNameForUser(ListBox currBox, ListBox completedBox, int userID, int id)
+        public static void getTaskNameForUser(ListBox currBox, ListBox completedBox, int userID, int id)
         {
             SqlConnection db = null;
-            db = new SqlConnection(connectionInfo);
+            db = new SqlConnection(ConnectionInfo);
             db.Open(); // open connection to database
 
-            String sql;
+            string sql;
             SqlCommand cmd;
 
             sql = string.Format("select * FROM TaskTable WHERE Task_ID = {0} and UID = {1}", id,userID);
@@ -205,12 +205,12 @@ namespace Co_Op_Swift
             adapter.Fill(ds);
 
             DataTable dt = ds.Tables["Table"];
-            Boolean isFound;
+            bool isFound;
 
             foreach (DataRow row in dt.Rows)
             {
                 isFound = false;
-                if (Boolean.Parse(row["Completed"].ToString()))
+                if (bool.Parse(row["Completed"].ToString()))
                 {
                     foreach (string s in completedBox.Items)
                     {
@@ -246,15 +246,15 @@ namespace Co_Op_Swift
 
         /********this was added on 11/22/2016 by Mike ***********************/
         //method to get all the sprintID's related to a project
-        static public DataTable getProject_sprintIDs(string projName)
+        public static DataTable getProject_sprintIDs(string projName)
     {
       SqlConnection db = null;
-      db = new SqlConnection(connectionInfo);
+      db = new SqlConnection(ConnectionInfo);
       db.Open(); // open connection to database
 
-      int projID = SQL.getProjectID(projName);
+      int projID = Sql.getProjectID(projName);
 
-      String sql;
+      string sql;
       SqlCommand cmd;
 
       sql = string.Format("select * FROM ProjectSprints WHERE Proj_ID = {0}", projID);
@@ -276,13 +276,13 @@ namespace Co_Op_Swift
 
     /********this was added on 11/26/2016 by Mike ***********************/
     //method to get all the taskID's related to a sprint
-    static public DataTable getProject_taskIDs(int sprintID)
+    public static DataTable getProject_taskIDs(int sprintID)
     {
       SqlConnection db = null;
-      db = new SqlConnection(connectionInfo);
+      db = new SqlConnection(ConnectionInfo);
       db.Open(); // open connection to database
 
-      String sql;
+      string sql;
       SqlCommand cmd;
 
       sql = string.Format("select * FROM SprintTasks WHERE SprintID = {0}", sprintID);
@@ -304,11 +304,11 @@ namespace Co_Op_Swift
 
     /********this was added on 11/22/2016 by Mike ***********************/
     //method to insert a comment into the "Comments" table
-    static public int insertComment(int uid, string comment)
+    public static int insertComment(int uid, string comment)
     {
       SqlConnection db = null;
 
-      db = new SqlConnection(connectionInfo);
+      db = new SqlConnection(ConnectionInfo);
       db.Open(); // open connection to database
 
       string sql = string.Format(@"
@@ -338,11 +338,11 @@ namespace Co_Op_Swift
 
     /********** this was added on 11/22/2016 by Mike **************/
     //method to get the ID of a task
-    static public int getTaskID(string taskName)
+    public static int getTaskID(string taskName)
     {
       SqlConnection db = null;
 
-      db = new SqlConnection(connectionInfo);
+      db = new SqlConnection(ConnectionInfo);
       db.Open(); // open connection to database
 
       //CHECK IF USERNAME EXISTS
@@ -365,7 +365,7 @@ namespace Co_Op_Swift
 
     /********this was added on 11/26/2016 by Mike ***********************/
     //method to get developer information related to a task
-    static public void getTaskInfo(string taskName, Panel p1, Panel p2, TextBox d1_name, TextBox d1_email,TextBox d1_pos,
+    public static void getTaskInfo(string taskName, Panel p1, Panel p2, TextBox d1_name, TextBox d1_email,TextBox d1_pos,
                                                                           TextBox d2_name,TextBox d2_email,TextBox d2_pos)
     {
       //task info fields
@@ -374,10 +374,10 @@ namespace Co_Op_Swift
       string position;
 
       SqlConnection db = null;    
-      db = new SqlConnection(connectionInfo);
+      db = new SqlConnection(ConnectionInfo);
       db.Open(); // open connection to database
 
-      String sql;
+      string sql;
       SqlCommand cmd;
 
       sql = string.Format("select * FROM TaskTable WHERE TaskName = '{0}' ", taskName);
@@ -399,13 +399,13 @@ namespace Co_Op_Swift
         int pid = int.Parse(r["PID"].ToString());
 
         //get users name from the user id
-        full_name = SQL.getFullName(uid);
+        full_name = Sql.getFullName(uid);
 
         //get the users email from the user id
-        email = SQL.getUsername(full_name);
+        email = Sql.getUsername(full_name);
 
         //get the users position from the pid
-        position = SQL.getUserPosition(pid);
+        position = Sql.getUserPosition(pid);
 
         if (x == 1)
         {
@@ -430,11 +430,11 @@ namespace Co_Op_Swift
 
     /********this was added on 11/22/2016 by Mike ***********************/
     //method to insert a comment into the "TaskComments" table
-    static public void insertTaskComment(int task_id, int comment_id)
+    public static void insertTaskComment(int task_id, int comment_id)
     {
       SqlConnection db = null;
 
-      db = new SqlConnection(connectionInfo);
+      db = new SqlConnection(ConnectionInfo);
       db.Open(); // open connection to database
 
       string sql = string.Format(@"
@@ -455,11 +455,11 @@ namespace Co_Op_Swift
 
 
     //method to get the id of a comment
-    static public DataTable getCommentID(int task_id)
+    public static DataTable getCommentID(int task_id)
     {
       SqlConnection db = null;
 
-      db = new SqlConnection(connectionInfo);
+      db = new SqlConnection(ConnectionInfo);
       db.Open(); // open connection to database
 
       //CHECK IF USERNAME EXISTS
@@ -484,11 +484,11 @@ namespace Co_Op_Swift
 
 
     //method to find and load a comment into a textbox
-    static public void loadCommentDetail(int userID, DataTable comment_IDs, TextBox details)
+    public static void loadCommentDetail(int userID, DataTable comment_IDs, TextBox details)
     {
       SqlConnection db = null;
 
-      db = new SqlConnection(connectionInfo);
+      db = new SqlConnection(ConnectionInfo);
       db.Open(); // open connection to database
 
       //CHECK IF USERNAME EXISTS
@@ -526,14 +526,14 @@ namespace Co_Op_Swift
 
 
     //method to mark a task as comnplete
-    static public void mark_task_as_complete(string task_name)
+    public static void mark_task_as_complete(string task_name)
     {
       SqlConnection db = null;
       SqlCommand cmd = new SqlCommand();
 
       try
       {
-        db = new SqlConnection(connectionInfo);
+        db = new SqlConnection(ConnectionInfo);
         db.Open(); // open connection to database
 
         string sql = string.Format(@"UPDATE TaskTable SET Completed = 0 WHERE TaskName = '{0}'", task_name);
@@ -557,11 +557,11 @@ namespace Co_Op_Swift
 
 
     //method to get the id of a comment
-    static public int getCommenter(int comment_id)
+    public static int getCommenter(int comment_id)
     {
       SqlConnection db = null;
 
-      db = new SqlConnection(connectionInfo);
+      db = new SqlConnection(ConnectionInfo);
       db.Open(); // open connection to database
 
       //CHECK IF USERNAME EXISTS

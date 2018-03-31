@@ -12,7 +12,7 @@ using System.Data.SqlClient;
 
 namespace Co_Op_Swift
 {
-  public partial class releasePlan : Form
+  public partial class ReleasePlan : Form
   {
     static void ExecuteActionQuery(SqlConnection db, string sql)
     {
@@ -23,7 +23,7 @@ namespace Co_Op_Swift
       cmd.ExecuteNonQuery();
     }
 
-    public releasePlan(String username, String projectName)
+    public ReleasePlan(string username, string projectName)
     {
       InitializeComponent();
 
@@ -34,7 +34,7 @@ namespace Co_Op_Swift
       /****************** this is for select a project drop down menu ******************************/
 
       //get all project ids associated with the user ids
-      DataTable proj_ids = SQL.getUserProjectIDs(SQL.getOwnerUserID(memberNameToolStripMenuItem.Text));
+      DataTable proj_ids = Sql.getUserProjectIDs(Sql.getOwnerUserID(memberNameToolStripMenuItem.Text));
 
       string proj_name;
 
@@ -42,7 +42,7 @@ namespace Co_Op_Swift
       foreach (DataRow row in proj_ids.Rows)
       {
         //put project names in select project drop down menu
-        proj_name = SQL.getProjectName(int.Parse(row["Proj_ID"].ToString()));
+        proj_name = Sql.getProjectName(int.Parse(row["Proj_ID"].ToString()));
         selectProjectToolStripMenuItem.DropDownItems.Add(proj_name);
       }
       /********************************************************************************************/
@@ -58,14 +58,14 @@ namespace Co_Op_Swift
 
     private void ideaBoxToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      ideaBox frm = new ideaBox(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
+      IdeaBox frm = new IdeaBox(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
       frm.Show();
       this.Close();
     }
 
     private void sprintPlanToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      sprintPlan frm = new sprintPlan(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
+      SprintPlan frm = new SprintPlan(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
       frm.Show();
       this.Close();
     }
@@ -79,7 +79,7 @@ namespace Co_Op_Swift
 
     private void teamToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      addMembers frm = new addMembers(memberNameToolStripMenuItem.Text,projectNameToolStripMenuItem.Text);
+      AddMembers frm = new AddMembers(memberNameToolStripMenuItem.Text,projectNameToolStripMenuItem.Text);
       frm.Show();
     }
 
@@ -90,7 +90,7 @@ namespace Co_Op_Swift
       string account = "ktang";
       string password = "PublicPass1";
 
-      string connectionInfo = String.Format(@"
+      string connectionInfo = string.Format(@"
       Server=tcp:{0}.database.windows.net,1433;Initial Catalog={1};Persist Security Info=False;User ID={2};Password={3};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
       ", netID, dbName, account, password);
 
@@ -123,7 +123,7 @@ WHERE Title = '{0}';
       string account = "ktang";
       string password = "PublicPass1";
 
-      string connectionInfo = String.Format(@"
+      string connectionInfo = string.Format(@"
       Server=tcp:{0}.database.windows.net,1433;Initial Catalog={1};Persist Security Info=False;User ID={2};Password={3};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
       ", netID, dbName, account, password);
 
@@ -219,7 +219,7 @@ FROM Sprints;
       string account = "ktang";
       string password = "PublicPass1";
 
-      string connectionInfo = String.Format(@"
+      string connectionInfo = string.Format(@"
       Server=tcp:{0}.database.windows.net,1433;Initial Catalog={1};Persist Security Info=False;User ID={2};Password={3};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
       ", netID, dbName, account, password);
 
@@ -320,7 +320,7 @@ VALUES ({0}, {1});
 
         private void assignRolesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!SQL.isOwner(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text))  // THIS SQL NEEDS TO BE DONE
+            if (!Sql.isOwner(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text))  // THIS SQL NEEDS TO BE DONE
             {
 
                 MessageBox.Show("Not an owner. Cannot edit.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
@@ -328,7 +328,7 @@ VALUES ({0}, {1});
             }
             else
             {
-                assignRole frm = new assignRole(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
+                AssignRole frm = new AssignRole(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
                 frm.Show();
             }
            
@@ -336,13 +336,13 @@ VALUES ({0}, {1});
 
         private void assignTasksToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            assignTask frm = new assignTask(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
+            AssignTask frm = new AssignTask(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
             frm.Show();
         }
 
     private void timeLineToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      taskTree frm = new taskTree(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
+      TaskTree frm = new TaskTree(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
       frm.Show();
       this.Close();
     }

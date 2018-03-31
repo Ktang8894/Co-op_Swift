@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace Co_Op_Swift
 {
-    public partial class assignTask : Form
+    public partial class AssignTask : Form
     {
         string userName,proj;
-        public assignTask(string username, string projName)
+        public AssignTask(string username, string projName)
         {
             InitializeComponent();
             proj = projName;
@@ -21,7 +21,7 @@ namespace Co_Op_Swift
             //SQL.getTasks(taskCB, projName); //this doesnt work for sure
             // SQL.getUndoneTask(taskCB, username, projName);
             //SQL.getUserTask(currentLB, username, projName);
-            SQL.getProjectMembers(memberLB, username, projName); // i think i made the sql for this right
+            Sql.getProjectMembers(memberLB, username, projName); // i think i made the sql for this right
             DataTable sprint_IDs = StoryTask.getProject_sprintIDs(proj);
 
             //get tasks and put their names in the corresponding listbox
@@ -41,7 +41,7 @@ namespace Co_Op_Swift
 
         private void assignTask_Load(object sender, EventArgs e)
         {
-            if(!SQL.isManager(userName,proj)) // THIS SQL NEEDS TO BE DONE
+            if(!Sql.isManager(userName,proj)) // THIS SQL NEEDS TO BE DONE
             {
               MessageBox.Show("Not a manager. Cannot edit.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Exclamation,MessageBoxDefaultButton.Button1);
                 Close();
@@ -71,7 +71,7 @@ namespace Co_Op_Swift
 
                     //retrieve and add tasks to their correct lists
                     foreach (DataRow row in task_IDs.Rows)
-                        StoryTask.getTaskNameForUser(currentLB, completeLB, SQL.getUserID(firstname, lastname), int.Parse(row["Task_ID"].ToString()));
+                        StoryTask.getTaskNameForUser(currentLB, completeLB, Sql.getUserID(firstname, lastname), int.Parse(row["Task_ID"].ToString()));
                 }
                 //SQL.getUserTask(currentLB, SQL.getUserID(firstname, lastname), proj);
             }
@@ -95,7 +95,7 @@ namespace Co_Op_Swift
                 string[] substrings = s.Split(' ');
                 firstname = substrings[0];
                 lastname = substrings[1];
-                SQL.ExecuteAssignTask(SQL.getUserID(firstname, lastname), taskCB.Text, StoryTask.getTaskID(taskCB.Text)); // I THINK THIS SQL WORKS
+                Sql.ExecuteAssignTask(Sql.getUserID(firstname, lastname), taskCB.Text, StoryTask.getTaskID(taskCB.Text)); // I THINK THIS SQL WORKS
             }
                 
         }
