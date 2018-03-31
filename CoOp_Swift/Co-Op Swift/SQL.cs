@@ -12,12 +12,12 @@ namespace Co_Op_Swift
     public static string ConnectionInfo = ConfigurationManager.AppSettings["ConnectionString"];
     public static SqlConnection Db = new SqlConnection(ConnectionInfo);
     //ExecuteActionQuery
-    public static void ExecuteActionQuery(SqlConnection db, string sql)
+    public static void ExecuteActionQuery(string sql)
     {
       SqlCommand cmd = null;
       try
       {
-        cmd = new SqlCommand(sql, db);
+        cmd = new SqlCommand(sql, Db);
         cmd.ExecuteNonQuery();
       }
       catch (Exception ex)
@@ -36,7 +36,6 @@ namespace Co_Op_Swift
     public static bool ExecuteLogin(string username, string userPass)
     {
       SqlConnection db = null;
-      SqlCommand    cmd = null;
       DataSet       ds = null;
       var       pass = false;
 
@@ -47,7 +46,7 @@ namespace Co_Op_Swift
 
         string sql = string.Format("select * FROM UserAccounts where UserName = '{0}' ", username);
 
-        cmd = new SqlCommand(sql, db);
+        var cmd = new SqlCommand(sql, db);
         SqlDataAdapter adapter = new SqlDataAdapter(cmd);
         ds = new DataSet();
 
@@ -117,7 +116,7 @@ namespace Co_Op_Swift
                           Values('{0}', '{1}', '{2}', '{3}', {4}, '{5}', {6});
                           ", username, password, LastName, FirstName, QID, answer, PID);
 
-          ExecuteActionQuery(db, sql);
+          ExecuteActionQuery(sql);
         }
       }
       catch (Exception ex)
@@ -147,7 +146,7 @@ namespace Co_Op_Swift
         string sql = string.Format(@"Update UserAccounts Set Password = '{0}' where Username = '{1}' ",
         password, username);
 
-        ExecuteActionQuery(db, sql);
+        ExecuteActionQuery(sql);
       }
       catch (Exception ex)
       {
@@ -294,7 +293,7 @@ namespace Co_Op_Swift
                           Values({0}, '{1}', '{2}', {3}, {4});
                           ", ownerID, title, description, isPrivate, timezoneID);
 
-        ExecuteActionQuery(db, sql);
+        ExecuteActionQuery(sql);
       }
       catch (Exception ex)
       {
@@ -330,7 +329,7 @@ namespace Co_Op_Swift
     //                      Values('{0}', '{1}');
     //                      ", startDate, sprintEndDate);
 
-    //    ExecuteActionQuery(db, sql);
+    //    ExecuteActionQuery(sql);
     //  }
     //  catch (Exception ex)
     //  {
@@ -630,7 +629,7 @@ namespace Co_Op_Swift
                         Values({0}, {1}, {2});
                         ", projID, userID,position);
 
-      ExecuteActionQuery(db, sql);
+      ExecuteActionQuery(sql);
 
       db.Close(); // close database connection
 
@@ -679,7 +678,7 @@ namespace Co_Op_Swift
                         WHERE Proj_ID = {0} AND UID = {1};
                         ", projID, userID);
 
-      ExecuteActionQuery(db, sql);
+      ExecuteActionQuery(sql);
 
       db.Close(); // close database connection
 
@@ -916,7 +915,7 @@ where UserAccounts.UID = '{1}' and ProjectMembers.Proj_ID = {2}
                                                      //username,
               );
 
-            ExecuteActionQuery(db, sql);
+            ExecuteActionQuery(sql);
             Console.Write("woke");
             db.Close(); // close database connection
         } //end of change role button
@@ -1141,7 +1140,7 @@ where ProjectSprints.Proj_ID = {0}
                       Values('{0}', '{1}', '{2}');
                       ", Sql.getOwnerUserID(username), name, desc);
 
-        ExecuteActionQuery(db, sql);
+        ExecuteActionQuery(sql);
 
         SqlCommand cmd = new SqlCommand();
         cmd.Connection = db;
@@ -1267,7 +1266,7 @@ where ProjectSprints.Proj_ID = {0}
                       Values('{0}', '{1}');
                       ", Sql.getProjectID(projName),Sql.getIdeasID(ideaname));
 
-        ExecuteActionQuery(db, sql);
+        ExecuteActionQuery(sql);
 
         SqlCommand cmd = new SqlCommand();
         cmd.Connection = db;
@@ -1399,7 +1398,7 @@ where ProjectSprints.Proj_ID = {0}
                 //username,SQL.getProjectID(proj)
                                                              );
 
-              ExecuteActionQuery(db, sql);
+              ExecuteActionQuery(sql);
               //Console.Write("woke");
             }
             catch (Exception ex)

@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 
@@ -14,15 +9,6 @@ namespace Co_Op_Swift
 {
   public partial class ReleasePlan : Form
   {
-    static void ExecuteActionQuery(SqlConnection db, string sql)
-    {
-      SqlCommand cmd = new SqlCommand();
-      cmd.Connection = db;
-      cmd.CommandText = sql;
-
-      cmd.ExecuteNonQuery();
-    }
-
     public ReleasePlan(string username, string projectName)
     {
       InitializeComponent();
@@ -85,32 +71,24 @@ namespace Co_Op_Swift
 
     public int getPID()
     {
-      string netID = "co-op-swift";
-      string dbName = "Co-op_Swift";
-      string account = "ktang";
-      string password = "PublicPass1";
 
-      string connectionInfo = string.Format(@"
-      Server=tcp:{0}.database.windows.net,1433;Initial Catalog={1};Persist Security Info=False;User ID={2};Password={3};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
-      ", netID, dbName, account, password);
-
-    SqlConnection db = null;
+    
       string sql;
 
-      db = new SqlConnection(connectionInfo);
+      
       sql = string.Format(@"
 Select Proj_ID
 FROM Projects
 WHERE Title = '{0}';
 ", projectNameToolStripMenuItem.Text);
-      db.Open();
+      Sql.Db.Open();
       SqlCommand cmd = new SqlCommand();
-      cmd.Connection = db;
+      cmd.Connection = Sql.Db;
       cmd.CommandText = sql;
 
       int id = (int)cmd.ExecuteScalar();
 
-      db.Close();
+      Sql.Db.Close();
 
       return id;
     }
@@ -118,23 +96,14 @@ WHERE Title = '{0}';
     int columnCounter = 0; //Global variable for latest sprint
     private void releasePlan_Load(object sender, EventArgs e)
     {
-      string netID = "co-op-swift";
-      string dbName = "Co-op_Swift";
-      string account = "ktang";
-      string password = "PublicPass1";
-
-      string connectionInfo = string.Format(@"
-      Server=tcp:{0}.database.windows.net,1433;Initial Catalog={1};Persist Security Info=False;User ID={2};Password={3};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
-      ", netID, dbName, account, password);
-
-      SqlConnection db = null;
+      
       string sql;
 
-      db = new SqlConnection(connectionInfo);
-      db.Open(); // open connection to database
+
+      Sql.Db.Open(); // open connection to database
 
       SqlCommand cmd = new SqlCommand();
-      cmd.Connection = db;
+      cmd.Connection = Sql.Db;
       SqlDataAdapter adapter = new SqlDataAdapter(cmd);
 
       int PID = getPID();
@@ -174,7 +143,7 @@ WHERE SprintTasks.SprintID = {0};
 ", SID);
 
         SqlCommand cmd2 = new SqlCommand();
-        cmd2.Connection = db;
+        cmd2.Connection = Sql.Db;
         DataSet ds = new DataSet();
         cmd2.CommandText = sql2;
         SqlDataAdapter adapter2 = new SqlDataAdapter(cmd2);
@@ -200,33 +169,24 @@ SELECT MAX(SprintID)
 FROM Sprints;
 ");
       cmd = new SqlCommand();
-      cmd.Connection = db;
+      cmd.Connection = Sql.Db;
       cmd.CommandText = sql;
       int id = (int)cmd.ExecuteScalar();
       
       columnCounter = id;
 
 
-      db.Close();
+      Sql.Db.Close();
     }
 
     //Add Sprint Button
     private void addSprint_Click(object sender, EventArgs e)
     {
-      /**** DB INFO ****/
-      string netID = "co-op-swift";
-      string dbName = "Co-op_Swift";
-      string account = "ktang";
-      string password = "PublicPass1";
 
-      string connectionInfo = string.Format(@"
-      Server=tcp:{0}.database.windows.net,1433;Initial Catalog={1};Persist Security Info=False;User ID={2};Password={3};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
-      ", netID, dbName, account, password);
-
-      SqlConnection db = null;
+      
       string sql;
 
-      db = new SqlConnection(connectionInfo);
+      
       /**** DB INFO END ****/
 
       string sMonth = startMonth.Text;
@@ -250,7 +210,7 @@ FROM Sprints;
         }
         else
         {
-          db.Open(); // open connection to database
+          Sql.Db.Open(); // open connection to database
 
           //Insert Sprint
           sql = string.Format(@"
@@ -258,7 +218,7 @@ INSERT INTO Sprints(StartDate, EndDate)
 VALUES ('{0}', '{1}')
 ", sDate, eDate);
 
-          ExecuteActionQuery(db, sql);
+          Sql.ExecuteActionQuery(sql);
 
           //Get ID Number
           sql = string.Format(@"
@@ -266,7 +226,7 @@ SELECT MAX(SprintID)
 FROM Sprints;
 ");
           SqlCommand cmd = new SqlCommand();
-          cmd.Connection = db;
+          cmd.Connection = Sql.Db;
           cmd.CommandText = sql;
           int id = (int)cmd.ExecuteScalar();
           dataGridView1.Columns.Add("Sprint" + id, "Sprint ID: " + id + "\n" + startDate + "\n" + "-\n" + endDate);
@@ -280,9 +240,9 @@ INSERT INTO ProjectSprints(Proj_ID, SprintID)
 VALUES ({0}, {1});
 ", PID, id);
 
-          ExecuteActionQuery(db, sql);
+          Sql.ExecuteActionQuery(sql);
 
-          db.Close();
+          Sql.Db.Close();
         }
       }
 

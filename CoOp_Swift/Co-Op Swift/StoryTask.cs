@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 
@@ -41,7 +36,7 @@ namespace Co_Op_Swift
                         Values({0}, {1}, {2});
                         ", creator, name, description);
 
-      ExecuteActionQuery(db, sql);
+      Sql.ExecuteActionQuery(sql);
 
       db.Close(); // close database connection
 
@@ -322,7 +317,7 @@ namespace Co_Op_Swift
       cmd.Connection = db;
       cmd.CommandText = sql;
 
-      ExecuteActionQuery(db, sql);
+      Sql.ExecuteActionQuery(sql);
 
       //get id from previous query
       sql =string.Format("select CommentID FROM Comments WHERE Comment = '{0}'",comment);
@@ -448,7 +443,7 @@ namespace Co_Op_Swift
       cmd.Connection = db;
       cmd.CommandText = sql;
 
-      ExecuteActionQuery(db, sql);
+      Sql.ExecuteActionQuery(sql);
       db.Close();
 
     }//end insertComment
@@ -541,7 +536,7 @@ namespace Co_Op_Swift
         cmd.Connection = db;
         cmd.CommandText = sql;
 
-        ExecuteActionQuery(db, sql);
+        Sql.ExecuteActionQuery(sql);
       }
       catch (Exception ex)
       {

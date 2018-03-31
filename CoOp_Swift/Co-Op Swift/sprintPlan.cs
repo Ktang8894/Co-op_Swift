@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
-using Co_Op_Swift.Properties;
 
 namespace Co_Op_Swift
 {
@@ -28,17 +26,6 @@ namespace Co_Op_Swift
         var projName = Sql.getProjectName(int.Parse(row["Proj_ID"].ToString()));
         selectProjectToolStripMenuItem.DropDownItems.Add(projName);
       }
-    }
-
-    private static void ExecuteActionQuery(string sql)
-    {
-      var cmd = new SqlCommand
-      {
-        Connection = Sql.Db,
-        CommandText = sql
-      };
-
-      cmd.ExecuteNonQuery();
     }
 
     private void dashboardToolStripMenuItem_Click(object sender, EventArgs e)
@@ -178,7 +165,7 @@ namespace Co_Op_Swift
       Sql.Db.Open(); 
       //Insert TaskTable
       var insertTaskTable = string.Format(SqlStrings.InsertTaskTable, taskName, description, 1, Sql.getOwnerUserID(memberNameToolStripMenuItem.Text));
-      ExecuteActionQuery(insertTaskTable);
+      Sql.ExecuteActionQuery(insertTaskTable);
 
       //Get Task ID
       var getTaskId = string.Format(SqlStrings.GetTaskId, taskName, description);
@@ -190,7 +177,7 @@ namespace Co_Op_Swift
 
       //Add to linking table (SprintTasks)
       var addToLinkingTable = string.Format(SqlStrings.AddToLinkingTable, sid, tid);
-      ExecuteActionQuery(addToLinkingTable);
+      Sql.ExecuteActionQuery(addToLinkingTable);
       Sql.Db.Close();
       RefreshTaskBox(sid);
     }
