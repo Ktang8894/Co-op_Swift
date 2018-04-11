@@ -12,19 +12,19 @@ namespace Co_Op_Swift
 {
     public partial class Story : Form
     {
-        string UN, pn;
+        string _un, _pn;
         public Story(string username,string proj)
         {
-            UN = username;
-            pn = proj;
+            _un = username;
+            _pn = proj;
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1Click(object sender, EventArgs e)
         {
-            Sql.ExecuteStory(UN, nameTB.Text, descTB.Text);
+            Sql.ExecuteStory(_un, nameTB.Text, descTB.Text);
             string name = nameTB.Text;
-            Sql.acceptStory(pn, name);
+            Sql.AcceptStory(_pn, name);
             this.Close();
         }
     }

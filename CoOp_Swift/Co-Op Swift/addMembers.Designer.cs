@@ -79,7 +79,7 @@
       this.currentUsers.Size = new System.Drawing.Size(311, 244);
       this.currentUsers.Sorted = true;
       this.currentUsers.TabIndex = 2;
-      this.currentUsers.SelectedIndexChanged += new System.EventHandler(this.currentUsers_SelectedIndexChanged);
+      this.currentUsers.SelectedIndexChanged += new System.EventHandler(this.CurrentUsersSelectedIndexChanged);
       // 
       // teamMembers
       // 
@@ -92,7 +92,7 @@
       this.teamMembers.Size = new System.Drawing.Size(305, 244);
       this.teamMembers.Sorted = true;
       this.teamMembers.TabIndex = 3;
-      this.teamMembers.SelectedIndexChanged += new System.EventHandler(this.teamMembers_SelectedIndexChanged);
+      this.teamMembers.SelectedIndexChanged += new System.EventHandler(this.TeamMembersSelectedIndexChanged);
       // 
       // add_button
       // 
@@ -105,7 +105,7 @@
       this.add_button.TabIndex = 4;
       this.add_button.Text = "Add To Team    -->";
       this.add_button.UseVisualStyleBackColor = false;
-      this.add_button.Click += new System.EventHandler(this.add_button_Click);
+      this.add_button.Click += new System.EventHandler(this.AddButtonClick);
       // 
       // remove_button
       // 
@@ -118,7 +118,7 @@
       this.remove_button.TabIndex = 5;
       this.remove_button.Text = "<-- Remove From Team";
       this.remove_button.UseVisualStyleBackColor = false;
-      this.remove_button.Click += new System.EventHandler(this.remove_button_Click);
+      this.remove_button.Click += new System.EventHandler(this.RemoveButtonClick);
       // 
       // finalize_button
       // 
@@ -131,7 +131,7 @@
       this.finalize_button.TabIndex = 6;
       this.finalize_button.Text = "Accept";
       this.finalize_button.UseVisualStyleBackColor = false;
-      this.finalize_button.Click += new System.EventHandler(this.finalize_button_Click);
+      this.finalize_button.Click += new System.EventHandler(this.FinalizeButtonClick);
       // 
       // cancel_buttton
       // 
@@ -144,7 +144,7 @@
       this.cancel_buttton.TabIndex = 7;
       this.cancel_buttton.Text = "Cancel";
       this.cancel_buttton.UseVisualStyleBackColor = false;
-      this.cancel_buttton.Click += new System.EventHandler(this.cancel_button_Click);
+      this.cancel_buttton.Click += new System.EventHandler(this.CancelButtonClick);
       // 
       // label3
       // 

@@ -49,7 +49,7 @@
       this.ok_button.TabIndex = 0;
       this.ok_button.Text = "OK";
       this.ok_button.UseVisualStyleBackColor = false;
-      this.ok_button.Click += new System.EventHandler(this.ok_button_Click);
+      this.ok_button.Click += new System.EventHandler(this.OkButtonClick);
       // 
       // cancel_button
       // 
@@ -62,7 +62,7 @@
       this.cancel_button.TabIndex = 1;
       this.cancel_button.Text = "Cancel";
       this.cancel_button.UseVisualStyleBackColor = false;
-      this.cancel_button.Click += new System.EventHandler(this.cancel_button_Click);
+      this.cancel_button.Click += new System.EventHandler(this.CancelButtonClick);
       // 
       // label1
       // 

@@ -7,66 +7,66 @@ namespace Co_Op_Swift
   public partial class AddMembers : Form
   {
     //Lists to keep track of added/removed users during each use of the form
-    List<string> addedUsernames = new List<string>();
-    List<string> removedUsernames = new List<string>();
-    CreateProj cp;
-    Form d;
-    string projectName, userName;
-    bool isCreating = false;
-    List<object> p_info = new List<object>();
+    List<string> _addedUsernames = new List<string>();
+    List<string> _removedUsernames = new List<string>();
+    CreateProj _cp;
+    Form _d;
+    string _projectName, _userName;
+    bool _isCreating = false;
+    List<object> _pInfo = new List<object>();
 
     //constructor if coming from project creation
     public AddMembers(string username, string projName, Form dash, CreateProj frm, bool isTrue, 
-                                                                           List<object> proj_info)
+                                                                           List<object> projInfo)
     {
       InitializeComponent();
-      Sql.getMembers(currentUsers,teamMembers,username,isTrue,1);
-      projectName = projName;
-      userName = username;
-      isCreating = isTrue;
-      p_info = proj_info;
-      cp = frm;
-      d = dash;
+      Sql.GetMembers(currentUsers,teamMembers,username,isTrue,1);
+      _projectName = projName;
+      _userName = username;
+      _isCreating = isTrue;
+      _pInfo = projInfo;
+      _cp = frm;
+      _d = dash;
     }
 
     //constructor if coming from any of the menu strips
-    public AddMembers(string username, string project_name)
+    public AddMembers(string username, string projectName)
     {
       InitializeComponent();
-      projectName = project_name;
-      userName = username;
-      int id = Sql.getProjectID(project_name);
-      Sql.getMembers(currentUsers, teamMembers, username,false,id);
+      _projectName = projectName;
+      _userName = username;
+      int id = Sql.GetProjectId(projectName);
+      Sql.GetMembers(currentUsers, teamMembers, username,false,id);
     }
 
-    private void teamMembers_SelectedIndexChanged(object sender, EventArgs e)
+    private void TeamMembersSelectedIndexChanged(object sender, EventArgs e)
     {
       if (teamMembers.SelectedItem != null)
       {
         //get username
-        string username = Sql.getUsername(teamMembers.SelectedItem.ToString());
+        string username = Sql.GetUsername(teamMembers.SelectedItem.ToString());
 
         //display username in textbox
         teamateUsername.Text = username;
       }
     }
 
-    private void cancel_button_Click(object sender, EventArgs e)
+    private void CancelButtonClick(object sender, EventArgs e)
     {
       this.Close();
     }
 
-    private void add_button_Click(object sender, EventArgs e)
+    private void AddButtonClick(object sender, EventArgs e)
     {
       //check if list contains anything
-      if(removedUsernames.Count > 0)
+      if(_removedUsernames.Count > 0)
       {
         //check if username is in list of users to be removed
-        foreach (string s in removedUsernames)
+        foreach (string s in _removedUsernames)
         {
           if (s.Equals(usersUsername.Text))
           {
-            removedUsernames.Remove(s);
+            _removedUsernames.Remove(s);
             break;
           }
         }
@@ -77,14 +77,14 @@ namespace Co_Op_Swift
 
       //add to addMembers list
       string str = usersUsername.Text;
-      addedUsernames.Add(str);
+      _addedUsernames.Add(str);
 
       // remove name from current users listbox
       currentUsers.Items.Remove(currentUsers.SelectedItem);
 
     }
 
-    private void remove_button_Click(object sender, EventArgs e)
+    private void RemoveButtonClick(object sender, EventArgs e)
     {
       //check if user is trying to remove last person on team
       if(teamMembers.Items.Count - 1 == 0)
@@ -95,14 +95,14 @@ namespace Co_Op_Swift
       else 
       {
         //check if list contains anything
-        if (addedUsernames.Count > 0)
+        if (_addedUsernames.Count > 0)
         {
           //check if username is in list of users to be added
-          foreach (string s in addedUsernames)
+          foreach (string s in _addedUsernames)
           {
             if (s.Equals(teamateUsername.Text))
             {
-              addedUsernames.Remove(s);
+              _addedUsernames.Remove(s);
               break;
             }
           }
@@ -113,7 +113,7 @@ namespace Co_Op_Swift
 
         //add to removedMembers list
         string str = teamateUsername.Text;
-        removedUsernames.Add(str);
+        _removedUsernames.Add(str);
 
         // remove name from team member listbox
         teamMembers.Items.Remove(teamMembers.SelectedItem);
@@ -121,59 +121,59 @@ namespace Co_Op_Swift
 
     }
 
-        private void finalize_button_Click(object sender, EventArgs e)
+        private void FinalizeButtonClick(object sender, EventArgs e)
         {
           //check if this is initial member additions (i.e. user is creating project)
-          if (isCreating)
+          if (_isCreating)
           {
             //create the project with the given information
-            Sql.ExecuteProjectCreation((int)p_info[0], (string)p_info[1], (string)p_info[2], (int)p_info[3],
-              (string)p_info[4], (string)p_info[5], (int)p_info[6]);
+            Sql.ExecuteProjectCreation((int)_pInfo[0], (string)_pInfo[1], (string)_pInfo[2], (int)_pInfo[3],
+              (string)_pInfo[4], (string)_pInfo[5], (int)_pInfo[6]);
 
           }
 
           //check if user is a manager
-          if(Sql.isManager(userName,projectName) || isCreating)
+          if(Sql.IsManager(_userName,_projectName) || _isCreating)
           {
             int uid = 0;
 
             // add users to project (if any)
-            if(addedUsernames.Count > 0)
+            if(_addedUsernames.Count > 0)
             {
               //get the ID of the project
-              int id = Sql.getProjectID(projectName);
+              int id = Sql.GetProjectId(_projectName);
 
               // add members to projectMembers table                                    
-              foreach (string s in addedUsernames)
+              foreach (string s in _addedUsernames)
               {
-                uid = Sql.getOwnerUserID(s);
-                Sql.addUserToProject(uid,id,2);
+                uid = Sql.GetOwnerUserId(s);
+                Sql.AddUserToProject(uid,id,2);
               }
 
             }
           
             //remove users from project (if any)
-            if(removedUsernames.Count > 0)
+            if(_removedUsernames.Count > 0)
             {
               //get the ID of the project
-              int id = Sql.getProjectID(projectName);
+              int id = Sql.GetProjectId(_projectName);
 
               // remove members from projectMembers table                                    
-              foreach (string s in removedUsernames)
+              foreach (string s in _removedUsernames)
               {
-                uid = Sql.getOwnerUserID(s);
-                Sql.removeUserFromProject(uid, id);
+                uid = Sql.GetOwnerUserId(s);
+                Sql.RemoveUserFromProject(uid, id);
               }
 
             }
 
             //close appropriate forms depending on how you got to this form(AddMembers)
-            if (isCreating)
+            if (_isCreating)
             {
-              Dashboard frm = new Dashboard(userName, projectName);
+              Dashboard frm = new Dashboard(_userName, _projectName);
               frm.Show();
-              cp.Close();
-              d.Close();
+              _cp.Close();
+              _d.Close();
               this.Close();
             }
             else
@@ -188,12 +188,12 @@ namespace Co_Op_Swift
         }
 
 
-        private void currentUsers_SelectedIndexChanged(object sender, EventArgs e) 
+        private void CurrentUsersSelectedIndexChanged(object sender, EventArgs e) 
         {
           if (currentUsers.SelectedItem != null)
           {
             //get username
-            string username = Sql.getUsername(currentUsers.SelectedItem.ToString());
+            string username = Sql.GetUsername(currentUsers.SelectedItem.ToString());
 
             //display username in textbox
             usersUsername.Text = username;

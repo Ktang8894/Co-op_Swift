@@ -10,18 +10,18 @@ namespace Co_Op_Swift
   // this class holds all sql methods for database access having to do with stories and tasks
   public class StoryTask : Sql
   {
-    string creator, name, details;
+    string _creator, _name, _details;
 
 
     public StoryTask(DataRow story)
     { 
-      creator = story["Creator"].ToString();
-      name = story["Title"].ToString();
-      details = story["Details"].ToString();
+      _creator = story["Creator"].ToString();
+      _name = story["Title"].ToString();
+      _details = story["Details"].ToString();
     }
 
 
-    public static void createStory(string creator, string name, string description)
+    public static void CreateStory(string creator, string name, string description)
     {
 
       SqlConnection db = null;
@@ -46,7 +46,7 @@ namespace Co_Op_Swift
 
     //Method to take dataRow and create 'story' object to put in List<story> for easy access
     //(this is for the 'ideabox' and 'sprintPlan' forms)
-    public static List<StoryTask> getProjectStories(DataTable t)
+    public static List<StoryTask> GetProjectStories(DataTable t)
     {
       List<StoryTask> stories = new List<StoryTask>();
       StoryTask story;
@@ -63,7 +63,7 @@ namespace Co_Op_Swift
 
 
 
-    public static void getTaskName(ListBox currBox, ListBox completedBox, int id)
+    public static void GetTaskName(ListBox currBox, ListBox completedBox, int id)
     { 
       SqlConnection db = null;
       db = new SqlConnection(ConnectionInfo);
@@ -122,7 +122,7 @@ namespace Co_Op_Swift
 
     }//end getTasks
 
-        public static void getTaskNameForAssign(ComboBox currBox, ListBox completedBox, int id)
+        public static void GetTaskNameForAssign(ComboBox currBox, ListBox completedBox, int id)
         {
             SqlConnection db = null;
             db = new SqlConnection(ConnectionInfo);
@@ -180,7 +180,7 @@ namespace Co_Op_Swift
             db.Close();
 
         }//end getTasks
-        public static void getTaskNameForUser(ListBox currBox, ListBox completedBox, int userID, int id)
+        public static void GetTaskNameForUser(ListBox currBox, ListBox completedBox, int userId, int id)
         {
             SqlConnection db = null;
             db = new SqlConnection(ConnectionInfo);
@@ -189,7 +189,7 @@ namespace Co_Op_Swift
             string sql;
             SqlCommand cmd;
 
-            sql = string.Format("select * FROM TaskTable WHERE Task_ID = {0} and UID = {1}", id,userID);
+            sql = string.Format("select * FROM TaskTable WHERE Task_ID = {0} and UID = {1}", id,userId);
 
             cmd = new SqlCommand();
             cmd.Connection = db;
@@ -241,18 +241,18 @@ namespace Co_Op_Swift
 
         /********this was added on 11/22/2016 by Mike ***********************/
         //method to get all the sprintID's related to a project
-        public static DataTable getProject_sprintIDs(string projName)
+        public static DataTable GetProjectSprintIDs(string projName)
     {
       SqlConnection db = null;
       db = new SqlConnection(ConnectionInfo);
       db.Open(); // open connection to database
 
-      int projID = Sql.getProjectID(projName);
+      int projId = Sql.GetProjectId(projName);
 
       string sql;
       SqlCommand cmd;
 
-      sql = string.Format("select * FROM ProjectSprints WHERE Proj_ID = {0}", projID);
+      sql = string.Format("select * FROM ProjectSprints WHERE Proj_ID = {0}", projId);
 
       cmd = new SqlCommand();
       cmd.Connection = db;
@@ -271,7 +271,7 @@ namespace Co_Op_Swift
 
     /********this was added on 11/26/2016 by Mike ***********************/
     //method to get all the taskID's related to a sprint
-    public static DataTable getProject_taskIDs(int sprintID)
+    public static DataTable GetProjectTaskIDs(int sprintId)
     {
       SqlConnection db = null;
       db = new SqlConnection(ConnectionInfo);
@@ -280,7 +280,7 @@ namespace Co_Op_Swift
       string sql;
       SqlCommand cmd;
 
-      sql = string.Format("select * FROM SprintTasks WHERE SprintID = {0}", sprintID);
+      sql = string.Format("select * FROM SprintTasks WHERE SprintID = {0}", sprintId);
 
       cmd = new SqlCommand();
       cmd.Connection = db;
@@ -299,7 +299,7 @@ namespace Co_Op_Swift
 
     /********this was added on 11/22/2016 by Mike ***********************/
     //method to insert a comment into the "Comments" table
-    public static int insertComment(int uid, string comment)
+    public static int InsertComment(int uid, string comment)
     {
       SqlConnection db = null;
 
@@ -333,7 +333,7 @@ namespace Co_Op_Swift
 
     /********** this was added on 11/22/2016 by Mike **************/
     //method to get the ID of a task
-    public static int getTaskID(string taskName)
+    public static int GetTaskId(string taskName)
     {
       SqlConnection db = null;
 
@@ -360,11 +360,11 @@ namespace Co_Op_Swift
 
     /********this was added on 11/26/2016 by Mike ***********************/
     //method to get developer information related to a task
-    public static void getTaskInfo(string taskName, Panel p1, Panel p2, TextBox d1_name, TextBox d1_email,TextBox d1_pos,
-                                                                          TextBox d2_name,TextBox d2_email,TextBox d2_pos)
+    public static void GetTaskInfo(string taskName, Panel p1, Panel p2, TextBox d1Name, TextBox d1Email,TextBox d1Pos,
+                                                                          TextBox d2Name,TextBox d2Email,TextBox d2Pos)
     {
       //task info fields
-      string full_name;
+      string fullName;
       string email;
       string position;
 
@@ -394,27 +394,27 @@ namespace Co_Op_Swift
         int pid = int.Parse(r["PID"].ToString());
 
         //get users name from the user id
-        full_name = Sql.getFullName(uid);
+        fullName = Sql.GetFullName(uid);
 
         //get the users email from the user id
-        email = Sql.getUsername(full_name);
+        email = Sql.GetUsername(fullName);
 
         //get the users position from the pid
-        position = Sql.getUserPosition(pid);
+        position = Sql.GetUserPosition(pid);
 
         if (x == 1)
         {
-          d1_name.Text = full_name;
-          d1_email.Text = email;
-          d1_pos.Text = position;
+          d1Name.Text = fullName;
+          d1Email.Text = email;
+          d1Pos.Text = position;
           p1.Visible = true;
           x++;
         }
         else if(x == 2) //if there is a second developer on this task
         {
-          d2_name.Text = full_name;
-          d2_email.Text = email;
-          d2_pos.Text = position;
+          d2Name.Text = fullName;
+          d2Email.Text = email;
+          d2Pos.Text = position;
           p2.Visible = true;
         }
 
@@ -425,7 +425,7 @@ namespace Co_Op_Swift
 
     /********this was added on 11/22/2016 by Mike ***********************/
     //method to insert a comment into the "TaskComments" table
-    public static void insertTaskComment(int task_id, int comment_id)
+    public static void InsertTaskComment(int taskId, int commentId)
     {
       SqlConnection db = null;
 
@@ -436,7 +436,7 @@ namespace Co_Op_Swift
                           INSERT INTO
                           TaskComments(Task_ID,CommentID)
                           Values({0}, {1});
-                          ", task_id, comment_id);
+                          ", taskId, commentId);
 
 
       SqlCommand cmd = new SqlCommand();
@@ -450,7 +450,7 @@ namespace Co_Op_Swift
 
 
     //method to get the id of a comment
-    public static DataTable getCommentID(int task_id)
+    public static DataTable GetCommentId(int taskId)
     {
       SqlConnection db = null;
 
@@ -462,7 +462,7 @@ namespace Co_Op_Swift
                                   SELECT CommentID
                                   FROM TaskComments
                                   WHERE Task_ID = {0};
-                                  ", task_id);
+                                  ", taskId);
 
       SqlCommand cmd = new SqlCommand();
       cmd.Connection = db;
@@ -479,7 +479,7 @@ namespace Co_Op_Swift
 
 
     //method to find and load a comment into a textbox
-    public static void loadCommentDetail(int userID, DataTable comment_IDs, TextBox details)
+    public static void LoadCommentDetail(int userId, DataTable commentIDs, TextBox details)
     {
       SqlConnection db = null;
 
@@ -487,7 +487,7 @@ namespace Co_Op_Swift
       db.Open(); // open connection to database
 
       //CHECK IF USERNAME EXISTS
-      string sql = string.Format(@" SELECT * FROM Comments WHERE UID = {0}; ", userID);
+      string sql = string.Format(@" SELECT * FROM Comments WHERE UID = {0}; ", userId);
 
       SqlCommand cmd = new SqlCommand();
       cmd.Connection = db;
@@ -504,7 +504,7 @@ namespace Co_Op_Swift
       {
         x = int.Parse(r["CommentID"].ToString());
 
-        foreach (DataRow c in comment_IDs.Rows)
+        foreach (DataRow c in commentIDs.Rows)
         {
           y = int.Parse(c["CommentID"].ToString());
 
@@ -521,7 +521,7 @@ namespace Co_Op_Swift
 
 
     //method to mark a task as comnplete
-    public static void mark_task_as_complete(string task_name)
+    public static void MarkTaskAsComplete(string taskName)
     {
       SqlConnection db = null;
       SqlCommand cmd = new SqlCommand();
@@ -531,7 +531,7 @@ namespace Co_Op_Swift
         db = new SqlConnection(ConnectionInfo);
         db.Open(); // open connection to database
 
-        string sql = string.Format(@"UPDATE TaskTable SET Completed = 0 WHERE TaskName = '{0}'", task_name);
+        string sql = string.Format(@"UPDATE TaskTable SET Completed = 0 WHERE TaskName = '{0}'", taskName);
 
         cmd.Connection = db;
         cmd.CommandText = sql;
@@ -552,7 +552,7 @@ namespace Co_Op_Swift
 
 
     //method to get the id of a comment
-    public static int getCommenter(int comment_id)
+    public static int GetCommenter(int commentId)
     {
       SqlConnection db = null;
 
@@ -564,7 +564,7 @@ namespace Co_Op_Swift
                                   SELECT UID
                                   FROM Comments
                                   WHERE CommentID = {0};
-                                  ", comment_id);
+                                  ", commentId);
 
       SqlCommand cmd = new SqlCommand();
       cmd.Connection = db;

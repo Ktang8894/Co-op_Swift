@@ -5,37 +5,37 @@ namespace Co_Op_Swift
 {
   public partial class AddComment : Form
   {
-    ListBox userComments;
+    ListBox _userComments;
 
     public AddComment(ListBox box, ListBox taskBox, string fullName)
     {
       InitializeComponent();
-      userComments = box;
+      _userComments = box;
       nameBox.Text = fullName;
       taskNameBox.Text = taskBox.SelectedItem.ToString();
     }
 
-    private void cancel_button_Click(object sender, EventArgs e)
+    private void CancelButtonClick(object sender, EventArgs e)
     {
       Close();
     }
 
-    private void ok_button_Click(object sender, EventArgs e)
+    private void OkButtonClick(object sender, EventArgs e)
     {
       //get users username
-      string username = Sql.getUsername(nameBox.Text);
+      string username = Sql.GetUsername(nameBox.Text);
 
       //get userID from the name given as input
-      int uid = Sql.getOwnerUserID(username);
+      int uid = Sql.GetOwnerUserId(username);
       
       //insert userID and comment into "Comments" table and retrieve the commentID
-      int id = StoryTask.insertComment(uid, commentBox.Text);
+      int id = StoryTask.InsertComment(uid, commentBox.Text);
 
       //insert task_id and comment_id into "TaskComments" table
-      StoryTask.insertTaskComment(StoryTask.getTaskID(taskNameBox.Text),id);
+      StoryTask.InsertTaskComment(StoryTask.GetTaskId(taskNameBox.Text),id);
 
       //add name to userComments box on taskTree form
-      userComments.Items.Add(nameBox.Text);
+      _userComments.Items.Add(nameBox.Text);
 
       Close();
     }

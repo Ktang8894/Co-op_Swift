@@ -46,7 +46,7 @@
       this.memberLB.Name = "memberLB";
       this.memberLB.Size = new System.Drawing.Size(159, 148);
       this.memberLB.TabIndex = 0;
-      this.memberLB.SelectedIndexChanged += new System.EventHandler(this.memberLB_SelectedIndexChanged);
+      this.memberLB.SelectedIndexChanged += new System.EventHandler(this.MemberLbSelectedIndexChanged);
       // 
       // currentLB
       // 
@@ -79,7 +79,7 @@
       this.Assign.TabIndex = 3;
       this.Assign.Text = "Assign";
       this.Assign.UseVisualStyleBackColor = false;
-      this.Assign.Click += new System.EventHandler(this.Assign_Click_1);
+      this.Assign.Click += new System.EventHandler(this.AssignClick1);
       // 
       // completeLB
       // 
@@ -133,7 +133,7 @@
       this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
       this.Name = "assignTask";
       this.Text = "assignTask";
-      this.Load += new System.EventHandler(this.assignTask_Load);
+      this.Load += new System.EventHandler(this.AssignTaskLoad);
       this.ResumeLayout(false);
       this.PerformLayout();
 

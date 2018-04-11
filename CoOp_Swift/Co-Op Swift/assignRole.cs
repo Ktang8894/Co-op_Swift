@@ -12,20 +12,20 @@ namespace Co_Op_Swift
 {
     public partial class AssignRole : Form
     {
-        string userName;
-        string Proj;
+        string _userName;
+        string _proj;
         public AssignRole(string username, string projName)
         {
             //sql to take in people who are in the same project.
             InitializeComponent();
             // SQL.getProjectMembers(memberLBox, username, projName); // I THINK THIS SQL WORKS
-            Sql.getProjectMembers(memberLBox, username, projName); // I THINK THIS SQL WORKS
+            Sql.GetProjectMembers(memberLBox, username, projName); // I THINK THIS SQL WORKS
 
-            userName = username;
-            Proj = projName;
+            _userName = username;
+            _proj = projName;
         }
 
-        private void assignRole_Load(object sender, EventArgs e)
+        private void AssignRoleLoad(object sender, EventArgs e)
         {
             /*Console.Write("WOOWOWOW");
             if (!SQL.isOwner(userName, Proj))  // THIS SQL NEEDS TO BE DONE
@@ -37,7 +37,7 @@ namespace Co_Op_Swift
             
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void ListBox1SelectedIndexChanged(object sender, EventArgs e)
         {
             if(memberLBox.SelectedItem == null)
             {
@@ -50,13 +50,13 @@ namespace Co_Op_Swift
 
                 firstname = substrings[0];
                 lastname = substrings[1];
-                string enter = Sql.getPosition(Sql.getUserID(firstname, lastname), Proj);
+                string enter = Sql.GetPosition(Sql.GetUserId(firstname, lastname), _proj);
             Console.Write("test:" + enter);
             roleTB.Text = enter;
                  }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1Click(object sender, EventArgs e)
         {
             //sql to update the database that their roles are changed.
             if (memberLBox.SelectedItems.Count == 0)
@@ -78,7 +78,7 @@ namespace Co_Op_Swift
                 firstname = substrings[0];
                 lastname = substrings[1];
 
-                Sql.ExecuteChangePosition(Sql.getUserID(firstname, lastname), roleCB.Text, Proj); // I THINK THIS SQL WORKS
+                Sql.ExecuteChangePosition(Sql.GetUserId(firstname, lastname), roleCB.Text, _proj); // I THINK THIS SQL WORKS
                 roleTB.Text = roleCB.Text;
                 Console.Write("works" + roleCB.Text);
             }

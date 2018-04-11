@@ -12,7 +12,7 @@ namespace Co_Op_Swift
 {
   public partial class CreateProj : Form
   {
-    static string name;
+    static string _name;
 
     public CreateProj(string username)
     {
@@ -24,23 +24,23 @@ namespace Co_Op_Swift
       timezoneBox.Text = "Select Timezone";
 
       //username to carry through to next form
-      name = username;
+      _name = username;
 
       // put timezones from TimeZones table in timezone combobox
-      Sql.getTimeZones(timezoneBox);
+      Sql.GetTimeZones(timezoneBox);
 
     }
 
-    private void Form3_Load(object sender, EventArgs e)
+    private void Form3Load(object sender, EventArgs e)
     {
 
     }
 
 
-    private void createProject_Click(object sender, EventArgs e)
+    private void CreateProjectClick(object sender, EventArgs e)
     {
       //check if form is finished correctly and completely
-      if(Conditions.projectFormPasses(projectName.Text,projectStartDate.Text,releaseEndDate.Text,timezoneBox.Text,
+      if(Conditions.ProjectFormPasses(projectName.Text,projectStartDate.Text,releaseEndDate.Text,timezoneBox.Text,
                               descriptionBox.Text,privateNo,privateYes))
       {
         int isPrivate;
@@ -52,21 +52,21 @@ namespace Co_Op_Swift
           isPrivate = 0;
 
         //get ID of the owner(creator) of the poject
-        int id = Sql.getOwnerUserID(name);
+        int id = Sql.GetOwnerUserId(_name);
 
         //get ID of the timezone
         //int tid = SQL.getTimeZoneID(timezoneBox.Text);
         int tid = 1;
 
       //put the project info in a list to send to 'addMembers' form
-      List<object> project_info = new List<object>();
-      project_info.Add(id);
-      project_info.Add(projectName.Text);
-      project_info.Add(releaseEndDate.Text);
-      project_info.Add(tid);
-      project_info.Add(projectStartDate.Text);
-      project_info.Add(descriptionBox.Text);
-      project_info.Add(isPrivate);
+      List<object> projectInfo = new List<object>();
+      projectInfo.Add(id);
+      projectInfo.Add(projectName.Text);
+      projectInfo.Add(releaseEndDate.Text);
+      projectInfo.Add(tid);
+      projectInfo.Add(projectStartDate.Text);
+      projectInfo.Add(descriptionBox.Text);
+      projectInfo.Add(isPrivate);
 
       FormCollection fc = Application.OpenForms;
       Form dash = new Form();
@@ -79,7 +79,7 @@ namespace Co_Op_Swift
         }
       }
 
-      AddMembers frm = new AddMembers(name, projectName.Text,dash,this,true,project_info);
+      AddMembers frm = new AddMembers(_name, projectName.Text,dash,this,true,projectInfo);
       frm.ShowDialog();      
 
       }
@@ -87,18 +87,18 @@ namespace Co_Op_Swift
     }
 
 
-    private void cancel_Click(object sender, EventArgs e)
+    private void CancelClick(object sender, EventArgs e)
     {
       // close the form
       this.Close();
     }
 
-    private void descriptionBox_MouseClick(object sender, MouseEventArgs e)
+    private void DescriptionBoxMouseClick(object sender, MouseEventArgs e)
     {
       descriptionBox.Clear();
     }
 
-    private void projectName_MouseClick(object sender, MouseEventArgs e)
+    private void ProjectNameMouseClick(object sender, MouseEventArgs e)
     {
       projectName.Clear();
     }

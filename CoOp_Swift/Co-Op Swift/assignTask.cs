@@ -12,36 +12,36 @@ namespace Co_Op_Swift
 {
     public partial class AssignTask : Form
     {
-        string userName,proj;
+        string _userName,_proj;
         public AssignTask(string username, string projName)
         {
             InitializeComponent();
-            proj = projName;
-            userName = username;
+            _proj = projName;
+            _userName = username;
             //SQL.getTasks(taskCB, projName); //this doesnt work for sure
             // SQL.getUndoneTask(taskCB, username, projName);
             //SQL.getUserTask(currentLB, username, projName);
-            Sql.getProjectMembers(memberLB, username, projName); // i think i made the sql for this right
-            DataTable sprint_IDs = StoryTask.getProject_sprintIDs(proj);
+            Sql.GetProjectMembers(memberLB, username, projName); // i think i made the sql for this right
+            DataTable sprintIDs = StoryTask.GetProjectSprintIDs(_proj);
 
             //get tasks and put their names in the corresponding listbox
-            foreach (DataRow r in sprint_IDs.Rows)
+            foreach (DataRow r in sprintIDs.Rows)
             {
                 //get all task ids from the sprint ids
-                DataTable task_IDs = StoryTask.getProject_taskIDs(int.Parse(r["SprintID"].ToString()));
+                DataTable taskIDs = StoryTask.GetProjectTaskIDs(int.Parse(r["SprintID"].ToString()));
 
                 //retrieve and add tasks to their correct lists
-                foreach (DataRow row in task_IDs.Rows)
-                    StoryTask.getTaskNameForAssign(taskCB, completeLB, int.Parse(row["Task_ID"].ToString()));
+                foreach (DataRow row in taskIDs.Rows)
+                    StoryTask.GetTaskNameForAssign(taskCB, completeLB, int.Parse(row["Task_ID"].ToString()));
             }
 
             
 
         }
 
-        private void assignTask_Load(object sender, EventArgs e)
+        private void AssignTaskLoad(object sender, EventArgs e)
         {
-            if(!Sql.isManager(userName,proj)) // THIS SQL NEEDS TO BE DONE
+            if(!Sql.IsManager(_userName,_proj)) // THIS SQL NEEDS TO BE DONE
             {
               MessageBox.Show("Not a manager. Cannot edit.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Exclamation,MessageBoxDefaultButton.Button1);
                 Close();
@@ -49,7 +49,7 @@ namespace Co_Op_Swift
             }
         }
 
-        private void memberLB_SelectedIndexChanged(object sender, EventArgs e)
+        private void MemberLbSelectedIndexChanged(object sender, EventArgs e)
         {
             currentLB.Items.Clear();
             if(memberLB.SelectedItem !=null)
@@ -61,24 +61,24 @@ namespace Co_Op_Swift
                 firstname = substrings[0];
                 lastname = substrings[1];
 
-                DataTable sprint_IDs = StoryTask.getProject_sprintIDs(proj);
+                DataTable sprintIDs = StoryTask.GetProjectSprintIDs(_proj);
 
                 //get tasks and put their names in the corresponding listbox
-                foreach (DataRow r in sprint_IDs.Rows)
+                foreach (DataRow r in sprintIDs.Rows)
                 {
                     //get all task ids from the sprint ids
-                    DataTable task_IDs = StoryTask.getProject_taskIDs(int.Parse(r["SprintID"].ToString()));
+                    DataTable taskIDs = StoryTask.GetProjectTaskIDs(int.Parse(r["SprintID"].ToString()));
 
                     //retrieve and add tasks to their correct lists
-                    foreach (DataRow row in task_IDs.Rows)
-                        StoryTask.getTaskNameForUser(currentLB, completeLB, Sql.getUserID(firstname, lastname), int.Parse(row["Task_ID"].ToString()));
+                    foreach (DataRow row in taskIDs.Rows)
+                        StoryTask.GetTaskNameForUser(currentLB, completeLB, Sql.GetUserId(firstname, lastname), int.Parse(row["Task_ID"].ToString()));
                 }
                 //SQL.getUserTask(currentLB, SQL.getUserID(firstname, lastname), proj);
             }
            
         }
 
-        private void Assign_Click_1(object sender, EventArgs e)
+        private void AssignClick1(object sender, EventArgs e)
         {
             if (memberLB.Text.Equals(""))
             {
@@ -95,7 +95,7 @@ namespace Co_Op_Swift
                 string[] substrings = s.Split(' ');
                 firstname = substrings[0];
                 lastname = substrings[1];
-                Sql.ExecuteAssignTask(Sql.getUserID(firstname, lastname), taskCB.Text, StoryTask.getTaskID(taskCB.Text)); // I THINK THIS SQL WORKS
+                Sql.ExecuteAssignTask(Sql.GetUserId(firstname, lastname), taskCB.Text, StoryTask.GetTaskId(taskCB.Text)); // I THINK THIS SQL WORKS
             }
                 
         }

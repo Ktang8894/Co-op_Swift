@@ -105,7 +105,7 @@
       this.selectProjectToolStripMenuItem.Name = "selectProjectToolStripMenuItem";
       this.selectProjectToolStripMenuItem.Size = new System.Drawing.Size(187, 26);
       this.selectProjectToolStripMenuItem.Text = "Select Project";
-      this.selectProjectToolStripMenuItem.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.selectProjectToolStripMenuItem_DropDownItemClicked);
+      this.selectProjectToolStripMenuItem.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.SelectProjectToolStripMenuItemDropDownItemClicked);
       // 
       // importToolStripMenuItem
       // 
@@ -118,21 +118,21 @@
       this.teamToolStripMenuItem.Name = "teamToolStripMenuItem";
       this.teamToolStripMenuItem.Size = new System.Drawing.Size(187, 26);
       this.teamToolStripMenuItem.Text = "Team Members";
-      this.teamToolStripMenuItem.Click += new System.EventHandler(this.teamToolStripMenuItem_Click);
+      this.teamToolStripMenuItem.Click += new System.EventHandler(this.TeamToolStripMenuItemClick);
       // 
       // assignRolesToolStripMenuItem
       // 
       this.assignRolesToolStripMenuItem.Name = "assignRolesToolStripMenuItem";
       this.assignRolesToolStripMenuItem.Size = new System.Drawing.Size(187, 26);
       this.assignRolesToolStripMenuItem.Text = "Assign Roles";
-      this.assignRolesToolStripMenuItem.Click += new System.EventHandler(this.assignRolesToolStripMenuItem_Click);
+      this.assignRolesToolStripMenuItem.Click += new System.EventHandler(this.AssignRolesToolStripMenuItemClick);
       // 
       // assignTasksToolStripMenuItem
       // 
       this.assignTasksToolStripMenuItem.Name = "assignTasksToolStripMenuItem";
       this.assignTasksToolStripMenuItem.Size = new System.Drawing.Size(187, 26);
       this.assignTasksToolStripMenuItem.Text = "Assign Tasks";
-      this.assignTasksToolStripMenuItem.Click += new System.EventHandler(this.assignTasksToolStripMenuItem_Click);
+      this.assignTasksToolStripMenuItem.Click += new System.EventHandler(this.AssignTasksToolStripMenuItemClick);
       // 
       // deleteToolStripMenuItem
       // 
@@ -151,28 +151,28 @@
       this.dashboardToolStripMenuItem.Name = "dashboardToolStripMenuItem";
       this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(94, 24);
       this.dashboardToolStripMenuItem.Text = "Dashboard";
-      this.dashboardToolStripMenuItem.Click += new System.EventHandler(this.dashboardToolStripMenuItem_Click);
+      this.dashboardToolStripMenuItem.Click += new System.EventHandler(this.DashboardToolStripMenuItemClick);
       // 
       // ideaBoxToolStripMenuItem
       // 
       this.ideaBoxToolStripMenuItem.Name = "ideaBoxToolStripMenuItem";
       this.ideaBoxToolStripMenuItem.Size = new System.Drawing.Size(75, 24);
       this.ideaBoxToolStripMenuItem.Text = "IdeaBox";
-      this.ideaBoxToolStripMenuItem.Click += new System.EventHandler(this.ideaBoxToolStripMenuItem_Click);
+      this.ideaBoxToolStripMenuItem.Click += new System.EventHandler(this.IdeaBoxToolStripMenuItemClick);
       // 
       // taskTreeToolStripMenuItem
       // 
       this.taskTreeToolStripMenuItem.Name = "taskTreeToolStripMenuItem";
       this.taskTreeToolStripMenuItem.Size = new System.Drawing.Size(86, 24);
       this.taskTreeToolStripMenuItem.Text = "Task View";
-      this.taskTreeToolStripMenuItem.Click += new System.EventHandler(this.taskTreeToolStripMenuItem_Click);
+      this.taskTreeToolStripMenuItem.Click += new System.EventHandler(this.TaskTreeToolStripMenuItemClick);
       // 
       // releasePlanToolStripMenuItem
       // 
       this.releasePlanToolStripMenuItem.Name = "releasePlanToolStripMenuItem";
       this.releasePlanToolStripMenuItem.Size = new System.Drawing.Size(104, 24);
       this.releasePlanToolStripMenuItem.Text = "Release Plan";
-      this.releasePlanToolStripMenuItem.Click += new System.EventHandler(this.releasePlanToolStripMenuItem_Click);
+      this.releasePlanToolStripMenuItem.Click += new System.EventHandler(this.ReleasePlanToolStripMenuItemClick);
       // 
       // sprintPlanToolStripMenuItem
       // 
@@ -201,7 +201,7 @@
       this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
       this.logoutToolStripMenuItem.Size = new System.Drawing.Size(138, 26);
       this.logoutToolStripMenuItem.Text = "Logout";
-      this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
+      this.logoutToolStripMenuItem.Click += new System.EventHandler(this.LogoutToolStripMenuItemClick);
       // 
       // createTask
       // 
@@ -212,7 +212,7 @@
       this.createTask.TabIndex = 4;
       this.createTask.Text = "Create Task";
       this.createTask.UseVisualStyleBackColor = true;
-      this.createTask.Click += new System.EventHandler(this.createTask_Click);
+      this.createTask.Click += new System.EventHandler(this.CreateTaskClick);
       // 
       // descriptionBox
       // 
@@ -290,7 +290,7 @@
       this.taskBox.Name = "taskBox";
       this.taskBox.Size = new System.Drawing.Size(295, 452);
       this.taskBox.TabIndex = 13;
-      this.taskBox.SelectedIndexChanged += new System.EventHandler(this.taskBox_SelectedIndexChanged);
+      this.taskBox.SelectedIndexChanged += new System.EventHandler(this.TaskBoxSelectedIndexChanged);
       // 
       // infoBox
       // 
@@ -323,7 +323,7 @@
       this.sprintBox.Name = "sprintBox";
       this.sprintBox.Size = new System.Drawing.Size(191, 452);
       this.sprintBox.TabIndex = 16;
-      this.sprintBox.SelectedIndexChanged += new System.EventHandler(this.sprintBox_SelectedIndexChanged);
+      this.sprintBox.SelectedIndexChanged += new System.EventHandler(this.SprintBoxSelectedIndexChanged);
       // 
       // sprintPlan
       // 
@@ -347,7 +347,7 @@
       this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
       this.Name = "SprintPlan";
       this.Text = "Co-Op Swift";
-      this.Load += new System.EventHandler(this.sprintPlan_Load);
+      this.Load += new System.EventHandler(this.SprintPlanLoad);
       this.menuStrip1.ResumeLayout(false);
       this.menuStrip1.PerformLayout();
       this.ResumeLayout(false);

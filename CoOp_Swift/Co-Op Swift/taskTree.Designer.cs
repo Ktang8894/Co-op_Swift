@@ -123,7 +123,7 @@
       this.selectProjectToolStripMenuItem.Name = "selectProjectToolStripMenuItem";
       this.selectProjectToolStripMenuItem.Size = new System.Drawing.Size(187, 26);
       this.selectProjectToolStripMenuItem.Text = "Select Project";
-      this.selectProjectToolStripMenuItem.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.selectProjectToolStripMenuItem_DropDownItemClicked);
+      this.selectProjectToolStripMenuItem.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.SelectProjectToolStripMenuItemDropDownItemClicked);
       // 
       // importToolStripMenuItem
       // 
@@ -136,21 +136,21 @@
       this.teamToolStripMenuItem.Name = "teamToolStripMenuItem";
       this.teamToolStripMenuItem.Size = new System.Drawing.Size(187, 26);
       this.teamToolStripMenuItem.Text = "Team Members";
-      this.teamToolStripMenuItem.Click += new System.EventHandler(this.teamToolStripMenuItem_Click);
+      this.teamToolStripMenuItem.Click += new System.EventHandler(this.TeamToolStripMenuItemClick);
       // 
       // assignRolesToolStripMenuItem
       // 
       this.assignRolesToolStripMenuItem.Name = "assignRolesToolStripMenuItem";
       this.assignRolesToolStripMenuItem.Size = new System.Drawing.Size(187, 26);
       this.assignRolesToolStripMenuItem.Text = "Assign Roles";
-      this.assignRolesToolStripMenuItem.Click += new System.EventHandler(this.assignRolesToolStripMenuItem_Click);
+      this.assignRolesToolStripMenuItem.Click += new System.EventHandler(this.AssignRolesToolStripMenuItemClick);
       // 
       // assignTasksToolStripMenuItem
       // 
       this.assignTasksToolStripMenuItem.Name = "assignTasksToolStripMenuItem";
       this.assignTasksToolStripMenuItem.Size = new System.Drawing.Size(187, 26);
       this.assignTasksToolStripMenuItem.Text = "Assign Tasks";
-      this.assignTasksToolStripMenuItem.Click += new System.EventHandler(this.assignTasksToolStripMenuItem_Click);
+      this.assignTasksToolStripMenuItem.Click += new System.EventHandler(this.AssignTasksToolStripMenuItemClick);
       // 
       // deleteToolStripMenuItem
       // 
@@ -169,14 +169,14 @@
       this.dashboardToolStripMenuItem.Name = "dashboardToolStripMenuItem";
       this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(94, 24);
       this.dashboardToolStripMenuItem.Text = "Dashboard";
-      this.dashboardToolStripMenuItem.Click += new System.EventHandler(this.dashboardToolStripMenuItem_Click);
+      this.dashboardToolStripMenuItem.Click += new System.EventHandler(this.DashboardToolStripMenuItemClick);
       // 
       // ideaBoxToolStripMenuItem
       // 
       this.ideaBoxToolStripMenuItem.Name = "ideaBoxToolStripMenuItem";
       this.ideaBoxToolStripMenuItem.Size = new System.Drawing.Size(75, 24);
       this.ideaBoxToolStripMenuItem.Text = "IdeaBox";
-      this.ideaBoxToolStripMenuItem.Click += new System.EventHandler(this.ideaBoxToolStripMenuItem_Click);
+      this.ideaBoxToolStripMenuItem.Click += new System.EventHandler(this.IdeaBoxToolStripMenuItemClick);
       // 
       // taskTreeToolStripMenuItem
       // 
@@ -189,14 +189,14 @@
       this.releasePlanToolStripMenuItem.Name = "releasePlanToolStripMenuItem";
       this.releasePlanToolStripMenuItem.Size = new System.Drawing.Size(104, 24);
       this.releasePlanToolStripMenuItem.Text = "Release Plan";
-      this.releasePlanToolStripMenuItem.Click += new System.EventHandler(this.releasePlanToolStripMenuItem_Click);
+      this.releasePlanToolStripMenuItem.Click += new System.EventHandler(this.ReleasePlanToolStripMenuItemClick);
       // 
       // sprintPlanToolStripMenuItem
       // 
       this.sprintPlanToolStripMenuItem.Name = "sprintPlanToolStripMenuItem";
       this.sprintPlanToolStripMenuItem.Size = new System.Drawing.Size(92, 24);
       this.sprintPlanToolStripMenuItem.Text = "Sprint Plan";
-      this.sprintPlanToolStripMenuItem.Click += new System.EventHandler(this.sprintPlanToolStripMenuItem_Click);
+      this.sprintPlanToolStripMenuItem.Click += new System.EventHandler(this.SprintPlanToolStripMenuItemClick);
       // 
       // memberNameToolStripMenuItem
       // 
@@ -219,7 +219,7 @@
       this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
       this.logoutToolStripMenuItem.Size = new System.Drawing.Size(138, 26);
       this.logoutToolStripMenuItem.Text = "Logout";
-      this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
+      this.logoutToolStripMenuItem.Click += new System.EventHandler(this.LogoutToolStripMenuItemClick);
       // 
       // label1
       // 
@@ -244,7 +244,7 @@
       this.currentTasks.Name = "currentTasks";
       this.currentTasks.Size = new System.Drawing.Size(252, 384);
       this.currentTasks.TabIndex = 7;
-      this.currentTasks.SelectedIndexChanged += new System.EventHandler(this.currentTasks_SelectedIndexChanged);
+      this.currentTasks.SelectedIndexChanged += new System.EventHandler(this.CurrentTasksSelectedIndexChanged);
       // 
       // label2
       // 
@@ -269,7 +269,7 @@
       this.completedTasks.Name = "completedTasks";
       this.completedTasks.Size = new System.Drawing.Size(256, 384);
       this.completedTasks.TabIndex = 9;
-      this.completedTasks.SelectedIndexChanged += new System.EventHandler(this.completedTasks_SelectedIndexChanged);
+      this.completedTasks.SelectedIndexChanged += new System.EventHandler(this.CompletedTasksSelectedIndexChanged);
       // 
       // develop1
       // 
@@ -286,7 +286,7 @@
       this.develop1.Name = "develop1";
       this.develop1.Size = new System.Drawing.Size(336, 204);
       this.develop1.TabIndex = 11;
-      this.develop1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+      this.develop1.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel1Paint);
       // 
       // develop1Email
       // 
@@ -461,7 +461,7 @@
       this.comment.TabIndex = 13;
       this.comment.Text = "Add Comment For A Task";
       this.comment.UseVisualStyleBackColor = false;
-      this.comment.Click += new System.EventHandler(this.comment_Click);
+      this.comment.Click += new System.EventHandler(this.CommentClick);
       // 
       // hideTaskInfo
       // 
@@ -474,7 +474,7 @@
       this.hideTaskInfo.TabIndex = 14;
       this.hideTaskInfo.Text = "Hide Task Info";
       this.hideTaskInfo.UseVisualStyleBackColor = false;
-      this.hideTaskInfo.Click += new System.EventHandler(this.hideTaskInfo_Click);
+      this.hideTaskInfo.Click += new System.EventHandler(this.HideTaskInfoClick);
       // 
       // userComments
       // 
@@ -486,7 +486,7 @@
       this.userComments.Name = "userComments";
       this.userComments.Size = new System.Drawing.Size(320, 164);
       this.userComments.TabIndex = 15;
-      this.userComments.SelectedIndexChanged += new System.EventHandler(this.userComments_SelectedIndexChanged);
+      this.userComments.SelectedIndexChanged += new System.EventHandler(this.UserCommentsSelectedIndexChanged);
       // 
       // comments
       // 
@@ -538,7 +538,7 @@
       this.completed_button.TabIndex = 19;
       this.completed_button.Text = "Mark Task As Completed";
       this.completed_button.UseVisualStyleBackColor = false;
-      this.completed_button.Click += new System.EventHandler(this.completed_button_Click);
+      this.completed_button.Click += new System.EventHandler(this.CompletedButtonClick);
       // 
       // taskTree
       // 

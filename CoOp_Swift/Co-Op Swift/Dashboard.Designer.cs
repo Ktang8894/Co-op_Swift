@@ -77,43 +77,43 @@
       this.projectNameToolStripMenuItem.Name = "projectNameToolStripMenuItem";
       this.projectNameToolStripMenuItem.Size = new System.Drawing.Size(67, 24);
       this.projectNameToolStripMenuItem.Text = "Project";
-      this.projectNameToolStripMenuItem.Click += new System.EventHandler(this.projectNameToolStripMenuItem_Click);
+      this.projectNameToolStripMenuItem.Click += new System.EventHandler(this.ProjectNameToolStripMenuItemClick);
       // 
       // createToolStripMenuItem
       // 
       this.createToolStripMenuItem.Name = "createToolStripMenuItem";
       this.createToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
       this.createToolStripMenuItem.Text = "Create Project";
-      this.createToolStripMenuItem.Click += new System.EventHandler(this.createToolStripMenuItem_Click);
+      this.createToolStripMenuItem.Click += new System.EventHandler(this.CreateToolStripMenuItemClick);
       // 
       // selectProjectToolStripMenuItem
       // 
       this.selectProjectToolStripMenuItem.Name = "selectProjectToolStripMenuItem";
       this.selectProjectToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
       this.selectProjectToolStripMenuItem.Text = "Select Project";
-      this.selectProjectToolStripMenuItem.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.selectProjectToolStripMenuItem_DropDownItemClicked);
-      this.selectProjectToolStripMenuItem.Click += new System.EventHandler(this.selectProjectToolStripMenuItem_Click);
+      this.selectProjectToolStripMenuItem.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.SelectProjectToolStripMenuItemDropDownItemClicked);
+      this.selectProjectToolStripMenuItem.Click += new System.EventHandler(this.SelectProjectToolStripMenuItemClick);
       // 
       // inviteMembersToolStripMenuItem
       // 
       this.inviteMembersToolStripMenuItem.Name = "inviteMembersToolStripMenuItem";
       this.inviteMembersToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
       this.inviteMembersToolStripMenuItem.Text = "Invite Members";
-      this.inviteMembersToolStripMenuItem.Click += new System.EventHandler(this.teamToolStripMenuItem_Click);
+      this.inviteMembersToolStripMenuItem.Click += new System.EventHandler(this.TeamToolStripMenuItemClick);
       // 
       // assignRolesToolStripMenuItem
       // 
       this.assignRolesToolStripMenuItem.Name = "assignRolesToolStripMenuItem";
       this.assignRolesToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
       this.assignRolesToolStripMenuItem.Text = "Assign Roles";
-      this.assignRolesToolStripMenuItem.Click += new System.EventHandler(this.assignRolesToolStripMenuItem_Click);
+      this.assignRolesToolStripMenuItem.Click += new System.EventHandler(this.AssignRolesToolStripMenuItemClick);
       // 
       // assignTasksToolStripMenuItem
       // 
       this.assignTasksToolStripMenuItem.Name = "assignTasksToolStripMenuItem";
       this.assignTasksToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
       this.assignTasksToolStripMenuItem.Text = "Assign Tasks";
-      this.assignTasksToolStripMenuItem.Click += new System.EventHandler(this.assignTasksToolStripMenuItem_Click);
+      this.assignTasksToolStripMenuItem.Click += new System.EventHandler(this.AssignTasksToolStripMenuItemClick);
       // 
       // deleteToolStripMenuItem
       // 
@@ -132,28 +132,28 @@
       this.ideaBoxToolStripMenuItem.Name = "ideaBoxToolStripMenuItem";
       this.ideaBoxToolStripMenuItem.Size = new System.Drawing.Size(75, 24);
       this.ideaBoxToolStripMenuItem.Text = "IdeaBox";
-      this.ideaBoxToolStripMenuItem.Click += new System.EventHandler(this.ideaBoxToolStripMenuItem_Click);
+      this.ideaBoxToolStripMenuItem.Click += new System.EventHandler(this.IdeaBoxToolStripMenuItemClick);
       // 
       // taskTreeToolStripMenuItem
       // 
       this.taskTreeToolStripMenuItem.Name = "taskTreeToolStripMenuItem";
       this.taskTreeToolStripMenuItem.Size = new System.Drawing.Size(86, 24);
       this.taskTreeToolStripMenuItem.Text = "Task View";
-      this.taskTreeToolStripMenuItem.Click += new System.EventHandler(this.taskTreeToolStripMenuItem_Click);
+      this.taskTreeToolStripMenuItem.Click += new System.EventHandler(this.TaskTreeToolStripMenuItemClick);
       // 
       // releasePlanToolStripMenuItem
       // 
       this.releasePlanToolStripMenuItem.Name = "releasePlanToolStripMenuItem";
       this.releasePlanToolStripMenuItem.Size = new System.Drawing.Size(104, 24);
       this.releasePlanToolStripMenuItem.Text = "Release Plan";
-      this.releasePlanToolStripMenuItem.Click += new System.EventHandler(this.releasePlanToolStripMenuItem_Click);
+      this.releasePlanToolStripMenuItem.Click += new System.EventHandler(this.ReleasePlanToolStripMenuItemClick);
       // 
       // sprintPlanToolStripMenuItem
       // 
       this.sprintPlanToolStripMenuItem.Name = "sprintPlanToolStripMenuItem";
       this.sprintPlanToolStripMenuItem.Size = new System.Drawing.Size(92, 24);
       this.sprintPlanToolStripMenuItem.Text = "Sprint Plan";
-      this.sprintPlanToolStripMenuItem.Click += new System.EventHandler(this.sprintPlanToolStripMenuItem_Click);
+      this.sprintPlanToolStripMenuItem.Click += new System.EventHandler(this.SprintPlanToolStripMenuItemClick);
       // 
       // memberNameToolStripMenuItem
       // 
@@ -176,7 +176,7 @@
       this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
       this.logoutToolStripMenuItem.Size = new System.Drawing.Size(138, 26);
       this.logoutToolStripMenuItem.Text = "Logout";
-      this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
+      this.logoutToolStripMenuItem.Click += new System.EventHandler(this.LogoutToolStripMenuItemClick);
       // 
       // menuStrip1
       // 
@@ -195,7 +195,7 @@
       this.menuStrip1.Size = new System.Drawing.Size(1012, 28);
       this.menuStrip1.TabIndex = 0;
       this.menuStrip1.Text = "menuStrip1";
-      this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
+      this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.MenuStrip1ItemClicked);
       // 
       // dashboardToolStripMenuItem
       // 
@@ -218,7 +218,7 @@
       this.projectDescriptionTB.Size = new System.Drawing.Size(292, 77);
       this.projectDescriptionTB.TabIndex = 1;
       this.projectDescriptionTB.Text = "No description currently defined";
-      this.projectDescriptionTB.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+      this.projectDescriptionTB.TextChanged += new System.EventHandler(this.TextBox1TextChanged);
       // 
       // projectDescriptionEditButton
       // 
@@ -229,7 +229,7 @@
       this.projectDescriptionEditButton.TabIndex = 3;
       this.projectDescriptionEditButton.Text = "Edit";
       this.projectDescriptionEditButton.UseVisualStyleBackColor = true;
-      this.projectDescriptionEditButton.Click += new System.EventHandler(this.projectDescriptionEditButton_Click);
+      this.projectDescriptionEditButton.Click += new System.EventHandler(this.ProjectDescriptionEditButtonClick);
       // 
       // releaseTextBox
       // 
@@ -243,7 +243,7 @@
       this.releaseTextBox.Size = new System.Drawing.Size(292, 77);
       this.releaseTextBox.TabIndex = 4;
       this.releaseTextBox.Text = "No description currently defined";
-      this.releaseTextBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
+      this.releaseTextBox.TextChanged += new System.EventHandler(this.TextBox1TextChanged1);
       // 
       // releaseButton
       // 
@@ -254,7 +254,7 @@
       this.releaseButton.TabIndex = 6;
       this.releaseButton.Text = "Edit";
       this.releaseButton.UseVisualStyleBackColor = true;
-      this.releaseButton.Click += new System.EventHandler(this.button1_Click);
+      this.releaseButton.Click += new System.EventHandler(this.Button1Click);
       // 
       // doneTextBox
       // 
@@ -268,7 +268,7 @@
       this.doneTextBox.Size = new System.Drawing.Size(292, 86);
       this.doneTextBox.TabIndex = 7;
       this.doneTextBox.Text = "No description currently defined";
-      this.doneTextBox.TextChanged += new System.EventHandler(this.doneTextBox_TextChanged);
+      this.doneTextBox.TextChanged += new System.EventHandler(this.DoneTextBoxTextChanged);
       // 
       // doneButton
       // 
@@ -279,7 +279,7 @@
       this.doneButton.TabIndex = 9;
       this.doneButton.Text = "Edit";
       this.doneButton.UseVisualStyleBackColor = true;
-      this.doneButton.Click += new System.EventHandler(this.button2_Click);
+      this.doneButton.Click += new System.EventHandler(this.Button2Click);
       // 
       // activitiesTextBox
       // 
@@ -301,7 +301,7 @@
       this.taskNameLB.Name = "taskNameLB";
       this.taskNameLB.Size = new System.Drawing.Size(305, 164);
       this.taskNameLB.TabIndex = 12;
-      this.taskNameLB.SelectedIndexChanged += new System.EventHandler(this.taskNameLB_SelectedIndexChanged);
+      this.taskNameLB.SelectedIndexChanged += new System.EventHandler(this.TaskNameLbSelectedIndexChanged);
       // 
       // descTB
       // 
@@ -382,7 +382,7 @@
       this.label1.Size = new System.Drawing.Size(140, 23);
       this.label1.TabIndex = 22;
       this.label1.Text = "Idea Description";
-      this.label1.Click += new System.EventHandler(this.label1_Click);
+      this.label1.Click += new System.EventHandler(this.Label1Click);
       // 
       // noProject
       // 
@@ -426,7 +426,7 @@
       this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
       this.Name = "Dashboard";
       this.Text = "Co-Op Swift";
-      this.Load += new System.EventHandler(this.Form1_Load);
+      this.Load += new System.EventHandler(this.Form1Load);
       this.menuStrip1.ResumeLayout(false);
       this.menuStrip1.PerformLayout();
       this.ResumeLayout(false);

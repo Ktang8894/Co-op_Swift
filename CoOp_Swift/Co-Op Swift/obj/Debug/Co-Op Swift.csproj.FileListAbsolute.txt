@@ -178,10 +178,12 @@ C:\Users\Kevin\Desktop\Software Development\Co-op_Swift\CoOp_Swift\Co-Op Swift\o
 C:\Users\Kevin\Desktop\Software Development\Co-op_Swift\CoOp_Swift\Co-Op Swift\obj\Debug\Co_Op_Swift.Properties.Resources.resources
 C:\Users\Kevin\Desktop\Software Development\Co-op_Swift\CoOp_Swift\Co-Op Swift\obj\Debug\Co_Op_Swift.RegForm.resources
 C:\Users\Kevin\Desktop\Software Development\Co-op_Swift\CoOp_Swift\Co-Op Swift\obj\Debug\Co_Op_Swift.releasePlan.resources
-C:\Users\Kevin\Desktop\Software Development\Co-op_Swift\CoOp_Swift\Co-Op Swift\obj\Debug\Co_Op_Swift.ResetForm1.resources
 C:\Users\Kevin\Desktop\Software Development\Co-op_Swift\CoOp_Swift\Co-Op Swift\obj\Debug\Co_Op_Swift.ResetForm2.resources
 C:\Users\Kevin\Desktop\Software Development\Co-op_Swift\CoOp_Swift\Co-Op Swift\obj\Debug\Co_Op_Swift.SprintPlan.resources
 C:\Users\Kevin\Desktop\Software Development\Co-op_Swift\CoOp_Swift\Co-Op Swift\obj\Debug\Co_Op_Swift.Story.resources
 C:\Users\Kevin\Desktop\Software Development\Co-op_Swift\CoOp_Swift\Co-Op Swift\obj\Debug\Co_Op_Swift.taskTree.resources
 C:\Users\Kevin\Desktop\Software Development\Co-op_Swift\CoOp_Swift\Co-Op Swift\obj\Debug\Co-Op Swift.csproj.GenerateResource.Cache
-C:\Users\Kevin\Desktop\Software Development\Co-op_Swift\CoOp_Swift\Co-Op Swift\obj\Debug\Co_Op_Swift.SqlStrings.resources
+C:\Users\Kevin\Desktop\Software Development\Co-op_Swift\CoOp_Swift\Co-Op Swift\obj\Debug\Co-Op Swift.csproj.CoreCompileInputs.cache
+C:\Users\Kevin\Desktop\Software Development\Co-op_Swift\CoOp_Swift\Co-Op Swift\obj\Debug\Co_Op_Swift.SecurityQuestion.resources
+C:\Users\Kevin\Desktop\Software Development\Co-op_Swift\CoOp_Swift\Co-Op Swift\obj\Debug\Co_Op_Swift.Resources.MessageBoxStrings.resources
+C:\Users\Kevin\Desktop\Software Development\Co-op_Swift\CoOp_Swift\Co-Op Swift\obj\Debug\Co_Op_Swift.Resources.SqlStrings.resources

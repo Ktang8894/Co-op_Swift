@@ -13,23 +13,23 @@ namespace Co_Op_Swift
 {
     public partial class RegForm : Form
     {
-        private Label passwordLabel;
-        private Label firstLabel;
-        private Label lastLabel;
-        private Label passLabel;
-        private TextBox firstText;
-        private TextBox lastText;
-        private TextBox userText;
-        private TextBox passText;
-        private TextBox confirmText;
-        private Label sqLabel;
-        private ListBox listBox1;
-        private Label answerLabel;
-        private TextBox answerText;
-        private Button doneButton;
-        private Label label1;
-        private Button cancel_button;
-        private Label userLabel;
+        private Label _passwordLabel;
+        private Label _firstLabel;
+        private Label _lastLabel;
+        private Label _passLabel;
+        private TextBox _firstText;
+        private TextBox _lastText;
+        private TextBox _userText;
+        private TextBox _passText;
+        private TextBox _confirmText;
+        private Label _sqLabel;
+        private ListBox _listBox1;
+        private Label _answerLabel;
+        private TextBox _answerText;
+        private Button _doneButton;
+        private Label _label1;
+        private Button _cancelButton;
+        private Label _userLabel;
 
         public RegForm()
         {
@@ -38,318 +38,318 @@ namespace Co_Op_Swift
 
         private void InitializeComponent()
         {
-      this.userLabel = new System.Windows.Forms.Label();
-      this.passwordLabel = new System.Windows.Forms.Label();
-      this.firstLabel = new System.Windows.Forms.Label();
-      this.lastLabel = new System.Windows.Forms.Label();
-      this.passLabel = new System.Windows.Forms.Label();
-      this.firstText = new System.Windows.Forms.TextBox();
-      this.lastText = new System.Windows.Forms.TextBox();
-      this.userText = new System.Windows.Forms.TextBox();
-      this.passText = new System.Windows.Forms.TextBox();
-      this.confirmText = new System.Windows.Forms.TextBox();
-      this.sqLabel = new System.Windows.Forms.Label();
-      this.listBox1 = new System.Windows.Forms.ListBox();
-      this.answerLabel = new System.Windows.Forms.Label();
-      this.answerText = new System.Windows.Forms.TextBox();
-      this.doneButton = new System.Windows.Forms.Button();
-      this.label1 = new System.Windows.Forms.Label();
-      this.cancel_button = new System.Windows.Forms.Button();
+      this._userLabel = new System.Windows.Forms.Label();
+      this._passwordLabel = new System.Windows.Forms.Label();
+      this._firstLabel = new System.Windows.Forms.Label();
+      this._lastLabel = new System.Windows.Forms.Label();
+      this._passLabel = new System.Windows.Forms.Label();
+      this._firstText = new System.Windows.Forms.TextBox();
+      this._lastText = new System.Windows.Forms.TextBox();
+      this._userText = new System.Windows.Forms.TextBox();
+      this._passText = new System.Windows.Forms.TextBox();
+      this._confirmText = new System.Windows.Forms.TextBox();
+      this._sqLabel = new System.Windows.Forms.Label();
+      this._listBox1 = new System.Windows.Forms.ListBox();
+      this._answerLabel = new System.Windows.Forms.Label();
+      this._answerText = new System.Windows.Forms.TextBox();
+      this._doneButton = new System.Windows.Forms.Button();
+      this._label1 = new System.Windows.Forms.Label();
+      this._cancelButton = new System.Windows.Forms.Button();
       this.SuspendLayout();
       // 
       // userLabel
       // 
-      this.userLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+      this._userLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.userLabel.AutoSize = true;
-      this.userLabel.BackColor = System.Drawing.Color.Transparent;
-      this.userLabel.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.userLabel.ForeColor = System.Drawing.Color.White;
-      this.userLabel.Location = new System.Drawing.Point(15, 115);
-      this.userLabel.Name = "userLabel";
-      this.userLabel.Size = new System.Drawing.Size(174, 26);
-      this.userLabel.TabIndex = 0;
-      this.userLabel.Text = "Email(Username):";
-      this.userLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+      this._userLabel.AutoSize = true;
+      this._userLabel.BackColor = System.Drawing.Color.Transparent;
+      this._userLabel.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this._userLabel.ForeColor = System.Drawing.Color.White;
+      this._userLabel.Location = new System.Drawing.Point(15, 115);
+      this._userLabel.Name = "_userLabel";
+      this._userLabel.Size = new System.Drawing.Size(174, 26);
+      this._userLabel.TabIndex = 0;
+      this._userLabel.Text = "Email(Username):";
+      this._userLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
       // 
       // passwordLabel
       // 
-      this.passwordLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+      this._passwordLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.passwordLabel.BackColor = System.Drawing.Color.Transparent;
-      this.passwordLabel.Font = new System.Drawing.Font("Trebuchet MS", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.passwordLabel.ForeColor = System.Drawing.Color.White;
-      this.passwordLabel.Location = new System.Drawing.Point(13, 177);
-      this.passwordLabel.MaximumSize = new System.Drawing.Size(0, 100);
-      this.passwordLabel.Name = "passwordLabel";
-      this.passwordLabel.Size = new System.Drawing.Size(176, 17);
-      this.passwordLabel.TabIndex = 1;
-      this.passwordLabel.Text = "Confirm Password:\r\n";
-      this.passwordLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
-      this.passwordLabel.Click += new System.EventHandler(this.passwordLabel_Click);
+      this._passwordLabel.BackColor = System.Drawing.Color.Transparent;
+      this._passwordLabel.Font = new System.Drawing.Font("Trebuchet MS", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this._passwordLabel.ForeColor = System.Drawing.Color.White;
+      this._passwordLabel.Location = new System.Drawing.Point(13, 177);
+      this._passwordLabel.MaximumSize = new System.Drawing.Size(0, 100);
+      this._passwordLabel.Name = "_passwordLabel";
+      this._passwordLabel.Size = new System.Drawing.Size(176, 17);
+      this._passwordLabel.TabIndex = 1;
+      this._passwordLabel.Text = "Confirm Password:\r\n";
+      this._passwordLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+      this._passwordLabel.Click += new System.EventHandler(this.PasswordLabelClick);
       // 
       // firstLabel
       // 
-      this.firstLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+      this._firstLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.firstLabel.AutoSize = true;
-      this.firstLabel.BackColor = System.Drawing.Color.Transparent;
-      this.firstLabel.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.firstLabel.ForeColor = System.Drawing.Color.White;
-      this.firstLabel.Location = new System.Drawing.Point(71, 52);
-      this.firstLabel.Name = "firstLabel";
-      this.firstLabel.Size = new System.Drawing.Size(118, 26);
-      this.firstLabel.TabIndex = 2;
-      this.firstLabel.Text = "First Name:";
-      this.firstLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+      this._firstLabel.AutoSize = true;
+      this._firstLabel.BackColor = System.Drawing.Color.Transparent;
+      this._firstLabel.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this._firstLabel.ForeColor = System.Drawing.Color.White;
+      this._firstLabel.Location = new System.Drawing.Point(71, 52);
+      this._firstLabel.Name = "_firstLabel";
+      this._firstLabel.Size = new System.Drawing.Size(118, 26);
+      this._firstLabel.TabIndex = 2;
+      this._firstLabel.Text = "First Name:";
+      this._firstLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
       // 
       // lastLabel
       // 
-      this.lastLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+      this._lastLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.lastLabel.AutoSize = true;
-      this.lastLabel.BackColor = System.Drawing.Color.Transparent;
-      this.lastLabel.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.lastLabel.ForeColor = System.Drawing.Color.White;
-      this.lastLabel.Location = new System.Drawing.Point(75, 81);
-      this.lastLabel.Name = "lastLabel";
-      this.lastLabel.Size = new System.Drawing.Size(114, 26);
-      this.lastLabel.TabIndex = 3;
-      this.lastLabel.Text = "Last Name:";
-      this.lastLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+      this._lastLabel.AutoSize = true;
+      this._lastLabel.BackColor = System.Drawing.Color.Transparent;
+      this._lastLabel.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this._lastLabel.ForeColor = System.Drawing.Color.White;
+      this._lastLabel.Location = new System.Drawing.Point(75, 81);
+      this._lastLabel.Name = "_lastLabel";
+      this._lastLabel.Size = new System.Drawing.Size(114, 26);
+      this._lastLabel.TabIndex = 3;
+      this._lastLabel.Text = "Last Name:";
+      this._lastLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
       // 
       // passLabel
       // 
-      this.passLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+      this._passLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.passLabel.AutoSize = true;
-      this.passLabel.BackColor = System.Drawing.Color.Transparent;
-      this.passLabel.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.passLabel.ForeColor = System.Drawing.Color.White;
-      this.passLabel.Location = new System.Drawing.Point(87, 143);
-      this.passLabel.Name = "passLabel";
-      this.passLabel.Size = new System.Drawing.Size(102, 26);
-      this.passLabel.TabIndex = 4;
-      this.passLabel.Text = "Password:";
-      this.passLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+      this._passLabel.AutoSize = true;
+      this._passLabel.BackColor = System.Drawing.Color.Transparent;
+      this._passLabel.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this._passLabel.ForeColor = System.Drawing.Color.White;
+      this._passLabel.Location = new System.Drawing.Point(87, 143);
+      this._passLabel.Name = "_passLabel";
+      this._passLabel.Size = new System.Drawing.Size(102, 26);
+      this._passLabel.TabIndex = 4;
+      this._passLabel.Text = "Password:";
+      this._passLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
       // 
       // firstText
       // 
-      this.firstText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+      this._firstText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.firstText.Location = new System.Drawing.Point(194, 50);
-      this.firstText.Name = "firstText";
-      this.firstText.Size = new System.Drawing.Size(387, 23);
-      this.firstText.TabIndex = 6;
+      this._firstText.Location = new System.Drawing.Point(194, 50);
+      this._firstText.Name = "_firstText";
+      this._firstText.Size = new System.Drawing.Size(387, 23);
+      this._firstText.TabIndex = 6;
       // 
       // lastText
       // 
-      this.lastText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+      this._lastText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.lastText.Location = new System.Drawing.Point(194, 84);
-      this.lastText.Name = "lastText";
-      this.lastText.Size = new System.Drawing.Size(387, 23);
-      this.lastText.TabIndex = 7;
+      this._lastText.Location = new System.Drawing.Point(194, 84);
+      this._lastText.Name = "_lastText";
+      this._lastText.Size = new System.Drawing.Size(387, 23);
+      this._lastText.TabIndex = 7;
       // 
       // userText
       // 
-      this.userText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+      this._userText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.userText.Location = new System.Drawing.Point(194, 114);
-      this.userText.Name = "userText";
-      this.userText.Size = new System.Drawing.Size(387, 23);
-      this.userText.TabIndex = 8;
+      this._userText.Location = new System.Drawing.Point(194, 114);
+      this._userText.Name = "_userText";
+      this._userText.Size = new System.Drawing.Size(387, 23);
+      this._userText.TabIndex = 8;
       // 
       // passText
       // 
-      this.passText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+      this._passText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.passText.Location = new System.Drawing.Point(194, 143);
-      this.passText.Name = "passText";
-      this.passText.Size = new System.Drawing.Size(387, 23);
-      this.passText.TabIndex = 9;
-      this.passText.UseSystemPasswordChar = true;
+      this._passText.Location = new System.Drawing.Point(194, 143);
+      this._passText.Name = "_passText";
+      this._passText.Size = new System.Drawing.Size(387, 23);
+      this._passText.TabIndex = 9;
+      this._passText.UseSystemPasswordChar = true;
       // 
       // confirmText
       // 
-      this.confirmText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+      this._confirmText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.confirmText.Location = new System.Drawing.Point(194, 171);
-      this.confirmText.Name = "confirmText";
-      this.confirmText.Size = new System.Drawing.Size(387, 23);
-      this.confirmText.TabIndex = 10;
-      this.confirmText.UseSystemPasswordChar = true;
+      this._confirmText.Location = new System.Drawing.Point(194, 171);
+      this._confirmText.Name = "_confirmText";
+      this._confirmText.Size = new System.Drawing.Size(387, 23);
+      this._confirmText.TabIndex = 10;
+      this._confirmText.UseSystemPasswordChar = true;
       // 
       // sqLabel
       // 
-      this.sqLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+      this._sqLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.sqLabel.BackColor = System.Drawing.Color.Transparent;
-      this.sqLabel.Font = new System.Drawing.Font("Trebuchet MS", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.sqLabel.ForeColor = System.Drawing.Color.White;
-      this.sqLabel.Location = new System.Drawing.Point(20, 201);
-      this.sqLabel.MaximumSize = new System.Drawing.Size(0, 110);
-      this.sqLabel.Name = "sqLabel";
-      this.sqLabel.Size = new System.Drawing.Size(169, 29);
-      this.sqLabel.TabIndex = 11;
-      this.sqLabel.Text = "Security Question:";
-      this.sqLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+      this._sqLabel.BackColor = System.Drawing.Color.Transparent;
+      this._sqLabel.Font = new System.Drawing.Font("Trebuchet MS", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this._sqLabel.ForeColor = System.Drawing.Color.White;
+      this._sqLabel.Location = new System.Drawing.Point(20, 201);
+      this._sqLabel.MaximumSize = new System.Drawing.Size(0, 110);
+      this._sqLabel.Name = "_sqLabel";
+      this._sqLabel.Size = new System.Drawing.Size(169, 29);
+      this._sqLabel.TabIndex = 11;
+      this._sqLabel.Text = "Security Question:";
+      this._sqLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
       // 
       // listBox1
       // 
-      this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+      this._listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.listBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.listBox1.FormattingEnabled = true;
-      this.listBox1.ItemHeight = 20;
-      this.listBox1.Items.AddRange(new object[] {
+      this._listBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this._listBox1.FormattingEnabled = true;
+      this._listBox1.ItemHeight = 20;
+      this._listBox1.Items.AddRange(new object[] {
             "In what city or town does your nearest sibling live?",
             "What time of day were you born?",
             "What is the name of the first person you kissed?",
             "What is the name of your elementary/primary school?"});
-      this.listBox1.Location = new System.Drawing.Point(194, 199);
-      this.listBox1.Name = "listBox1";
-      this.listBox1.Size = new System.Drawing.Size(387, 24);
-      this.listBox1.TabIndex = 12;
-      this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+      this._listBox1.Location = new System.Drawing.Point(194, 199);
+      this._listBox1.Name = "_listBox1";
+      this._listBox1.Size = new System.Drawing.Size(387, 24);
+      this._listBox1.TabIndex = 12;
+      this._listBox1.SelectedIndexChanged += new System.EventHandler(this.ListBox1SelectedIndexChanged);
       // 
       // answerLabel
       // 
-      this.answerLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+      this._answerLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.answerLabel.AutoSize = true;
-      this.answerLabel.BackColor = System.Drawing.Color.Transparent;
-      this.answerLabel.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.answerLabel.ForeColor = System.Drawing.Color.White;
-      this.answerLabel.Location = new System.Drawing.Point(105, 227);
-      this.answerLabel.Name = "answerLabel";
-      this.answerLabel.Size = new System.Drawing.Size(84, 26);
-      this.answerLabel.TabIndex = 13;
-      this.answerLabel.Text = "Answer:";
-      this.answerLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
-      this.answerLabel.Click += new System.EventHandler(this.answerLabel_Click);
+      this._answerLabel.AutoSize = true;
+      this._answerLabel.BackColor = System.Drawing.Color.Transparent;
+      this._answerLabel.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this._answerLabel.ForeColor = System.Drawing.Color.White;
+      this._answerLabel.Location = new System.Drawing.Point(105, 227);
+      this._answerLabel.Name = "_answerLabel";
+      this._answerLabel.Size = new System.Drawing.Size(84, 26);
+      this._answerLabel.TabIndex = 13;
+      this._answerLabel.Text = "Answer:";
+      this._answerLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+      this._answerLabel.Click += new System.EventHandler(this.AnswerLabelClick);
       // 
       // answerText
       // 
-      this.answerText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+      this._answerText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.answerText.Location = new System.Drawing.Point(194, 229);
-      this.answerText.Name = "answerText";
-      this.answerText.Size = new System.Drawing.Size(387, 23);
-      this.answerText.TabIndex = 14;
+      this._answerText.Location = new System.Drawing.Point(194, 229);
+      this._answerText.Name = "_answerText";
+      this._answerText.Size = new System.Drawing.Size(387, 23);
+      this._answerText.TabIndex = 14;
       // 
       // doneButton
       // 
-      this.doneButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+      this._doneButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.doneButton.BackColor = System.Drawing.Color.Transparent;
-      this.doneButton.Font = new System.Drawing.Font("Trebuchet MS", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.doneButton.Location = new System.Drawing.Point(357, 267);
-      this.doneButton.Name = "doneButton";
-      this.doneButton.Size = new System.Drawing.Size(226, 49);
-      this.doneButton.TabIndex = 15;
-      this.doneButton.Text = "Register";
-      this.doneButton.UseVisualStyleBackColor = false;
-      this.doneButton.Click += new System.EventHandler(this.doneButton_Click);
+      this._doneButton.BackColor = System.Drawing.Color.Transparent;
+      this._doneButton.Font = new System.Drawing.Font("Trebuchet MS", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this._doneButton.Location = new System.Drawing.Point(357, 267);
+      this._doneButton.Name = "_doneButton";
+      this._doneButton.Size = new System.Drawing.Size(226, 49);
+      this._doneButton.TabIndex = 15;
+      this._doneButton.Text = "Register";
+      this._doneButton.UseVisualStyleBackColor = false;
+      this._doneButton.Click += new System.EventHandler(this.DoneButtonClick);
       // 
       // label1
       // 
-      this.label1.AutoSize = true;
-      this.label1.BackColor = System.Drawing.Color.Transparent;
-      this.label1.Font = new System.Drawing.Font("Trebuchet MS", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label1.ForeColor = System.Drawing.Color.White;
-      this.label1.Location = new System.Drawing.Point(187, 9);
-      this.label1.Name = "label1";
-      this.label1.Size = new System.Drawing.Size(234, 38);
-      this.label1.TabIndex = 16;
-      this.label1.Text = "Create Account";
-      this.label1.Click += new System.EventHandler(this.label1_Click);
+      this._label1.AutoSize = true;
+      this._label1.BackColor = System.Drawing.Color.Transparent;
+      this._label1.Font = new System.Drawing.Font("Trebuchet MS", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this._label1.ForeColor = System.Drawing.Color.White;
+      this._label1.Location = new System.Drawing.Point(187, 9);
+      this._label1.Name = "_label1";
+      this._label1.Size = new System.Drawing.Size(234, 38);
+      this._label1.TabIndex = 16;
+      this._label1.Text = "Create Account";
+      this._label1.Click += new System.EventHandler(this.Label1Click);
       // 
       // cancel_button
       // 
-      this.cancel_button.BackColor = System.Drawing.Color.Transparent;
-      this.cancel_button.Font = new System.Drawing.Font("Trebuchet MS", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.cancel_button.Location = new System.Drawing.Point(194, 267);
-      this.cancel_button.Name = "cancel_button";
-      this.cancel_button.Size = new System.Drawing.Size(157, 49);
-      this.cancel_button.TabIndex = 17;
-      this.cancel_button.Text = "Cancel";
-      this.cancel_button.UseVisualStyleBackColor = false;
-      this.cancel_button.Click += new System.EventHandler(this.cancelButton_Click);
+      this._cancelButton.BackColor = System.Drawing.Color.Transparent;
+      this._cancelButton.Font = new System.Drawing.Font("Trebuchet MS", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this._cancelButton.Location = new System.Drawing.Point(194, 267);
+      this._cancelButton.Name = "_cancelButton";
+      this._cancelButton.Size = new System.Drawing.Size(157, 49);
+      this._cancelButton.TabIndex = 17;
+      this._cancelButton.Text = "Cancel";
+      this._cancelButton.UseVisualStyleBackColor = false;
+      this._cancelButton.Click += new System.EventHandler(this.CancelButtonClick);
       // 
       // RegForm
       // 
-      this.AcceptButton = this.doneButton;
+      this.AcceptButton = this._doneButton;
       this.BackgroundImage = global::Co_Op_Swift.Properties.Resources.Background_Dark_Small;
       this.ClientSize = new System.Drawing.Size(610, 338);
-      this.Controls.Add(this.cancel_button);
-      this.Controls.Add(this.label1);
-      this.Controls.Add(this.doneButton);
-      this.Controls.Add(this.answerText);
-      this.Controls.Add(this.answerLabel);
-      this.Controls.Add(this.listBox1);
-      this.Controls.Add(this.sqLabel);
-      this.Controls.Add(this.confirmText);
-      this.Controls.Add(this.passText);
-      this.Controls.Add(this.userText);
-      this.Controls.Add(this.lastText);
-      this.Controls.Add(this.firstText);
-      this.Controls.Add(this.passLabel);
-      this.Controls.Add(this.lastLabel);
-      this.Controls.Add(this.firstLabel);
-      this.Controls.Add(this.passwordLabel);
-      this.Controls.Add(this.userLabel);
+      this.Controls.Add(this._cancelButton);
+      this.Controls.Add(this._label1);
+      this.Controls.Add(this._doneButton);
+      this.Controls.Add(this._answerText);
+      this.Controls.Add(this._answerLabel);
+      this.Controls.Add(this._listBox1);
+      this.Controls.Add(this._sqLabel);
+      this.Controls.Add(this._confirmText);
+      this.Controls.Add(this._passText);
+      this.Controls.Add(this._userText);
+      this.Controls.Add(this._lastText);
+      this.Controls.Add(this._firstText);
+      this.Controls.Add(this._passLabel);
+      this.Controls.Add(this._lastLabel);
+      this.Controls.Add(this._firstLabel);
+      this.Controls.Add(this._passwordLabel);
+      this.Controls.Add(this._userLabel);
       this.Font = new System.Drawing.Font("Trebuchet MS", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.Name = "RegForm";
       this.Text = "Registration";
-      this.Load += new System.EventHandler(this.RegForm_Load);
+      this.Load += new System.EventHandler(this.RegFormLoad);
       this.ResumeLayout(false);
       this.PerformLayout();
 
         }
 
-    private void RegForm_Load(object sender, EventArgs e)
+    private void RegFormLoad(object sender, EventArgs e)
         {
 
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
+        private void GroupBox1Enter(object sender, EventArgs e)
         {
 
         }
 
-        private void questionView_SelectedIndexChanged(object sender, EventArgs e)
+        private void QuestionViewSelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void ListBox1SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void doneButton_Click(object sender, EventArgs e)
+        private void DoneButtonClick(object sender, EventArgs e)
         {
           //check if form is finished correctly and completely
-          if(Conditions.regFormPasses(firstText.Text,lastText.Text,passText.Text,confirmText.Text,answerText.Text))
+          if(Conditions.RegFormPasses(_firstText.Text,_lastText.Text,_passText.Text,_confirmText.Text,_answerText.Text))
           {
             //execute registration query
-            Sql.ExecuteRegistration(userText.Text,passText.Text,lastText.Text,firstText.Text,answerText.Text);
+            Sql.ExecuteRegistration(_userText.Text,_passText.Text,_lastText.Text,_firstText.Text,_answerText.Text);
 
             this.Close();
 
@@ -359,22 +359,22 @@ namespace Co_Op_Swift
         }
 
 
-        private void passwordLabel_Click(object sender, EventArgs e)
+        private void PasswordLabelClick(object sender, EventArgs e)
         {
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void Label1Click(object sender, EventArgs e)
         {
 
         }
 
-        private void cancelButton_Click(object sender, EventArgs e)
+        private void CancelButtonClick(object sender, EventArgs e)
         {
           this.Close();
         }
 
-    private void answerLabel_Click(object sender, EventArgs e)
+    private void AnswerLabelClick(object sender, EventArgs e)
     {
 
     }

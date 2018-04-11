@@ -20,19 +20,19 @@ namespace Co_Op_Swift
       
     }
 
-    private void label3_Click(object sender, EventArgs e)
+    private void Label3Click(object sender, EventArgs e)
     {
 
     }
 
-    private void Form2_Load(object sender, EventArgs e)
+    private void Form2Load(object sender, EventArgs e)
     {
 
     }
 
 
     //Login
-    private void button1_Click(object sender, EventArgs e)
+    private void Button1Click(object sender, EventArgs e)
     {
       string username = textBox1.Text;
       string password = textBox2.Text;
@@ -49,10 +49,10 @@ namespace Co_Op_Swift
       
       if(pass)
       {
-        int projID = Sql.isInProject(Sql.getOwnerUserID(username));
-        if(projID != 0)
+        int projId = Sql.IsInProject(Sql.GetOwnerUserId(username));
+        if(projId != 0)
         {
-          string projectName = Sql.getProjectName(projID);
+          string projectName = Sql.GetProjectName(projId);
 
           FormCollection fc = Application.OpenForms;
           bool isFound = false;
@@ -77,18 +77,18 @@ namespace Co_Op_Swift
         else
         {
           FormCollection fc = Application.OpenForms;
-          bool FormFound = false;
+          bool formFound = false;
           foreach (Form frm in fc)
           {
             if (frm.Name == "Main")
             {
               frm.Focus();
-              FormFound = true;
+              formFound = true;
               this.Hide();
             }
           }
 
-          if (FormFound == false)
+          if (formFound == false)
           {
             Dashboard frm = new Dashboard(username,"");
             frm.Show();
@@ -108,21 +108,21 @@ namespace Co_Op_Swift
 
 
      //Register
-      private void button2_Click(object sender, EventArgs e)
+      private void Button2Click(object sender, EventArgs e)
       {
         FormCollection fc = Application.OpenForms;
-        bool FormFound = false;
+        bool formFound = false;
         foreach (Form frm in fc)
         {
           if (frm.Name == "RegForm")
           {
             frm.Focus();
-            FormFound = true;
+            formFound = true;
             this.Hide();
           }
         }
 
-        if (FormFound == false)
+        if (formFound == false)
         {
           RegForm form = new RegForm();
           form.ShowDialog();
@@ -132,11 +132,11 @@ namespace Co_Op_Swift
       }
 
       //reset password
-      private void button3_Click(object sender, EventArgs e)
+      private void Button3Click(object sender, EventArgs e)
       {
 
-        string UserName = textBox1.Text;
-        int count = Sql.CheckUserExsistence(UserName);
+        string userName = textBox1.Text;
+        int count = Sql.CheckUserExsistence(userName);
 
         //If username does not exist
         if (count == 0)
@@ -153,22 +153,22 @@ namespace Co_Op_Swift
           else
           {
             FormCollection fc = Application.OpenForms;
-            bool FormFound = false;
+            bool formFound = false;
             foreach (Form frm in fc)
             {
               if (frm.Name == "ResetForm1")
               {
                 frm.Focus();
-                FormFound = true;
+                formFound = true;
                 this.Hide();
               }
             }
 
-            if (FormFound == false)
+            if (formFound == false)
             {
               string username = textBox1.Text;
 
-              ResetForm1 form = new ResetForm1(username);
+              SecurityQuestion form = new SecurityQuestion(username);
               form.ShowDialog();
             }
           }

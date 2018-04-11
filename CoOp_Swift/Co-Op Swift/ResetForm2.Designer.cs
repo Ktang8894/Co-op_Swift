@@ -89,7 +89,7 @@
       this.confirmButton.TabIndex = 4;
       this.confirmButton.Text = "Confirm";
       this.confirmButton.UseVisualStyleBackColor = true;
-      this.confirmButton.Click += new System.EventHandler(this.confirmButton_Click);
+      this.confirmButton.Click += new System.EventHandler(this.ConfirmButtonClick);
       // 
       // ResetForm2
       // 

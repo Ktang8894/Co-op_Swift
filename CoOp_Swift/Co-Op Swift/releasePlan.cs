@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Data.SqlClient;
-
+using Co_Op_Swift.Resources;
 
 namespace Co_Op_Swift
 {
@@ -12,299 +12,180 @@ namespace Co_Op_Swift
     public ReleasePlan(string username, string projectName)
     {
       InitializeComponent();
-
       projectNameToolStripMenuItem.Text = projectName;
       memberNameToolStripMenuItem.Text = username;
       releasePlanToolStripMenuItem.Font = new Font(releasePlanToolStripMenuItem.Font, FontStyle.Bold);
 
-      /****************** this is for select a project drop down menu ******************************/
+      var projIds = Sql.GetUserProjectIDs(Sql.GetOwnerUserId(memberNameToolStripMenuItem.Text));
 
-      //get all project ids associated with the user ids
-      DataTable proj_ids = Sql.getUserProjectIDs(Sql.getOwnerUserID(memberNameToolStripMenuItem.Text));
-
-      string proj_name;
-
-      // get all project names associated with the project ids
-      foreach (DataRow row in proj_ids.Rows)
+      foreach (DataRow row in projIds.Rows)
       {
-        //put project names in select project drop down menu
-        proj_name = Sql.getProjectName(int.Parse(row["Proj_ID"].ToString()));
-        selectProjectToolStripMenuItem.DropDownItems.Add(proj_name);
+        var projName = Sql.GetProjectName(int.Parse(row["Proj_ID"].ToString()));
+        selectProjectToolStripMenuItem.DropDownItems.Add(projName);
       }
-      /********************************************************************************************/
-   
     }
 
-    private void dashboardToolStripMenuItem_Click(object sender, EventArgs e)
+    private void DashboardToolStripMenuItemClick(object sender, EventArgs e)
     {
-      Dashboard frm = new Dashboard(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
-      frm.Show();
-      this.Close();
+      var form = new Dashboard(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
+      form.Show();
+      Close();
     }
 
-    private void ideaBoxToolStripMenuItem_Click(object sender, EventArgs e)
+    private void IdeaBoxToolStripMenuItemClick(object sender, EventArgs e)
     {
-      IdeaBox frm = new IdeaBox(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
-      frm.Show();
-      this.Close();
+      var form = new IdeaBox(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
+      form.Show();
+      Close();
     }
 
-    private void sprintPlanToolStripMenuItem_Click(object sender, EventArgs e)
+    private void SprintPlanToolStripMenuItemClick(object sender, EventArgs e)
     {
-      SprintPlan frm = new SprintPlan(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
-      frm.Show();
-      this.Close();
+      var form = new SprintPlan(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
+      form.Show();
+      Close();
     }
 
-    private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
+    private void LogoutToolStripMenuItemClick(object sender, EventArgs e)
     {
-      Login frm2 = new Login();
-      frm2.Show();
-      this.Close();
+      var form = new Login();
+      form.Show();
+      Close();
     }
 
-    private void teamToolStripMenuItem_Click(object sender, EventArgs e)
+    private void TeamToolStripMenuItemClick(object sender, EventArgs e)
     {
-      AddMembers frm = new AddMembers(memberNameToolStripMenuItem.Text,projectNameToolStripMenuItem.Text);
-      frm.Show();
+      var form = new AddMembers(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
+      form.Show();
     }
 
-    public int getPID()
+    public int GetPid()
     {
-
-    
-      string sql;
-
-      
-      sql = string.Format(@"
-Select Proj_ID
-FROM Projects
-WHERE Title = '{0}';
-", projectNameToolStripMenuItem.Text);
-      Sql.Db.Open();
-      SqlCommand cmd = new SqlCommand();
-      cmd.Connection = Sql.Db;
-      cmd.CommandText = sql;
-
-      int id = (int)cmd.ExecuteScalar();
-
-      Sql.Db.Close();
-
+      var sql = string.Format(SqlStrings.GetPid, projectNameToolStripMenuItem.Text);
+      var id = Sql.GetSingleInt(sql);
       return id;
     }
 
-    int columnCounter = 0; //Global variable for latest sprint
-    private void releasePlan_Load(object sender, EventArgs e)
+    private int _columnCounter;
+    private void ReleasePlanLoad(object sender, EventArgs e)
     {
-      
-      string sql;
-
-
-      Sql.Db.Open(); // open connection to database
-
-      SqlCommand cmd = new SqlCommand();
-      cmd.Connection = Sql.Db;
-      SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-
-      int PID = getPID();
       //Load Sprints
-      sql = string.Format(@"
-SELECT Sprints.SprintID, StartDate, EndDate
-FROM Sprints
-INNER JOIN ProjectSprints
-ON Sprints.SprintID = ProjectSprints.SprintID
-WHERE ProjectSPrints.Proj_ID = {0};
-", PID);
+      var sql = string.Format(SqlStrings.LoadReleasePlan, GetPid());
+      var releasePlanDataSet = Sql.GetDataSet(sql);
+      releasePlanDataSet.Tables[0].TableName = "Sprints";
 
-      DataSet ds2 = new DataSet();
-      cmd.CommandText = sql;
-      adapter.Fill(ds2);
-
-      ds2.Tables[0].TableName = "Sprints";
-
-
-      foreach (DataRow row in ds2.Tables["Sprints"].Rows)
+      foreach (DataRow row in releasePlanDataSet.Tables["Sprints"].Rows)
       {
-        //string msg = Convert.ToString(row["IdeaName"]);
-        int SID = Convert.ToInt32(row["SprintID"]);
-        DateTime start = DateTime.Parse(Convert.ToString(row["StartDate"]));
-        DateTime end = DateTime.Parse(Convert.ToString(row["EndDate"]));
-        string startDate = start.ToShortDateString();
-        string endDate = end.ToShortDateString();
-        dataGridView1.Columns.Add("Sprint" + SID, "Sprint ID: " + SID + "\n" + startDate + "\n" + "-\n" + endDate);
+        var sid = Convert.ToInt32(row["SprintID"]);
+        var start = DateTime.Parse(Convert.ToString(row["StartDate"]));
+        var end = DateTime.Parse(Convert.ToString(row["EndDate"]));
+        var startDate = start.ToShortDateString();
+        var endDate = end.ToShortDateString();
+        dataGridView1.Columns.Add("Sprint" + sid, "Sprint ID: " + sid + "\n" + startDate + "\n" + "-\n" + endDate);
 
         //Add Tasks for each column 
-        string sql2 = string.Format(@"
-SELECT TaskTable.TaskName
-FROM TaskTable
-INNER JOIN SprintTasks
-ON TaskTable.Task_ID = SprintTasks.Task_ID
-WHERE SprintTasks.SprintID = {0};
-", SID);
-
-        SqlCommand cmd2 = new SqlCommand();
-        cmd2.Connection = Sql.Db;
-        DataSet ds = new DataSet();
-        cmd2.CommandText = sql2;
-        SqlDataAdapter adapter2 = new SqlDataAdapter(cmd2);
-        adapter2.Fill(ds);
+        sql = string.Format(SqlStrings.GetTasks, sid);
+        var ds = Sql.GetDataSet(sql);
         ds.Tables[0].TableName = "TaskTable";
-        int i = 0;
-        foreach(DataRow row2 in ds.Tables["TaskTable"].Rows)
+        var i = 0;
+        foreach (DataRow row2 in ds.Tables["TaskTable"].Rows)
         {
-          string destColumn = "Sprint" + SID;
-          while (dataGridView1.Rows[i].Cells[destColumn].Value != null)
-          {
-            i++;
-          }
+          var destColumn = "Sprint" + sid;
+          while (dataGridView1.Rows[i].Cells[destColumn].Value != null) i++;
           dataGridView1.Rows.Add();
           dataGridView1.Rows[i].Cells[destColumn].Value = Convert.ToString(row2["TaskName"]);
         }
-
       }
-
-      //Get ID Number
-      sql = string.Format(@"
-SELECT MAX(SprintID)
-FROM Sprints;
-");
-      cmd = new SqlCommand();
-      cmd.Connection = Sql.Db;
-      cmd.CommandText = sql;
-      int id = (int)cmd.ExecuteScalar();
-      
-      columnCounter = id;
-
-
-      Sql.Db.Close();
+      var id = Sql.GetSingleInt(SqlStrings.GetSprintId);
+      _columnCounter = id;
     }
 
     //Add Sprint Button
-    private void addSprint_Click(object sender, EventArgs e)
+    private void AddSprintClick(object sender, EventArgs e)
     {
+      var sMonth = startMonth.Text;
+      var sDay = startDay.Text;
+      var sYear = startYear.Text;
+      var eMonth = endMonth.Text;
+      var eDay = endDay.Text;
+      var eYear = endYear.Text;
+      var startDate = sMonth + "/" + sDay + "/" + sYear;
+      var endDate = eMonth + "/" + eDay + "/" + eYear;
 
-      
-      string sql;
-
-      
-      /**** DB INFO END ****/
-
-      string sMonth = startMonth.Text;
-      string sDay = startDay.Text;
-      string sYear = startYear.Text;
-      string eMonth = endMonth.Text;
-      string eDay = endDay.Text;
-      string eYear = endYear.Text;
-      string startDate = sMonth + "/" + sDay + "/" + sYear;
-      string endDate = eMonth + "/" + eDay + "/" + eYear;
-
-      //Validate Date
-      DateTime sDate;
-      DateTime eDate;
-
-      if (DateTime.TryParse(startDate, out sDate) && DateTime.TryParse(endDate, out eDate))
-      {
+      if (DateTime.TryParse(startDate, out var sDate) && DateTime.TryParse(endDate, out var eDate))
         if (eDate.Date < sDate.Date)
         {
-          MessageBox.Show("End Date cannot be before Start Date", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+          MessageBox.Show(MessageBoxStrings.EndDateBeforeStartDate, MessageBoxStrings.ERROR, MessageBoxButtons.OK,
+            MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
         }
         else
         {
-          Sql.Db.Open(); // open connection to database
-
-          //Insert Sprint
-          sql = string.Format(@"
-INSERT INTO Sprints(StartDate, EndDate)
-VALUES ('{0}', '{1}')
-", sDate, eDate);
-
+          var sql = string.Format(SqlStrings.InsertSprintTable, sDate, eDate);
           Sql.ExecuteActionQuery(sql);
 
-          //Get ID Number
-          sql = string.Format(@"
-SELECT MAX(SprintID)
-FROM Sprints;
-");
-          SqlCommand cmd = new SqlCommand();
-          cmd.Connection = Sql.Db;
-          cmd.CommandText = sql;
-          int id = (int)cmd.ExecuteScalar();
+          var id = Sql.GetSingleInt(SqlStrings.GetSprintId);
           dataGridView1.Columns.Add("Sprint" + id, "Sprint ID: " + id + "\n" + startDate + "\n" + "-\n" + endDate);
-          
-          columnCounter = id;
 
-          int PID = getPID();
-
-          sql = string.Format(@"
-INSERT INTO ProjectSprints(Proj_ID, SprintID)
-VALUES ({0}, {1});
-", PID, id);
-
+          _columnCounter = id;
+          var pid = GetPid();
+          sql = string.Format(SqlStrings.InsertProjectSprintTable, pid, id);
           Sql.ExecuteActionQuery(sql);
-
-          Sql.Db.Close();
         }
-      }
 
-     else
+      else
       {
-        MessageBox.Show("Not a valid start/end date", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+        MessageBox.Show(MessageBoxStrings.InvalidStartEndDate, MessageBoxStrings.ERROR, MessageBoxButtons.OK, MessageBoxIcon.Exclamation,
+          MessageBoxDefaultButton.Button1);
       }
     }
 
-    private void selectProjectToolStripMenuItem_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+    private void SelectProjectToolStripMenuItemDropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
     {
-      //get the name of the drop down item that was clicked
-      string proj_name = e.ClickedItem.ToString();
-
-      FormCollection fc = Application.OpenForms;
-      bool isFound = false;
-      foreach (Form frm in fc)
-      {
-        if (frm.Name == "Main")
+      var projName = e.ClickedItem.ToString();
+      var fc = Application.OpenForms;
+      var isFound = false;
+      foreach (Form form in fc)
+        if (form.Name == "Main")
         {
-          frm.Focus();
+          form.Focus();
           isFound = true;
-          this.Hide();
+          Hide();
         }
-      }
 
       if (isFound == false)
       {
-        Dashboard frm = new Dashboard(memberNameToolStripMenuItem.Text, proj_name);
-        frm.Show();
-        this.Hide();
+        var form = new Dashboard(memberNameToolStripMenuItem.Text, projName);
+        form.Show();
+        Hide();
       }
+    }
 
-    }//End of addSprintClick
-
-        private void assignRolesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!Sql.isOwner(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text))  // THIS SQL NEEDS TO BE DONE
-            {
-
-                MessageBox.Show("Not an owner. Cannot edit.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
-
-            }
-            else
-            {
-                AssignRole frm = new AssignRole(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
-                frm.Show();
-            }
-           
-        }
-
-        private void assignTasksToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            AssignTask frm = new AssignTask(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
-            frm.Show();
-        }
-
-    private void timeLineToolStripMenuItem_Click(object sender, EventArgs e)
+    private void AssignRolesToolStripMenuItemClick(object sender, EventArgs e)
     {
-      TaskTree frm = new TaskTree(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
-      frm.Show();
-      this.Close();
+      if (!Sql.IsOwner(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text)
+      )
+      {
+        MessageBox.Show(MessageBoxStrings.NotOwner, MessageBoxStrings.ERROR, MessageBoxButtons.OK, MessageBoxIcon.Exclamation,
+          MessageBoxDefaultButton.Button1);
+      }
+      else
+      {
+        var form = new AssignRole(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
+        form.Show();
+      }
+    }
+
+    private void AssignTasksToolStripMenuItemClick(object sender, EventArgs e)
+    {
+      var form = new AssignTask(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
+      form.Show();
+    }
+
+    private void TimeLineToolStripMenuItemClick(object sender, EventArgs e)
+    {
+      var form = new TaskTree(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
+      form.Show();
+      Close();
     }
   }
 }

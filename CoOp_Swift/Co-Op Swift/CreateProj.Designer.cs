@@ -90,7 +90,7 @@
       this.projectName.Size = new System.Drawing.Size(270, 26);
       this.projectName.TabIndex = 6;
       this.projectName.Text = "Enter a name for your project";
-      this.projectName.MouseClick += new System.Windows.Forms.MouseEventHandler(this.projectName_MouseClick);
+      this.projectName.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ProjectNameMouseClick);
       // 
       // projectStartDate
       // 
@@ -118,7 +118,7 @@
       this.confirmContinue.TabIndex = 12;
       this.confirmContinue.Text = "Confirm";
       this.confirmContinue.UseVisualStyleBackColor = false;
-      this.confirmContinue.Click += new System.EventHandler(this.createProject_Click);
+      this.confirmContinue.Click += new System.EventHandler(this.CreateProjectClick);
       // 
       // cancel
       // 
@@ -130,7 +130,7 @@
       this.cancel.TabIndex = 13;
       this.cancel.Text = "Cancel";
       this.cancel.UseVisualStyleBackColor = false;
-      this.cancel.Click += new System.EventHandler(this.cancel_Click);
+      this.cancel.Click += new System.EventHandler(this.CancelClick);
       // 
       // label2
       // 
@@ -203,7 +203,7 @@
       this.descriptionBox.Size = new System.Drawing.Size(270, 26);
       this.descriptionBox.TabIndex = 21;
       this.descriptionBox.Text = "Enter a description of your project";
-      this.descriptionBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.descriptionBox_MouseClick);
+      this.descriptionBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.DescriptionBoxMouseClick);
       // 
       // label8
       // 
@@ -244,7 +244,7 @@
       this.Margin = new System.Windows.Forms.Padding(4);
       this.Name = "CreateProj";
       this.Text = "Create New Project";
-      this.Load += new System.EventHandler(this.Form3_Load);
+      this.Load += new System.EventHandler(this.Form3Load);
       this.ResumeLayout(false);
       this.PerformLayout();
 

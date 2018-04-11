@@ -12,17 +12,17 @@ namespace Co_Op_Swift
       InitializeComponent();
 
       //get all project related sprint ids
-      DataTable sprint_IDs = StoryTask.getProject_sprintIDs(projectName);
+      DataTable sprintIDs = StoryTask.GetProjectSprintIDs(projectName);
 
       //get tasks and put their names in the corresponding listbox
-      foreach (DataRow r in sprint_IDs.Rows)
+      foreach (DataRow r in sprintIDs.Rows)
       {
         //get all task ids from the sprint ids
-        DataTable task_IDs = StoryTask.getProject_taskIDs(int.Parse(r["SprintID"].ToString()));
+        DataTable taskIDs = StoryTask.GetProjectTaskIDs(int.Parse(r["SprintID"].ToString()));
 
         //retrieve and add tasks to their correct lists
-        foreach (DataRow row in task_IDs.Rows)
-          StoryTask.getTaskName(currentTasks, completedTasks, int.Parse(row["Task_ID"].ToString()));
+        foreach (DataRow row in taskIDs.Rows)
+          StoryTask.GetTaskName(currentTasks, completedTasks, int.Parse(row["Task_ID"].ToString()));
       }
 
       projectNameToolStripMenuItem.Text = projectName;
@@ -43,68 +43,68 @@ namespace Co_Op_Swift
       /***************************** this is for select a project drop down menu **********************************/
 
       //get all project ids associated with the user ids
-      DataTable proj_ids = Sql.getUserProjectIDs(Sql.getOwnerUserID(memberNameToolStripMenuItem.Text));
+      DataTable projIds = Sql.GetUserProjectIDs(Sql.GetOwnerUserId(memberNameToolStripMenuItem.Text));
 
-      string proj_name;
+      string projName;
 
       // get all project names associated with the project ids
-      foreach (DataRow row in proj_ids.Rows)
+      foreach (DataRow row in projIds.Rows)
       {
         //put project names in select project drop down menu
-        proj_name = Sql.getProjectName(int.Parse(row["Proj_ID"].ToString()));
-        selectProjectToolStripMenuItem.DropDownItems.Add(proj_name);
+        projName = Sql.GetProjectName(int.Parse(row["Proj_ID"].ToString()));
+        selectProjectToolStripMenuItem.DropDownItems.Add(projName);
       }
       /*************************************************************************************************************/
     
     }
 
-    private void dashboardToolStripMenuItem_Click(object sender, EventArgs e)
+    private void DashboardToolStripMenuItemClick(object sender, EventArgs e)
     {
       Dashboard frm = new Dashboard(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
       frm.Show();
       this.Close();
     }
 
-    private void ideaBoxToolStripMenuItem_Click(object sender, EventArgs e)
+    private void IdeaBoxToolStripMenuItemClick(object sender, EventArgs e)
     {
       IdeaBox frm = new IdeaBox(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
       frm.Show();
       this.Close();
     }
 
-    private void releasePlanToolStripMenuItem_Click(object sender, EventArgs e)
+    private void ReleasePlanToolStripMenuItemClick(object sender, EventArgs e)
     {
       ReleasePlan frm = new ReleasePlan(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
       frm.Show();
       this.Close();
     }
 
-    private void sprintPlanToolStripMenuItem_Click(object sender, EventArgs e)
+    private void SprintPlanToolStripMenuItemClick(object sender, EventArgs e)
     {
       SprintPlan frm = new SprintPlan(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
       frm.Show();
       this.Close();
     }
 
-    private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
+    private void LogoutToolStripMenuItemClick(object sender, EventArgs e)
     {
       Login frm2 = new Login();
       frm2.Show();
       this.Close();
     }
 
-    private void teamToolStripMenuItem_Click(object sender, EventArgs e)
+    private void TeamToolStripMenuItemClick(object sender, EventArgs e)
     {
       AddMembers frm = new AddMembers(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
       frm.Show();
     }
 
-    private void panel1_Paint(object sender, PaintEventArgs e)
+    private void Panel1Paint(object sender, PaintEventArgs e)
     {
 
     }
 
-    private void currentTasks_SelectedIndexChanged(object sender, EventArgs e)
+    private void CurrentTasksSelectedIndexChanged(object sender, EventArgs e)
     {
       int id, uid;
       string name;
@@ -116,20 +116,20 @@ namespace Co_Op_Swift
         userComments.Items.Clear();
 
         //get task
-        StoryTask.getTaskInfo(currentTasks.SelectedItem.ToString(), develop1, develop2, develop1Name, develop1Email, develop1Position,
+        StoryTask.GetTaskInfo(currentTasks.SelectedItem.ToString(), develop1, develop2, develop1Name, develop1Email, develop1Position,
                                                                                         develop2Name, develop2Email, develop2Position);
 
         //remove the selection of the item in the other box if one was selected
         if (completedTasks.SelectedItem != null)
           completedTasks.SetSelected(completedTasks.Items.IndexOf(completedTasks.SelectedItem), false);
 
-        DataTable commentIDs = StoryTask.getCommentID(StoryTask.getTaskID(currentTasks.SelectedItem.ToString()));
+        DataTable commentIDs = StoryTask.GetCommentId(StoryTask.GetTaskId(currentTasks.SelectedItem.ToString()));
 
         foreach (DataRow row in commentIDs.Rows)
         {
           id = int.Parse(row["CommentID"].ToString());
-          uid = StoryTask.getCommenter(id);
-          name = Sql.getFullName(uid);
+          uid = StoryTask.GetCommenter(id);
+          name = Sql.GetFullName(uid);
           userComments.Items.Add(name);
         }
 
@@ -142,7 +142,7 @@ namespace Co_Op_Swift
      
     }
 
-    private void hideTaskInfo_Click(object sender, EventArgs e)
+    private void HideTaskInfoClick(object sender, EventArgs e)
     {
       //remove the the selection from the listboxes(the highlight that shows an item was selected)
       if (currentTasks.SelectedItem != null)
@@ -161,9 +161,9 @@ namespace Co_Op_Swift
       hideTaskInfo.Visible = false;
     }
 
-    private void comment_Click(object sender, EventArgs e)
+    private void CommentClick(object sender, EventArgs e)
     {
-      string fullName = Sql.getFullName(Sql.getOwnerUserID(memberNameToolStripMenuItem.Text));
+      string fullName = Sql.GetFullName(Sql.GetOwnerUserId(memberNameToolStripMenuItem.Text));
       
       if (currentTasks.SelectedItem != null)
       {
@@ -177,31 +177,31 @@ namespace Co_Op_Swift
       }
     }
 
-    private void userComments_SelectedIndexChanged(object sender, EventArgs e)
+    private void UserCommentsSelectedIndexChanged(object sender, EventArgs e)
     {
       comments2.Visible = true;
       commentDetails.Visible = true;
-      int task_id;
-      DataTable comment_IDs;
+      int taskId;
+      DataTable commentIDs;
 
       //get the id of the selected task
       if (currentTasks.SelectedItem != null)
-        task_id = StoryTask.getTaskID(currentTasks.SelectedItem.ToString());
+        taskId = StoryTask.GetTaskId(currentTasks.SelectedItem.ToString());
       else
-        task_id = StoryTask.getTaskID(completedTasks.SelectedItem.ToString());
+        taskId = StoryTask.GetTaskId(completedTasks.SelectedItem.ToString());
 
       //get the id of the person whose name was selected from comments list
-      int userID = Sql.getOwnerUserID(Sql.getUsername(userComments.Text));
+      int userId = Sql.GetOwnerUserId(Sql.GetUsername(userComments.Text));
 
       //get the comment ids for the selected task
-      comment_IDs = StoryTask.getCommentID(task_id);
+      commentIDs = StoryTask.GetCommentId(taskId);
 
       //find the correct comment from the userID and commentIDs
-      StoryTask.loadCommentDetail(userID, comment_IDs, commentDetails);
+      StoryTask.LoadCommentDetail(userId, commentIDs, commentDetails);
 
     }
 
-    private void completedTasks_SelectedIndexChanged(object sender, EventArgs e)
+    private void CompletedTasksSelectedIndexChanged(object sender, EventArgs e)
     {
       int id, uid;
       string name;
@@ -211,20 +211,20 @@ namespace Co_Op_Swift
         userComments.Items.Clear();
 
         //get task
-        StoryTask.getTaskInfo(completedTasks.SelectedItem.ToString(), develop1, develop2, develop1Name, develop1Email, develop1Position,
+        StoryTask.GetTaskInfo(completedTasks.SelectedItem.ToString(), develop1, develop2, develop1Name, develop1Email, develop1Position,
                                                                                           develop2Name, develop2Email, develop2Position);
 
         //remove the selection of the item in the other box if one was selected
         if (currentTasks.SelectedItem != null)
           currentTasks.SetSelected(currentTasks.Items.IndexOf(currentTasks.SelectedItem), false);
 
-        DataTable commentIDs = StoryTask.getCommentID(StoryTask.getTaskID(completedTasks.SelectedItem.ToString()));
+        DataTable commentIDs = StoryTask.GetCommentId(StoryTask.GetTaskId(completedTasks.SelectedItem.ToString()));
 
         foreach (DataRow row in commentIDs.Rows)
         {
           id = int.Parse(row["CommentID"].ToString());
-          uid = StoryTask.getCommenter(id);
-          name = Sql.getFullName(uid);
+          uid = StoryTask.GetCommenter(id);
+          name = Sql.GetFullName(uid);
           userComments.Items.Add(name);
         }
 
@@ -236,13 +236,13 @@ namespace Co_Op_Swift
      
     }
 
-    private void completed_button_Click(object sender, EventArgs e)
+    private void CompletedButtonClick(object sender, EventArgs e)
     {
       //grab selected task
       string task = currentTasks.SelectedItem.ToString();
 
       //mark the task as completed in the TaskTable table
-      StoryTask.mark_task_as_complete(task);
+      StoryTask.MarkTaskAsComplete(task);
 
       bool isFound = false;
 
@@ -264,10 +264,10 @@ namespace Co_Op_Swift
 
     }
 
-    private void selectProjectToolStripMenuItem_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+    private void SelectProjectToolStripMenuItemDropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
     {
       //get the name of the drop down item that was clicked
-      string proj_name = e.ClickedItem.ToString();
+      string projName = e.ClickedItem.ToString();
 
       FormCollection fc = Application.OpenForms;
       bool isFound = false;
@@ -283,16 +283,16 @@ namespace Co_Op_Swift
 
       if (isFound == false)
       {
-        Dashboard frm = new Dashboard(memberNameToolStripMenuItem.Text, proj_name);
+        Dashboard frm = new Dashboard(memberNameToolStripMenuItem.Text, projName);
         frm.Show();
         this.Hide();
       }
 
     }
 
-        private void assignRolesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AssignRolesToolStripMenuItemClick(object sender, EventArgs e)
         {
-            if (!Sql.isOwner(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text))  // THIS SQL NEEDS TO BE DONE
+            if (!Sql.IsOwner(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text))  // THIS SQL NEEDS TO BE DONE
             {
 
                 MessageBox.Show("Not an owner. Cannot edit.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
@@ -305,7 +305,7 @@ namespace Co_Op_Swift
             }
         }
 
-        private void assignTasksToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AssignTasksToolStripMenuItemClick(object sender, EventArgs e)
         {
             AssignTask frm = new AssignTask(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
             frm.Show();

@@ -86,7 +86,6 @@
     <Compile Include="CreateProj.Designer.cs">
       <DependentUpon>CreateProj.cs</DependentUpon>
     </Compile>
-    <Compile Include="ExecuteSQL.cs" />
     <Compile Include="AddMembers.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,6 +110,11 @@
     <Compile Include="Dashboard.Designer.cs">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="Resources\MessageBoxStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MessageBoxStrings.resx</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegForm.cs">
@@ -122,16 +126,16 @@
     <Compile Include="ReleasePlan.Designer.cs">
       <DependentUpon>ReleasePlan.cs</DependentUpon>
     </Compile>
-    <Compile Include="ResetForm1.cs">
+    <Compile Include="SecurityQuestion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ResetForm2.cs">
+    <Compile Include="PasswordReset.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ResetForm2.Designer.cs">
-      <DependentUpon>ResetForm2.cs</DependentUpon>
+      <DependentUpon>PasswordReset.cs</DependentUpon>
     </Compile>
-    <Compile Include="SqlStrings.Designer.cs">
+    <Compile Include="Resources\SqlStrings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SqlStrings.resx</DependentUpon>
@@ -180,6 +184,10 @@
     <EmbeddedResource Include="Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\MessageBoxStrings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MessageBoxStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -196,13 +204,13 @@
     <EmbeddedResource Include="ReleasePlan.resx">
       <DependentUpon>ReleasePlan.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ResetForm1.resx">
-      <DependentUpon>ResetForm1.cs</DependentUpon>
+    <EmbeddedResource Include="SecurityQuestion.resx">
+      <DependentUpon>SecurityQuestion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ResetForm2.resx">
-      <DependentUpon>ResetForm2.cs</DependentUpon>
+      <DependentUpon>PasswordReset.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SqlStrings.resx">
+    <EmbeddedResource Include="Resources\SqlStrings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>SqlStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
@@ -226,7 +234,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">

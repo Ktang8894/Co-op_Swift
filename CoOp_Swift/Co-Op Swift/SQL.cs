@@ -3,17 +3,59 @@ using System.Configuration;
 using System.Data;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using Co_Op_Swift.Resources;
 
 namespace Co_Op_Swift
 {
   public class Sql
   {
-    //credentials and info to connect to Azure database
+    /* Begin Refactoring Additions */
     public static string ConnectionInfo = ConfigurationManager.AppSettings["ConnectionString"];
     public static SqlConnection Db = new SqlConnection(ConnectionInfo);
-    //ExecuteActionQuery
+
+    public static int GetSingleInt(string sql)
+    {
+      var cmd = new SqlCommand
+      {
+        Connection = Db,
+        CommandText = sql
+      };
+      Db.Open();
+      var ret = (int)cmd.ExecuteScalar();
+      Db.Close();
+      return ret;
+    }
+
+    public static string GetSingleString(string sql)
+    {
+      var cmd = new SqlCommand
+      {
+        Connection = Db,
+        CommandText = sql
+      };
+      Db.Open();
+      var ret = (string)cmd.ExecuteScalar();
+      Db.Close();
+      return ret;
+    }
+
+    public static DataSet GetDataSet(string sql)
+    {
+      var cmd = new SqlCommand { Connection = Db };
+      var adapter = new SqlDataAdapter(cmd);
+      var ds = new DataSet();
+      cmd.CommandText = sql;
+      Db.Open();
+      adapter.Fill(ds);
+      Db.Close();
+      return ds;
+    }
+    /* End Refactoring Additions */
+    
+
     public static void ExecuteActionQuery(string sql)
     {
+      Db.Open();
       SqlCommand cmd = null;
       try
       {
@@ -27,12 +69,11 @@ namespace Co_Op_Swift
       finally
       {
         if (cmd == null)
-          MessageBox.Show("ExecuteActionQuery failed to execute query");
+          MessageBox.Show(MessageBoxStrings.FailedToExecuteActionQuery);
       }
+      Db.Close();
     }
 
-
-    //method that executes a login query
     public static bool ExecuteLogin(string username, string userPass)
     {
       SqlConnection db = null;
@@ -80,17 +121,14 @@ namespace Co_Op_Swift
         }
       }
       return pass;
-    }// end of ExecuteLogin
+    }
 
-
-
-    //method that executes a registration query
-    public static void ExecuteRegistration(string username, string password, string LastName, string FirstName, string answer)
+    public static void ExecuteRegistration(string username, string password, string lastName, string firstName, string answer)
     {
       SqlConnection db = null;
       SqlCommand cmd = null;
-      int QID = 1; //Temp
-      int PID = 1; //Temp
+      int qid = 1; //Temp
+      int pid = 1; //Temp
 
       try
       {
@@ -114,7 +152,7 @@ namespace Co_Op_Swift
                           INSERT INTO
                           UserAccounts(UserName, Password, LastName, FirstName, QID, Answer, PID)
                           Values('{0}', '{1}', '{2}', '{3}', {4}, '{5}', {6});
-                          ", username, password, LastName, FirstName, QID, answer, PID);
+                          ", username, password, lastName, firstName, qid, answer, pid);
 
           ExecuteActionQuery(sql);
         }
@@ -129,11 +167,8 @@ namespace Co_Op_Swift
           db.Close();
       }
 
-    }// end ExecuteRegistration
+    }
 
-
-
-    //method that executes the resetting of a users password
     public static void ExecutePasswordReset(string username, string password)
     {
       SqlConnection db = null;
@@ -157,11 +192,8 @@ namespace Co_Op_Swift
         if (db != null && db.State == ConnectionState.Open)
           db.Close();
       }
-    }// end ExecutePasswordReset
+    }
 
-
-
-    // method to check if user exists in database
     public static int CheckUserExsistence(string username)
     {
       SqlConnection db = null;
@@ -196,11 +228,9 @@ namespace Co_Op_Swift
       }
 
       return count;
-    }// end CheckUserExisistence
+    }
 
-
-    //method to get the ID of the owner(creator) of the project
-    public static int getOwnerUserID(string username)
+    public static int GetOwnerUserId(string username)
     {
       SqlConnection db = null;
       SqlCommand cmd = null;
@@ -234,12 +264,9 @@ namespace Co_Op_Swift
       }
 
       return id;
-    }// end getOwnerID
+    }
 
-
-
-    //method to get the ID of the owner(creator) of the project
-    public static int getProjectID(int ownerID)
+    public static int GetProjectId(int ownerId)
     {
       SqlConnection db = null;
       int id = 0;
@@ -255,7 +282,7 @@ namespace Co_Op_Swift
                                     FROM Projects
                                     WHERE OwnerID = {0};
                                     ",
-                                    ownerID);
+                                    ownerId);
 
         SqlCommand cmd = new SqlCommand(sql, db);
 
@@ -272,11 +299,9 @@ namespace Co_Op_Swift
       }
 
       return id;
-    }// end getOwnerID
+    }
 
-
-    // method to create project in database
-    public static void ExecuteProjectCreation(int ownerID, string title, string releaseEndDate, int timezoneID,
+    public static void ExecuteProjectCreation(int ownerId, string title, string releaseEndDate, int timezoneId,
       string projectStartDate, string description, int isPrivate)
     {
       SqlConnection db = null;
@@ -291,7 +316,7 @@ namespace Co_Op_Swift
                           INSERT INTO
                           Projects(OwnerID, Title, Description, Private, TID)
                           Values({0}, '{1}', '{2}', {3}, {4});
-                          ", ownerID, title, description, isPrivate, timezoneID);
+                          ", ownerId, title, description, isPrivate, timezoneId);
 
         ExecuteActionQuery(sql);
       }
@@ -306,10 +331,10 @@ namespace Co_Op_Swift
       }
 
      // insertSprintInfo(sprintStartDate);
-      int projID = getProjectID(title);
-      addUserToProject(ownerID,projID,1);
+      int projId = GetProjectId(title);
+      AddUserToProject(ownerId,projId,1);
 
-    }// end ExecuteProjectCreation\
+    }
 
 
     //static public void insertSprintInfo(string startDate)
@@ -342,9 +367,7 @@ namespace Co_Op_Swift
     //  }
     //}// end insertSprintInfo
 
-
-    //method loads the user's securty question into onto 'ResetForm1'
-    public static void loadUserSecurityQuestion(string username, TextBox textBox)
+    public static void LoadUserSecurityQuestion(string username, TextBox textBox)
     {
       SqlConnection db = null;
       SqlCommand    cmd = null;
@@ -403,12 +426,9 @@ namespace Co_Op_Swift
         MessageBox.Show("Query didn't return any results");
       }
 
-    }//end loadUserSecurityQuestion
+    }
 
-    
-
-    // method that checks if the user's answer to security question matches the one on file
-    public static bool checkAnswerWithDatabase(string username, string answer)
+    public static bool CheckAnswerWithDatabase(string username, string answer)
     {
       bool         isCorrect = false;
       SqlConnection   db = null;
@@ -455,11 +475,9 @@ namespace Co_Op_Swift
 
       return isCorrect;
 
-    }//end checkAnswerWithDatabase
+    }
 
-
-    //method that fills the listboxes in the 'addMembers' form
-    public static DataTable getProjectMembersForAddMembers(int projID)
+    public static DataTable GetProjectMembersForAddMembers(int projId)
     {
       SqlConnection db = null;
       SqlCommand    cmd = null;
@@ -470,7 +488,7 @@ namespace Co_Op_Swift
         db = new SqlConnection(ConnectionInfo);
         db.Open(); // open connection to data
 
-        string sql = string.Format("select * FROM ProjectMembers WHERE Proj_ID = {0}", projID);
+        string sql = string.Format("select * FROM ProjectMembers WHERE Proj_ID = {0}", projId);
 
         cmd = new SqlCommand(sql, db);
 
@@ -511,25 +529,25 @@ namespace Co_Op_Swift
 
 
     //method that fills the listboxes in the 'addMembers' form
-    public static void getMembers(ListBox currentUsers, ListBox teamMembers, string username, bool isCreating, int projID)
+    public static void GetMembers(ListBox currentUsers, ListBox teamMembers, string username, bool isCreating, int projId)
     {
       SqlConnection db = null;
       DataTable t ;
-      string curr_name, prev_name = "" ;
+      string currName, prevName = "" ;
      
       //get project members
       if (!isCreating)
       {
-        t = getProjectMembersForAddMembers(projID);
+        t = GetProjectMembersForAddMembers(projId);
 
         foreach (DataRow s in t.Rows)
         {
-          curr_name = Sql.getFullName(int.Parse(s["UID"].ToString()));
+          currName = Sql.GetFullName(int.Parse(s["UID"].ToString()));
 
-          if (!curr_name.Equals(prev_name))
+          if (!currName.Equals(prevName))
           {
-            teamMembers.Items.Add(curr_name);
-            prev_name = curr_name;
+            teamMembers.Items.Add(currName);
+            prevName = currName;
           }
 
         }
@@ -562,7 +580,7 @@ namespace Co_Op_Swift
 
         if (!fullname.Equals(" "))
         {
-          string userFullname = Sql.getFullName(Sql.getOwnerUserID(username));
+          string userFullname = Sql.GetFullName(Sql.GetOwnerUserId(username));
           if (fullname.Equals(userFullname))
             teamMembers.Items.Add(fullname);
 
@@ -578,7 +596,7 @@ namespace Co_Op_Swift
 
 
     //method to get the username of a user
-    public static string getUsername(string fullname)
+    public static string GetUsername(string fullname)
     {
       string[] names = fullname.Split(' ');
       string firstName = names[0];
@@ -614,7 +632,7 @@ namespace Co_Op_Swift
 
 
     //method to add user to project
-    public static void addUserToProject(int userID, int projID, int position)
+    public static void AddUserToProject(int userId, int projId, int position)
     {
 
       SqlConnection db = null;
@@ -627,7 +645,7 @@ namespace Co_Op_Swift
                         INSERT INTO
                         ProjectMembers(Proj_ID, UID,PID)
                         Values({0}, {1}, {2});
-                        ", projID, userID,position);
+                        ", projId, userId,position);
 
       ExecuteActionQuery(sql);
 
@@ -637,7 +655,7 @@ namespace Co_Op_Swift
 
 
     //method to get the ID of a project
-    public static int getProjectID(string projName)
+    public static int GetProjectId(string projName)
     {
       SqlConnection db = null;
 
@@ -663,7 +681,7 @@ namespace Co_Op_Swift
 
 
     //method to add user to project
-    public static void removeUserFromProject(int userID, int projID)
+    public static void RemoveUserFromProject(int userId, int projId)
     {
 
       SqlConnection db = null;
@@ -676,7 +694,7 @@ namespace Co_Op_Swift
                         DELETE FROM
                         ProjectMembers
                         WHERE Proj_ID = {0} AND UID = {1};
-                        ", projID, userID);
+                        ", projId, userId);
 
       ExecuteActionQuery(sql);
 
@@ -686,7 +704,7 @@ namespace Co_Op_Swift
 
 
     //metod to get the ID of a timezone
-    public static int getTimeZoneID(string timezone)
+    public static int GetTimeZoneId(string timezone)
     {
       SqlConnection db = null;
 
@@ -712,7 +730,7 @@ namespace Co_Op_Swift
 
 
     //method to add timezones to listbox in 'create project' form
-    public static void addTimeZonesToForm(ListBox cp)
+    public static void AddTimeZonesToForm(ListBox cp)
     {
       SqlConnection db = null;
 
@@ -746,7 +764,7 @@ namespace Co_Op_Swift
     }//end addTimeZonesToForm
 
 
-    public static void getDevelopers(ListBox currentUsers, ListBox teamMembers, string username)
+    public static void GetDevelopers(ListBox currentUsers, ListBox teamMembers, string username)
     {
       string usersFullName;
       SqlConnection db = null;
@@ -794,7 +812,7 @@ namespace Co_Op_Swift
     }//end of getDevelopers
 
 
-        public static bool isManager(string username, string projName)
+        public static bool IsManager(string username, string projName)
         {
             //check if they are a manager
             SqlConnection db = null;
@@ -811,7 +829,7 @@ namespace Co_Op_Swift
                                   WHERE UserAccounts.UserName = '{0}'
                                   
                                   
-                                  ", username, Sql.getProjectID(projName));
+                                  ", username, Sql.GetProjectId(projName));
             cmd = new SqlCommand();
             cmd.Connection = db;
             cmd.CommandText = sql;
@@ -824,7 +842,7 @@ namespace Co_Op_Swift
         }
 
 
-        public static bool isOwner(string username, string proj)
+        public static bool IsOwner(string username, string proj)
         {
             SqlConnection db = null;
             SqlCommand cmd;
@@ -840,7 +858,7 @@ namespace Co_Op_Swift
                                   WHERE UserAccounts.UserName = '{0}'
                                   
                                   
-                                  ", username, Sql.getProjectID(proj));
+                                  ", username, Sql.GetProjectId(proj));
             cmd = new SqlCommand();
             cmd.Connection = db;
             cmd.CommandText = sql;
@@ -849,7 +867,7 @@ namespace Co_Op_Swift
             db.Close();
             return id.Equals("Project Owner");
         }
-        public static void getProjectMembers(ListBox teamMembers, string username, string proj)
+        public static void GetProjectMembers(ListBox teamMembers, string username, string proj)
     {
             //String usersFullName;
             SqlConnection db = null;
@@ -862,7 +880,7 @@ namespace Co_Op_Swift
 
             sql = string.Format(@"select * FROM UserAccounts 
 inner join ProjectMembers  on UserAccounts.UID = ProjectMembers.UID 
-where ProjectMembers.Proj_ID ='{0}'", Sql.getProjectID(proj));
+where ProjectMembers.Proj_ID ='{0}'", Sql.GetProjectId(proj));
 
             cmd = new SqlCommand();
             cmd.Connection = db;
@@ -911,7 +929,7 @@ INNER JOIN UserAccounts on UserAccounts.UID = ProjectMembers.UID
 where UserAccounts.UID = '{1}' and ProjectMembers.Proj_ID = {2}
 
 ",
-              role, userid, Sql.getProjectID(proj) //and ProjectMembers.Proj_ID ='{2}'
+              role, userid, Sql.GetProjectId(proj) //and ProjectMembers.Proj_ID ='{2}'
                                                      //username,
               );
 
@@ -921,7 +939,7 @@ where UserAccounts.UID = '{1}' and ProjectMembers.Proj_ID = {2}
         } //end of change role button
 
 
-        public static void getTasks(ComboBox tasks, string proj_id)
+        public static void GetTasks(ComboBox tasks, string projId)
         {
             //String usersFullName;
             SqlConnection db = null;
@@ -937,7 +955,7 @@ INNER JOIN SprintTasks on TaskTable.Task_ID = SprintTasks.Task_ID
 INNER JOIN Projects on Projects.TID = SprintTasks.Task_ID
 INNER JOIN ProjectSprints on ProjectSprints.SprintID = SprintTasks.SprintID
 where ProjectSprints.Proj_ID = {0}
-            ", Sql.getProjectID(proj_id));
+            ", Sql.GetProjectId(projId));
 
             cmd = new SqlCommand();
             cmd.Connection = db;
@@ -969,7 +987,7 @@ where ProjectSprints.Proj_ID = {0}
         }//end of getTasks
 
 
-        public static string getPosition(int username, string projID)
+        public static string GetPosition(int username, string projId)
         {
             SqlConnection db = null;
 
@@ -985,7 +1003,7 @@ where ProjectSprints.Proj_ID = {0}
                                   WHERE UserAccounts.UID = '{0}'
                                   AND ProjectMembers.Proj_ID = {1}
                                   ",
-                                        username, Sql.getProjectID(projID));
+                                        username, Sql.GetProjectId(projId));
             cmd = new SqlCommand();
             cmd.Connection = db;
             cmd.CommandText = sql;
@@ -1006,7 +1024,7 @@ where ProjectSprints.Proj_ID = {0}
 
 
     //method to get the fullname of a user
-    public static string getFullName(int userID)
+    public static string GetFullName(int userId)
     {
       //String usersFullName;
       SqlConnection db = null;
@@ -1017,7 +1035,7 @@ where ProjectSprints.Proj_ID = {0}
       string sql;
       SqlCommand cmd;
 
-      sql = string.Format("Select * from userAccounts WHERE UID = {0}",userID);
+      sql = string.Format("Select * from userAccounts WHERE UID = {0}",userId);
 
       cmd = new SqlCommand();
       cmd.Connection = db;
@@ -1037,7 +1055,7 @@ where ProjectSprints.Proj_ID = {0}
       return fullname;
     }
 
-    public static void getProjectNames(ListBox box)
+    public static void GetProjectNames(ListBox box)
     { 
       SqlConnection db = null;
       db = new SqlConnection(ConnectionInfo);
@@ -1067,7 +1085,7 @@ where ProjectSprints.Proj_ID = {0}
     }
 
 
-    public static string getProjectName(int project_id)
+    public static string GetProjectName(int projectId)
     {
       SqlConnection db = null;
       db = new SqlConnection(ConnectionInfo);
@@ -1076,7 +1094,7 @@ where ProjectSprints.Proj_ID = {0}
       string sql;
       SqlCommand cmd;
 
-      sql = string.Format("select Title FROM Projects WHERE Proj_ID = {0}", project_id);
+      sql = string.Format("select Title FROM Projects WHERE Proj_ID = {0}", projectId);
 
       cmd = new SqlCommand();
       cmd.Connection = db;
@@ -1095,7 +1113,7 @@ where ProjectSprints.Proj_ID = {0}
     }
 
 
-    public static void getProjUsers(ListBox box)
+    public static void GetProjUsers(ListBox box)
     { 
       SqlConnection db = null;
       db = new SqlConnection(ConnectionInfo);
@@ -1119,7 +1137,7 @@ where ProjectSprints.Proj_ID = {0}
 
       foreach (DataRow row in dt.Rows)
       {
-        box.Items.Add(Sql.getFullName(int.Parse(row["UID"].ToString())) + "----->" + row["Proj_ID"].ToString());
+        box.Items.Add(Sql.GetFullName(int.Parse(row["UID"].ToString())) + "----->" + row["Proj_ID"].ToString());
       }
       db.Close();
     }
@@ -1138,7 +1156,7 @@ where ProjectSprints.Proj_ID = {0}
                       INSERT INTO
                       Ideas(UID, IdeaName, IdeaDetail)
                       Values('{0}', '{1}', '{2}');
-                      ", Sql.getOwnerUserID(username), name, desc);
+                      ", Sql.GetOwnerUserId(username), name, desc);
 
         ExecuteActionQuery(sql);
 
@@ -1151,7 +1169,7 @@ where ProjectSprints.Proj_ID = {0}
 
     }// end ExecuteRegistration
 
-    public static void getStories(ListBox currentUsers,  string username, int projID)
+    public static void GetStories(ListBox currentUsers,  string username, int projId)
     {
         SqlConnection db = null;
             
@@ -1166,7 +1184,7 @@ where ProjectSprints.Proj_ID = {0}
         
         sql = string.Format(@"select * FROM Ideas
                               INNER JOIN ProjectIdeas on ProjectIdeas.IdeaID = Ideas.IdeaID
-                              where ProjectIdeas.Proj_ID = '{0}'", projID);
+                              where ProjectIdeas.Proj_ID = '{0}'", projId);
                               
         cmd = new SqlCommand();
         cmd.Connection = db;
@@ -1196,7 +1214,7 @@ where ProjectSprints.Proj_ID = {0}
 
     }//end of getMembers
 
-    public static string getStoryDesc(string name,string proj)
+    public static string GetStoryDesc(string name,string proj)
     {
 
         SqlConnection db = null;
@@ -1210,7 +1228,7 @@ where ProjectSprints.Proj_ID = {0}
                               FROM Ideas join ProjectIdeas on ProjectIdeas.IdeaID = Ideas.IdeaID
                               WHERE IdeaName = '{0}' and ProjectIdeas.Proj_ID = {1};
                               ",
-                                    name,Sql.getProjectID(proj));
+                                    name,Sql.GetProjectId(proj));
 
         SqlCommand cmd = new SqlCommand();
         cmd.Connection = db;
@@ -1223,7 +1241,7 @@ where ProjectSprints.Proj_ID = {0}
     }// end getOwnerID
 
 
-    public static int getIdeasID(string name)
+    public static int GetIdeasId(string name)
     {
 
         SqlConnection db = null;
@@ -1250,7 +1268,7 @@ where ProjectSprints.Proj_ID = {0}
     }// end getOwnerID
 
 
-    public static void acceptStory(string projName,string ideaname)
+    public static void AcceptStory(string projName,string ideaname)
     {
         SqlConnection db = null;
         //SqlTransaction tx = null;
@@ -1264,7 +1282,7 @@ where ProjectSprints.Proj_ID = {0}
                       INSERT INTO
                       ProjectIdeas(Proj_ID, IdeaID)
                       Values('{0}', '{1}');
-                      ", Sql.getProjectID(projName),Sql.getIdeasID(ideaname));
+                      ", Sql.GetProjectId(projName),Sql.GetIdeasId(ideaname));
 
         ExecuteActionQuery(sql);
 
@@ -1276,7 +1294,7 @@ where ProjectSprints.Proj_ID = {0}
         db.Close(); // close database connection
     }
 
-    public static void getIdeasFromProject(string name,int proj,ListBox items)
+    public static void GetIdeasFromProject(string name,int proj,ListBox items)
     {
 
         SqlConnection db = null;
@@ -1315,7 +1333,7 @@ where ProjectSprints.Proj_ID = {0}
      
 
     //method to check if a user is in a project
-    public static int isInProject(int uid)
+    public static int IsInProject(int uid)
     {
       SqlConnection db = null;
       SqlCommand cmd;
@@ -1347,7 +1365,7 @@ where ProjectSprints.Proj_ID = {0}
 
 
     //method to get the position of a user
-    public static string getUserPosition(int pid)
+    public static string GetUserPosition(int pid)
     {
       SqlConnection db = null;
 
@@ -1414,7 +1432,7 @@ where ProjectSprints.Proj_ID = {0}
         } //end of change task button
 
 
-        public static void getUndoneTask(ComboBox teamMembers, string username, string proj)
+        public static void GetUndoneTask(ComboBox teamMembers, string username, string proj)
         {
             //String usersFullName;
             SqlConnection db = null;
@@ -1429,7 +1447,7 @@ where ProjectSprints.Proj_ID = {0}
               string sql = string.Format(@"select * FROM TaskTable 
                                           
                                           where TaskTable.PID ='{0}'
-                                          ", Sql.getProjectID(proj));
+                                          ", Sql.GetProjectId(proj));
 
               cmd.Connection = db;
               cmd.CommandText = sql;
@@ -1470,7 +1488,7 @@ where ProjectSprints.Proj_ID = {0}
 
         
 
-        public static void getUserTask(ListBox teamMembers, int userid, string proj)
+        public static void GetUserTask(ListBox teamMembers, int userid, string proj)
         {
             //String usersFullName;
             SqlConnection db = null;
@@ -1485,7 +1503,7 @@ where ProjectSprints.Proj_ID = {0}
               string sql = string.Format(@"select * FROM TaskTable 
                                   join UserAccounts  on UserAccounts.UID = TaskTable.UID 
                                   TaskTable.UID = '{1}'
-", Sql.getProjectID(proj),userid);
+", Sql.GetProjectId(proj),userid);
 
               cmd.Connection = db;
               cmd.CommandText = sql;
@@ -1525,7 +1543,7 @@ where ProjectSprints.Proj_ID = {0}
 
 
         //method to retrieve the timezones
-        public static void getTimeZones(ComboBox timeBox)
+        public static void GetTimeZones(ComboBox timeBox)
         {
           SqlConnection db = null;
           DataSet ds = new DataSet();
@@ -1567,7 +1585,7 @@ where ProjectSprints.Proj_ID = {0}
         
 
         //method to get the description of a project
-        public static void getProjectDescription(string project_name, TextBox description_box)
+        public static void GetProjectDescription(string projectName, TextBox descriptionBox)
         {
 
           SqlConnection db = null;
@@ -1580,7 +1598,7 @@ where ProjectSprints.Proj_ID = {0}
             db.Open(); // open connection to database
 
             //CHECK IF USERNAME EXISTS
-            string sql = string.Format(@"SELECT * FROM Projects WHERE Title = '{0}' ", project_name);
+            string sql = string.Format(@"SELECT * FROM Projects WHERE Title = '{0}' ", projectName);
 
             cmd.Connection = db;
             cmd.CommandText = sql;
@@ -1598,7 +1616,7 @@ where ProjectSprints.Proj_ID = {0}
             DataTable dt = ds.Tables["Table"];
             DataRow row = dt.Rows[0];
 
-            description_box.Text = row["Description"].ToString();
+            descriptionBox.Text = row["Description"].ToString();
           }
 
         }//end getProjectDescription
@@ -1606,7 +1624,7 @@ where ProjectSprints.Proj_ID = {0}
 
 
         //method to check if a project name is already taken
-        public static bool isNameUnique(string name)
+        public static bool IsNameUnique(string name)
         {
           bool isTrue = false;
           SqlConnection db = null;
@@ -1644,7 +1662,7 @@ where ProjectSprints.Proj_ID = {0}
           return isTrue;
         }//end isNameUnique
 
-        public static int getUserID(string firstname, string lastname)
+        public static int GetUserId(string firstname, string lastname)
         {
             SqlConnection db = null;
             int id = 0;
@@ -1680,7 +1698,7 @@ where ProjectSprints.Proj_ID = {0}
 
 
         //method to get the id of a comment
-        public static DataTable getUserProjectIDs(int userID)
+        public static DataTable GetUserProjectIDs(int userId)
         {
           SqlConnection db = null;
 
@@ -1692,7 +1710,7 @@ where ProjectSprints.Proj_ID = {0}
                                   SELECT Proj_ID
                                   FROM ProjectMembers
                                   WHERE UID = {0};
-                                  ", userID);
+                                  ", userId);
 
           SqlCommand cmd = new SqlCommand();
           cmd.Connection = db;

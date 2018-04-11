@@ -46,7 +46,7 @@
       this.memberLBox.Name = "memberLBox";
       this.memberLBox.Size = new System.Drawing.Size(162, 116);
       this.memberLBox.TabIndex = 0;
-      this.memberLBox.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+      this.memberLBox.SelectedIndexChanged += new System.EventHandler(this.ListBox1SelectedIndexChanged);
       // 
       // roleCB
       // 
@@ -75,7 +75,7 @@
       this.button1.TabIndex = 2;
       this.button1.Text = "Change";
       this.button1.UseVisualStyleBackColor = false;
-      this.button1.Click += new System.EventHandler(this.button1_Click);
+      this.button1.Click += new System.EventHandler(this.Button1Click);
       // 
       // label1
       // 

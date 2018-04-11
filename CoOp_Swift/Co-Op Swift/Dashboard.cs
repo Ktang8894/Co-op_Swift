@@ -46,21 +46,21 @@ namespace Co_Op_Swift
 
 
         //get the project description for the user's project
-        Sql.getProjectDescription(projectName, projectDescriptionTB);
+        Sql.GetProjectDescription(projectName, projectDescriptionTB);
 
         /***************************** this is for select a project drop down menu **********************************/
 
         //get all project ids associated with the user ids
-        DataTable proj_ids = Sql.getUserProjectIDs(Sql.getOwnerUserID(memberNameToolStripMenuItem.Text));
+        DataTable projIds = Sql.GetUserProjectIDs(Sql.GetOwnerUserId(memberNameToolStripMenuItem.Text));
 
-        string proj_name;
+        string projName;
 
         // get all project names associated with the project ids
-        foreach (DataRow row in proj_ids.Rows)
+        foreach (DataRow row in projIds.Rows)
         {
           //put project names in select project drop down menu
-          proj_name = Sql.getProjectName(int.Parse(row["Proj_ID"].ToString()));
-          selectProjectToolStripMenuItem.DropDownItems.Add(proj_name);
+          projName = Sql.GetProjectName(int.Parse(row["Proj_ID"].ToString()));
+          selectProjectToolStripMenuItem.DropDownItems.Add(projName);
         }
         /*************************************************************************************************************/
       }
@@ -91,24 +91,24 @@ namespace Co_Op_Swift
    
     }
 
-    private void Form1_Load(object sender, EventArgs e)
+    private void Form1Load(object sender, EventArgs e)
     {
         if(!projectNameToolStripMenuItem.Text.Equals("Project"))
-            Sql.getStories(taskNameLB, memberNameToolStripMenuItem.Text, Sql.getProjectID(projectNameToolStripMenuItem.Text));
+            Sql.GetStories(taskNameLB, memberNameToolStripMenuItem.Text, Sql.GetProjectId(projectNameToolStripMenuItem.Text));
 
     }
 
-    private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+    private void MenuStrip1ItemClicked(object sender, ToolStripItemClickedEventArgs e)
     {
 
     }
 
-    private void projectNameToolStripMenuItem_Click(object sender, EventArgs e)
+    private void ProjectNameToolStripMenuItemClick(object sender, EventArgs e)
     {
 
     }
 
-    private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
+    private void LogoutToolStripMenuItemClick(object sender, EventArgs e)
     {
       Login frm2 = new Login();
       frm2.Show();
@@ -116,12 +116,12 @@ namespace Co_Op_Swift
 
     }
 
-    private void menuStrip2_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+    private void MenuStrip2ItemClicked(object sender, ToolStripItemClickedEventArgs e)
     {
 
     }
 
-    private void createToolStripMenuItem_Click(object sender, EventArgs e)
+    private void CreateToolStripMenuItemClick(object sender, EventArgs e)
     {
       // create "create project" form and open it
       CreateProj frm3 = new CreateProj(memberNameToolStripMenuItem.Text);
@@ -129,7 +129,7 @@ namespace Co_Op_Swift
             
     }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void TextBox1TextChanged(object sender, EventArgs e)
         {
             const int padding = 3;
             // get number of lines (first line is 0, so add 1)
@@ -140,7 +140,7 @@ namespace Co_Op_Swift
             this.projectDescriptionTB.Height = this.projectDescriptionTB.Font.Height * numLines + padding + border;
         }
 
-        private void projectDescriptionEditButton_Click(object sender, EventArgs e)
+        private void ProjectDescriptionEditButtonClick(object sender, EventArgs e)
         {
             if(projectDescriptionTB.Enabled == false)
             {
@@ -152,19 +152,19 @@ namespace Co_Op_Swift
             }
         }
 
-        private void teamToolStripMenuItem_Click(object sender, EventArgs e)
+        private void TeamToolStripMenuItemClick(object sender, EventArgs e)
         {
           AddMembers frm = new AddMembers(memberNameToolStripMenuItem.Text,projectNameToolStripMenuItem.Text);
           frm.Show();
 
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        private void TextBox2TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1Click(object sender, EventArgs e)
         {
             if (releaseTextBox.Enabled == false)
             {
@@ -176,7 +176,7 @@ namespace Co_Op_Swift
             }
         }
 
-        private void textBox1_TextChanged_1(object sender, EventArgs e)
+        private void TextBox1TextChanged1(object sender, EventArgs e)
         {
             const int padding = 3;
             // get number of lines (first line is 0, so add 1)
@@ -187,7 +187,7 @@ namespace Co_Op_Swift
             this.releaseTextBox.Height = this.releaseTextBox.Font.Height * numLines + padding + border;
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Button2Click(object sender, EventArgs e)
         {
             if (doneTextBox.Enabled == false)
             {
@@ -199,7 +199,7 @@ namespace Co_Op_Swift
             }
         }
 
-        private void doneTextBox_TextChanged(object sender, EventArgs e)
+        private void DoneTextBoxTextChanged(object sender, EventArgs e)
         {
             const int padding = 3;
             // get number of lines (first line is 0, so add 1)
@@ -210,38 +210,38 @@ namespace Co_Op_Swift
             this.doneTextBox.Height = this.doneTextBox.Font.Height * numLines + padding + border;
         }
 
-        private void ideaBoxToolStripMenuItem_Click(object sender, EventArgs e)
+        private void IdeaBoxToolStripMenuItemClick(object sender, EventArgs e)
         {
           IdeaBox frm = new IdeaBox(memberNameToolStripMenuItem.Text,projectNameToolStripMenuItem.Text);
           frm.Show();
           this.Close();
         }
 
-        private void taskTreeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void TaskTreeToolStripMenuItemClick(object sender, EventArgs e)
         {
           TaskTree frm = new TaskTree(memberNameToolStripMenuItem.Text,projectNameToolStripMenuItem.Text);
           frm.Show();
           this.Close();
         }
 
-        private void releasePlanToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ReleasePlanToolStripMenuItemClick(object sender, EventArgs e)
         {
            ReleasePlan frm = new ReleasePlan(memberNameToolStripMenuItem.Text,projectNameToolStripMenuItem.Text);
            frm.Show();
            this.Close();
         }
 
-        private void sprintPlanToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SprintPlanToolStripMenuItemClick(object sender, EventArgs e)
         {
           SprintPlan frm = new SprintPlan(memberNameToolStripMenuItem.Text,projectNameToolStripMenuItem.Text);
           frm.Show();
           this.Close();
         }
 
-        private void assignRolesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AssignRolesToolStripMenuItemClick(object sender, EventArgs e)
         {
 
-            if (!Sql.isManager(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text))  // THIS SQL NEEDS TO BE DONE
+            if (!Sql.IsManager(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text))  // THIS SQL NEEDS TO BE DONE
             {
 
                 MessageBox.Show("Not an owner. Cannot edit.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
@@ -256,21 +256,21 @@ namespace Co_Op_Swift
             
         }
 
-        private void assignTasksToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AssignTasksToolStripMenuItemClick(object sender, EventArgs e)
         {
             AssignTask frm = new AssignTask(memberNameToolStripMenuItem.Text, projectNameToolStripMenuItem.Text);
             frm.Show();
         }
 
-        private void selectProjectToolStripMenuItem_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        private void SelectProjectToolStripMenuItemDropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
           //get the name of the drop down item that was clicked
           //string proj_name = e.ClickedItem.ToString();
           projectNameToolStripMenuItem.Text = e.ClickedItem.ToString();
-          Sql.getProjectDescription(e.ClickedItem.ToString(), projectDescriptionTB);
+          Sql.GetProjectDescription(e.ClickedItem.ToString(), projectDescriptionTB);
             taskNameLB.Items.Clear();
             descTB.Text = "";
-          Sql.getStories(taskNameLB, memberNameToolStripMenuItem.Text, Sql.getProjectID(projectNameToolStripMenuItem.Text));
+          Sql.GetStories(taskNameLB, memberNameToolStripMenuItem.Text, Sql.GetProjectId(projectNameToolStripMenuItem.Text));
             /*FormCollection fc = Application.OpenForms;
             bool isFound = false;
             foreach (Form frm in fc)
@@ -291,38 +291,38 @@ namespace Co_Op_Swift
             }*/
         }
 
-        private void taskNameLB_SelectedIndexChanged(object sender, EventArgs e)
+        private void TaskNameLbSelectedIndexChanged(object sender, EventArgs e)
         {
             if(taskNameLB.SelectedItem != null)
             {
                 string name = taskNameLB.GetItemText(taskNameLB.SelectedItem);
-                descTB.Text = Sql.getStoryDesc(name, projectNameToolStripMenuItem.Text);
+                descTB.Text = Sql.GetStoryDesc(name, projectNameToolStripMenuItem.Text);
 
 
             }
         }
 
-        private void selectProjectToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SelectProjectToolStripMenuItemClick(object sender, EventArgs e)
         {
 
         }
 
-    private void projectDescriptionLabel_TextChanged(object sender, EventArgs e)
+    private void ProjectDescriptionLabelTextChanged(object sender, EventArgs e)
     {
 
     }
 
-    private void doneLabel_TextChanged(object sender, EventArgs e)
+    private void DoneLabelTextChanged(object sender, EventArgs e)
     {
 
     }
 
-    private void activityLabel_TextChanged(object sender, EventArgs e)
+    private void ActivityLabelTextChanged(object sender, EventArgs e)
     {
 
     }
 
-    private void label1_Click(object sender, EventArgs e)
+    private void Label1Click(object sender, EventArgs e)
     {
 
     }
