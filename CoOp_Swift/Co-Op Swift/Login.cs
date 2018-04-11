@@ -1,14 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
-
+using Co_Op_Swift.Resources;
 
 namespace Co_Op_Swift
 {
@@ -17,173 +9,136 @@ namespace Co_Op_Swift
     public Login()
     {
       InitializeComponent();
-      
     }
 
-    private void Label3Click(object sender, EventArgs e)
+    private void LoginButtonClick(object sender, EventArgs e)
     {
+      var username = unInput.Text;
+      var password = pwInput.Text;
 
-    }
-
-    private void Form2Load(object sender, EventArgs e)
-    {
-
-    }
-
-
-    //Login
-    private void Button1Click(object sender, EventArgs e)
-    {
-      string username = textBox1.Text;
-      string password = textBox2.Text;
-
-      if(username.Equals(""))
+      if (username.Equals(""))
       {
-         MessageBox.Show("User not entered. Please Register or enter a username.", "ERROR", MessageBoxButtons.OK, 
-           MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
-                return;
-      }
-
-      //execute query to find user and if found the users password to compare with the input password
-      var pass = Sql.ExecuteLogin(username,password);
-      
-      if(pass)
-      {
-        int projId = Sql.IsInProject(Sql.GetOwnerUserId(username));
-        if(projId != 0)
-        {
-          string projectName = Sql.GetProjectName(projId);
-
-          FormCollection fc = Application.OpenForms;
-          bool isFound = false;
-          foreach (Form frm in fc)
-          {
-            if (frm.Name == "Main")
-            {
-              frm.Focus();
-              isFound = true;
-              this.Hide();
-            }
-          }
-
-          if (isFound == false)
-          {
-            Dashboard frm = new Dashboard(username, projectName);
-            frm.Show();
-            this.Hide();
-          }
-
-        }
-        else
-        {
-          FormCollection fc = Application.OpenForms;
-          bool formFound = false;
-          foreach (Form frm in fc)
-          {
-            if (frm.Name == "Main")
-            {
-              frm.Focus();
-              formFound = true;
-              this.Hide();
-            }
-          }
-
-          if (formFound == false)
-          {
-            Dashboard frm = new Dashboard(username,"");
-            frm.Show();
-            this.Hide();
-          }
-        }
-      }
-      else 
-      {
-        MessageBox.Show("Password doesn't match the one on record.", "Incorrect Password", MessageBoxButtons.OK, MessageBoxIcon.Exclamation,
-  MessageBoxDefaultButton.Button1);
-
+        MessageBox.Show(MessageBoxStrings.UserNotEntered, MessageBoxStrings.ERROR, MessageBoxButtons.OK,
+          MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
         return;
       }
 
-    }
+      var pass = Sql.ExecuteLogin(username, password);
 
-
-     //Register
-      private void Button2Click(object sender, EventArgs e)
+      if (pass)
       {
-        FormCollection fc = Application.OpenForms;
-        bool formFound = false;
-        foreach (Form frm in fc)
+        var projId = Sql.IsInProject(Sql.GetOwnerUserId(username));
+        if (projId != 0)
         {
-          if (frm.Name == "RegForm")
+          var projectName = Sql.GetProjectName(projId);
+          var fc = Application.OpenForms;
+          var isFound = false;
+          foreach (Form form in fc)
+            if (form.Name == "Main")
+            {
+              form.Focus();
+              isFound = true;
+              Hide();
+            }
+
+          if (isFound == false)
           {
-            frm.Focus();
-            formFound = true;
-            this.Hide();
+            var form = new Dashboard(username, projectName);
+            form.Show();
+            Hide();
           }
-        }
-
-        if (formFound == false)
-        {
-          RegForm form = new RegForm();
-          form.ShowDialog();
-        }
-
-
-      }
-
-      //reset password
-      private void Button3Click(object sender, EventArgs e)
-      {
-
-        string userName = textBox1.Text;
-        int count = Sql.CheckUserExsistence(userName);
-
-        //If username does not exist
-        if (count == 0)
-        {
-          System.Windows.Forms.MessageBox.Show("Email/Username does not exist");
         }
         else
         {
-          if (textBox1.Text.Equals(""))
-          {
-            MessageBox.Show("User Not Found. Please enter a username.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Exclamation,
-  MessageBoxDefaultButton.Button1);
-          }
-          else
-          {
-            FormCollection fc = Application.OpenForms;
-            bool formFound = false;
-            foreach (Form frm in fc)
+          var fc = Application.OpenForms;
+          var formFound = false;
+          foreach (Form form in fc)
+            if (form.Name == "Main")
             {
-              if (frm.Name == "ResetForm1")
-              {
-                frm.Focus();
-                formFound = true;
-                this.Hide();
-              }
+              form.Focus();
+              formFound = true;
+              Hide();
             }
 
-            if (formFound == false)
-            {
-              string username = textBox1.Text;
-
-              SecurityQuestion form = new SecurityQuestion(username);
-              form.ShowDialog();
-            }
+          if (formFound == false)
+          {
+            var form = new Dashboard(username, "");
+            form.Show();
+            Hide();
           }
         }
-            
-      }// end button3_Click
-
-
-      //method to override the 'x' button on top right corner of form
-      protected override void OnFormClosing(FormClosingEventArgs e)
+      }
+      else
       {
-
-        Application.Exit();
-
-      } // end of OnFormClosing
-
+        MessageBox.Show(MessageBoxStrings.PasswordNotMatch, MessageBoxStrings.IncorrectPassword, MessageBoxButtons.OK,
+          MessageBoxIcon.Exclamation,
+          MessageBoxDefaultButton.Button1);
+      }
     }
+
+    private void RegisterButtonClick(object sender, EventArgs e)
+    {
+      var fc = Application.OpenForms;
+      var formFound = false;
+      foreach (Form form in fc)
+        if (form.Name == "RegForm")
+        {
+          form.Focus();
+          formFound = true;
+          Hide();
+        }
+
+      if (formFound == false)
+      {
+        var form = new RegForm();
+        form.ShowDialog();
+      }
+    }
+
+    private void ResetPasswordButtonClick(object sender, EventArgs e)
+    {
+      var userName = unInput.Text;
+      var count = Sql.CheckUserExsistence(userName);
+
+      if (count == 0)
+      {
+        MessageBox.Show(MessageBoxStrings.EmailUsernameDNE);
+      }
+      else
+      {
+        if (unInput.Text.Equals(""))
+        {
+          MessageBox.Show(MessageBoxStrings.UserNotFound, MessageBoxStrings.ERROR, MessageBoxButtons.OK,
+            MessageBoxIcon.Exclamation,
+            MessageBoxDefaultButton.Button1);
+        }
+        else
+        {
+          var fc = Application.OpenForms;
+          var formFound = false;
+          foreach (Form form in fc)
+            if (form.Name == "ResetForm1")
+            {
+              form.Focus();
+              formFound = true;
+              Hide();
+            }
+
+          if (formFound == false)
+          {
+            var username = unInput.Text;
+
+            var form = new SecurityQuestion(username);
+            form.ShowDialog();
+          }
+        }
+      }
+    }
+
+    //method to override the 'x' button on top right corner of form
+    protected override void OnFormClosing(FormClosingEventArgs e)
+    {
+      Application.Exit();
+    } 
+  }
 }

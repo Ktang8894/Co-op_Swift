@@ -61,6 +61,15 @@ namespace Co_Op_Swift.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email/Username does not exist.
+        /// </summary>
+        internal static string EmailUsernameDNE {
+            get {
+                return ResourceManager.GetString("EmailUsernameDNE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to End Date cannot be before Start Date.
         /// </summary>
         internal static string EndDateBeforeStartDate {
@@ -88,6 +97,15 @@ namespace Co_Op_Swift.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Incorrect Password.
+        /// </summary>
+        internal static string IncorrectPassword {
+            get {
+                return ResourceManager.GetString("IncorrectPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Not a valid start/end date.
         /// </summary>
         internal static string InvalidStartEndDate {
@@ -102,6 +120,33 @@ namespace Co_Op_Swift.Resources {
         internal static string NotOwner {
             get {
                 return ResourceManager.GetString("NotOwner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password doesn&apos;t match the one on record..
+        /// </summary>
+        internal static string PasswordNotMatch {
+            get {
+                return ResourceManager.GetString("PasswordNotMatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User not entered. Please Register or enter a username..
+        /// </summary>
+        internal static string UserNotEntered {
+            get {
+                return ResourceManager.GetString("UserNotEntered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Not Found. Please enter a username..
+        /// </summary>
+        internal static string UserNotFound {
+            get {
+                return ResourceManager.GetString("UserNotFound", resourceCulture);
             }
         }
     }

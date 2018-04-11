@@ -132,4 +132,19 @@
   <data name="FailedToExecuteActionQuery" xml:space="preserve">
     <value>ExecuteActionQuery failed to execute query</value>
   </data>
+  <data name="EmailUsernameDNE" xml:space="preserve">
+    <value>Email/Username does not exist</value>
+  </data>
+  <data name="UserNotFound" xml:space="preserve">
+    <value>User Not Found. Please enter a username.</value>
+  </data>
+  <data name="UserNotEntered" xml:space="preserve">
+    <value>User not entered. Please Register or enter a username.</value>
+  </data>
+  <data name="PasswordNotMatch" xml:space="preserve">
+    <value>Password doesn't match the one on record.</value>
+  </data>
+  <data name="IncorrectPassword" xml:space="preserve">
+    <value>Incorrect Password</value>
+  </data>
 </root>
